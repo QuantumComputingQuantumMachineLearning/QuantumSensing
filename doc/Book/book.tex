@@ -284,7 +284,7 @@ tabsize=2
 \newcommand{\meanbbbb}[1]{\Bigg\langle #1 \Bigg\rangle}
 
 %% Shorthands for text set in roman font
-\newcommand{\prob}[0]{\mathrm{Prob}} %probability
+%\renewcommand{\prob}[0]{\mathrm{Prob}} %probability
 \newcommand{\cov}[0]{\mathrm{Cov}}   %covariance
 \newcommand{\var}[0]{\mathrm{Var}}   %variancd
 
@@ -352,14 +352,13 @@ tabsize=2
 
 
 \mainmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
- %  Introductory chapters
-         \input{chapter1}
- \clearemptydoublepage
-         \input{chapter2}
- \clearemptydoublepage
-      \input{chapter3}
+\input{chapter1}
 \clearemptydoublepage
-      \input{chapter4}
+\input{chapter2}
+\clearemptydoublepage
+\input{chapter3}
+\clearemptydoublepage
+\input{chapter4}
 \clearemptydoublepage
 \input{chapter5}
 \clearemptydoublepage
