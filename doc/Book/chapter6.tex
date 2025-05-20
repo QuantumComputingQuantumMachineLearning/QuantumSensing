@@ -1,12 +1,10 @@
-\chapter{Entangled and Multi-Qubit Sensors}
+\chapter{Estimation theories}
 
 \section{Introduction}
 
 
 
-Quantum sensing and metrology aim to exploit quantum resources to
-estimate parameters with higher precision than classical
-strategies. In these notes, we introduce the theoretical foundations
+In this chapter, we introduce the theoretical foundations
 of parameter estimation, from the classical Cram'er-Rao bound (CRB) in
 statistics to its quantum generalization for optimally measuring
 parameters encoded in quantum states. We will begin with a brief
@@ -25,7 +23,6 @@ solidify understanding. Throughout, we include important equations,
 diagrams, and references to key literature.
 
 
-\section{Bell, GHZ, and Squeezed States}
 \section{Heisenberg Scaling and Limits}
 
 \section{Heisenberg Limit with GHZ and Bell States}
@@ -948,7 +945,6 @@ time to use in an experiment to maximize the information.
 
 
 \section{Numerical Example: Simulation of QFI Under Noise}
-
 \label{sec:numerics}
 
 
@@ -999,104 +995,8 @@ and instead outline pseudocode:
 
 
 
-\begin{verbatim}
-
-
-
-
-
-Pseudocode for computing Quantum Fisher Information via diagonalization:
-
-
-
-
-
-Define rho(theta) as a function giving the density matrix at parameter theta.
-
-Compute drho_dtheta = derivative of rho at theta (analytically or by small delta).
-
-Find eigenvalues {λ_i} and eigenvectors {|ψ_i>} of rho.
-
-Compute QFI = sum_{i,j} (2/(λ_i+λ_j)) * |<ψ_i| drho_dtheta |ψ_j>|^2, summing only where λ_i+λ_j>0.
-
-\end{verbatim}
-
-
-
-Using this algorithm on the single-qubit example above yields $F_Q =
-e^{-2\Gamma t}$ as derived. One can similarly plug in the $N$-qubit
-GHZ state density matrix with dephasing and confirm $F_Q = N^2
-e^{-2N\Gamma t}$.
-
-
-
-In practice, one might use a quantum software library (like QuTiP in
-Python or Julia’s QuantumOptics) to define the Lindblad dynamics,
-obtain $\rho(\theta)$, and then compute QFI. For large systems, direct
-diagonalization is expensive, and there are more efficient methods to
-compute $F_Q$ (especially for one-parameter unitary families, where
-formulas like $F_Q = 4 , \text{Var}(H)$ for pure states or a similar
-Purity-based formula for mixed states can be used).
-
-
-
-The key takeaway from numerical explorations is that $F_Q$ can be
-computed for any given model, and it provides a benchmark for the best
-possible precision. One can then design measurements to approach that
-(often maximum likelihood estimation combined with the optimal POVM
-asymptotically approaches the bound).
-
-
 
 \section{Conclusion}
-
-
-
-In these notes, we have provided a detailed overview of the quantum
-Cram'er-Rao bound in the context of quantum sensing, guiding the
-reader from classical estimation theory to quantum Fisher information
-and its applications. The classical Fisher information and CRB set the
-stage by showing how the variance of an estimator is bounded by the
-inverse of information in data. Quantum estimation theory extends
-these ideas by considering the optimization over measurements and
-introducing the QFI and SLD formalism. We derived the QCRB for single
-parameters, which establishes the ultimate precision limit given a
-quantum state. We also discussed multi-parameter estimation,
-emphasizing how the lack of commutativity of optimal measurements for
-different parameters can prevent simultaneous saturation of the bound,
-a peculiarly quantum phenomenon with no classical analog.
-
-
-
-Through examples like entangled atomic GHZ states in Ramsey
-interferometry and photonic NOON states in Mach-Zehnder
-interferometers, we illustrated both the promise of quantum metrology
-(Heisenberg scaling sensitivities and improved precision) and the
-practical challenges (fragility to noise and decoherence). We saw that
-while entanglement can, in principle, offer quadratic improvements in
-Fisher information, in practice noise tends to limit those gains. For
-instance, independent dephasing or loss can reduce the advantage of
-GHZ/NOON states to the point that simpler unentangled or moderately
-entangled states are preferable. These considerations underscore a key
-lesson: one must always consider the full picture including noise when
-predicting the performance of a quantum sensor. The QFI framework
-fortunately allows one to include noise by using the quantum channel
-acting on the state $\rho_\theta$ and computing $F_Q$ for the
-resulting mixed state.
-
-
-
-Finally, we provided optional numerical examples and pseudocode to
-demonstrate how one might calculate QFI and verify these theoretical
-results. The quantum Cram'er-Rao bound is not merely a abstract bound;
-it is a practical tool that has guided the development of quantum
-technologies like atomic clocks, magnetometers, and optical
-interferometers. As research progresses, new techniques (such as
-error-corrected metrology, adaptive measurements, and multi-parameter
-estimation strategies) will further bridge the gap between these
-theoretical limits and achievable precision in the laboratory. We hope
-these notes serve as a solid foundation for understanding and applying
-the QCRB in your own research.
 
 
 
