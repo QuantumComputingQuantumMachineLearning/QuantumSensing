@@ -1,3 +1,15 @@
 \chapter{Bayesian Inference in Quantum Sensing}
 \section{Bayes' Theorem and Priors}
 \section{Posterior Updating and Filtering}
+
+Bayesian methods incorporate prior knowledge:
+\[
+p(\theta|x) = \frac{p(x|\theta) p(\theta)}{p(x)},
+\]
+with
+\[
+p(x) = \int p(x|\theta) p(\theta) d\theta.
+\]
+
+This enables adaptive estimation strategies, quantification of
+uncertainty, and credible intervals.
