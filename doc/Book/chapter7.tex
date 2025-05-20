@@ -42,15 +42,10 @@ distribution $p(\theta)$ to represent initial knowledge or uncertainty
 about the parameter $\theta$. Upon obtaining data (measurement
 outcomes) $D$, Bayes’ theorem is used to update this belief. Bayes’
 theorem can be stated as:
-
 \begin{equation}
-
-p(\theta \mid D) = \frac{p(D \mid \theta), p(\theta)}{p(D)}~,
-
+p(\theta \mid D) = \frac{p(D \mid \theta), p(\theta)}{p(D)},
 \label{eq:Bayes}
-
 \end{equation}
-
 where $p(D \mid \theta)$ is the likelihood of observing data $D$ given
 $\theta$, and $p(\theta|D)$ is the posterior distribution, i.e. the
 updated probability distribution for $\theta$ after taking the data
@@ -109,15 +104,10 @@ which is a set ${\Pi_l}$ of positive semi-definite operators on the
 state space that sum to the identity. If the quantum system is
 prepared in a state $\rho(\theta)$ that depends on the parameter, then
 the probability of obtaining outcome $l$ is given by Born’s rule:
-
 \begin{equation}
-
 P(l \mid \theta) = \mathrm{Tr}!\big[\rho(\theta), \Pi_l\big],
-
 \label{eq:Born}
-
 \end{equation}
-
 which serves as the likelihood function $p(D|\theta)$ for Bayesian
 inference (with $D$ corresponding to the outcome $l$ in this
 measurement) . In the special case of a projective measurement ${\Pi_l
@@ -133,11 +123,9 @@ outcomes. If multiple independent quantum measurements are performed
 (for example, preparing the state anew each time and measuring), and
 one obtains a dataset $D = {l_1, l_2, \dots, l_N}$ of outcomes, the
 overall likelihood assuming identical probes is
-
 \[
 p(D \mid \theta) = \prod_{i=1}^N P(l_i \mid \theta),
 \]
-
 so the posterior after $N$ measurements is proportional to $p(\theta)
 \prod_{i=1}^N P(l_i|\theta)$. Sequential Bayesian updating (updating
 the posterior one measurement at a time) is particularly natural in
@@ -468,7 +456,7 @@ the expected reduction in variance or other uncertainty
 quantifier. Many adaptive Bayesian protocols choose the next
 measurement setting $x$ by maximizing the expected information gain:
 \[
-x^* = \arg\max_x \; \Big[ \mathbb{E}{k \sim p(k|\text{current posterior},\,x)} \big[ I{\text{prior}} - I_{\text{posterior after }k} \big] \Big]~,
+x^* = \arg\max_x \; \Big[ \mathbb{E}{k \sim p(k|\text{current posterior},\,x)} \big[ I{\text{prior}} - I_{\text{posterior after }k} \big] \Big],
 \]
 where $I$ is an information measure (like entropy or variance) and the
 expectation is over possible outcomes $k$ of the next
@@ -650,90 +638,4 @@ This example can be implemented with a few lines of code in Python,
 using a discrete grid to represent $p(\phi)$. Below is a simplified
 version of such a code (using degrees for simplicity and an 8-bin
 discretization just for demonstration):
-
-
-
-\begin{verbatim}
-
-import numpy as np
-
-
-
-
-
-Discretize parameter space (0 to 360 degrees)
-
-
-
-
-
-phi_vals = np.linspace(0, 360, 8, endpoint=False)
-
-prior = np.ones_like(phi_vals) / len(phi_vals)   # uniform prior
-
-
-
-true_phi = 50  # true phase in degrees
-
-measurements = [(0), (90)] * 4  # sequence of 8 measurements: 0°,90°,0°,90°,…
-
-posterior = prior.copy()
-
-
-
-for alpha in measurements:
-
-# Outcome 0 probability given true_phi:
-
-p0 = 0.5 * (1 + np.cos(np.deg2rad(true_phi - alpha)))
-
-# Simulate an outcome from true_phi
-
-outcome = 0 if np.random.rand() < p0 else 1
-
-# Calculate likelihood for all phi_vals given this outcome
-
-likelihood = 0.5 * (1 + np.cos(np.deg2rad(phi_vals - alpha)))
-
-if outcome == 1:
-
-likelihood = 1 - likelihood
-
-# Bayesian update
-
-posterior = likelihood * posterior
-
-posterior = posterior / posterior.sum()
-
-# (posterior becomes prior for next iteration automatically)
-
-\end{verbatim}
-
-
-
-Despite using a coarse 8-point grid here, the code demonstrates the
-update rule clearly. In an actual implementation, one would use a much
-finer grid or a continuous representation. After running such a code,
-we obtain the posterior distribution. We can then extract, for
-example, the posterior mean or peak and a credible interval. If we
-repeated many random simulations, we would find that the estimates are
-unbiased and converge toward $\phi_{\text{true}}$ as we increase the
-number of measurements, consistent with theoretical expectations.
-
-
-
-The main takeaway from this example is the mechanics of Bayesian
-updating: multiplying the prior by the likelihood from the new data
-and normalizing. It also shows the role of measurement choice: by
-alternating measurement bases ($0^\circ$ and $90^\circ$), we avoided a
-situation where $\phi$ would be totally ambiguous (had we measured
-only at $0^\circ$ every time, a phase of $\phi$ and $(360^\circ-\phi)$
-would produce the same outcomes, leading to a bimodal posterior). With
-a good choice of measurements, the posterior concentrates around the
-true value. This mimics how real quantum sensor experiments operate:
-they intermix measurements in different bases or settings to gain
-information about all aspects of the parameter, and they update their
-knowledge in real-time.
-
-
 
