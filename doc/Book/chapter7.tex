@@ -1,1 +1,720 @@
-\chapter{Bayesian Inference in Quantum Sensing}
+\chapter{Machine Learning and Bayesian Inference in Quantum Sensing}
+
+\section{Introduction}
+
+Quantum sensing leverages quantum systems (qubits, atoms, defects,
+etc.) to measure physical parameters with high precision. Examples
+include using quantum probes to measure magnetic fields,
+time/frequency standards, or various forces at the nanoscale. The
+central goal is to estimate one or more parameters $\theta$ governing
+a quantum system’s state or dynamics as accurately as
+possible. Traditionally, quantum parameter estimation has been
+approached with frequentist methods (e.g. using the quantum Fisher
+information and Cramér–Rao bound), but Bayesian inference provides an
+alternative framework that is especially powerful when incorporating
+prior knowledge or performing adaptive measurements. Frequentist and
+Bayesian approaches often agree in the limit of large data, but they
+differ conceptually: frequentist precision bounds like the Cramér–Rao
+bound generally do not directly apply to Bayesian strategies, and vice
+versa . In fact, mixing the two paradigms without care can be
+conceptually inconsistent . In this lecture notes, we introduce
+Bayesian estimation theory and its application to quantum sensing,
+covering both single-parameter and multi-parameter cases. We discuss
+how measurement outcomes (from projective measurements or POVMs) yield
+likelihood functions, how Bayes’ theorem updates our knowledge, and
+how to quantify the resulting uncertainty (e.g. via credible
+intervals, posterior variance, and information gain). We also compare
+the Bayesian approach to frequentist quantum estimation (quantum
+Fisher information and quantum Cramér–Rao bound), and provide
+illustrative examples including nitrogen-vacancy (NV) center
+magnetometry, trapped-ion sensors, and superconducting qubit
+experiments. Code snippets and figures are included to demonstrate
+posterior updates in practice.
+
+
+
+\section{Bayesian Estimation Theory Basics}
+
+Bayesian estimation is a statistical inference framework where
+probabilities represent degrees of belief (or knowledge) about unknown
+parameters. Before any data is collected, one assigns a prior
+distribution $p(\theta)$ to represent initial knowledge or uncertainty
+about the parameter $\theta$. Upon obtaining data (measurement
+outcomes) $D$, Bayes’ theorem is used to update this belief. Bayes’
+theorem can be stated as:
+
+\begin{equation}
+
+p(\theta \mid D) = \frac{p(D \mid \theta), p(\theta)}{p(D)}~,
+
+\label{eq:Bayes}
+
+\end{equation}
+
+where $p(D \mid \theta)$ is the likelihood of observing data $D$ given
+$\theta$, and $p(\theta|D)$ is the posterior distribution, i.e. the
+updated probability distribution for $\theta$ after taking the data
+into account . The denominator $p(D) = \int
+p(D|\theta)p(\theta),d\theta$ is the evidence (or marginal
+likelihood), ensuring the posterior is normalized. In words, the
+posterior is proportional to the likelihood times the prior. This
+formula encapsulates how prior beliefs are quantitatively updated by
+new evidence.
+
+
+
+For a simple example, suppose $\theta$ is an unknown phase and our
+prior for $\theta$ is uniform on $[0,2\pi)$. After a measurement
+  yielding some outcome data $D$, the likelihood $p(D|\theta)$ will
+  favor certain values of $\theta$ over others. Equation
+  \eqref{eq:Bayes} tells us how to combine this likelihood with the
+  prior to obtain the posterior $p(\theta|D)$, our new state of
+  knowledge about $\theta$. The maximum a posteriori (MAP) estimate is
+  the value of $\theta$ that maximizes $p(\theta|D)$, while the
+  Bayesian mean estimate (the conditional mean,
+  $\hat{\theta}{\text{Bayes}} = E[\theta | D]$) minimizes the mean
+  squared error (MMSE) among all estimators . Indeed, it is a basic
+  result that the posterior mean $E[\theta|D]$ is the Bayes-optimal
+  estimator for a scalar parameter under squared-error loss . The
+  Bayesian framework naturally encodes a notion of uncertainty in the
+  form of the posterior distribution, rather than yielding only a
+  point estimate. One can summarize this uncertainty by reporting a
+  credible interval (the Bayesian analogue of a confidence interval):
+  for example, the central $95\%$ credible interval is an interval
+  $[\theta{\text{low}}, \theta_{\text{high}}]$ such that
+  $\int_{\theta_{\text{low}}}^{\theta_{\text{high}}}
+  p(\theta|D),d\theta = 0.95$. This interval reflects the range within
+  which the true parameter lies with $95\%$ posterior probability. An
+  important difference from frequentist confidence intervals is that
+  credible intervals directly quantify belief about $\theta$; they do
+  not rely on hypothetical repeated sampling. Bayesian methods thus
+  allow assigning probability to fixed parameter values and provide
+  meaningful intervals even after a single experiment . There is no
+  concept of an “unbiased estimator” in the Bayesian approach – bias
+  is not defined since $\theta$ is treated as a random variable rather
+  than an unknown constant . Instead, the focus is on the full
+  posterior and its characteristics (mean, variance, etc.), given the
+  prior and data.
+
+
+
+\section{Quantum Measurements and Likelihood Functions}
+
+In quantum sensing and metrology, the data $D$ comes from measurements
+on a quantum system that depends on the parameter(s) of interest. The
+link between the parameter $\theta$ and measurement outcomes is
+encapsulated by quantum measurement theory. A general quantum
+measurement is described by a positive-operator valued measure (POVM),
+which is a set ${\Pi_l}$ of positive semi-definite operators on the
+state space that sum to the identity. If the quantum system is
+prepared in a state $\rho(\theta)$ that depends on the parameter, then
+the probability of obtaining outcome $l$ is given by Born’s rule:
+
+\begin{equation}
+
+P(l \mid \theta) = \mathrm{Tr}!\big[\rho(\theta), \Pi_l\big],
+
+\label{eq:Born}
+
+\end{equation}
+
+which serves as the likelihood function $p(D|\theta)$ for Bayesian inference (with $D$ corresponding to the outcome $l$ in this measurement) . In the special case of a projective measurement ${\Pi_l = |l\rangle\langle l|}$ on an eigenbasis, this reduces to $P(l|\theta) = \langle l|\rho(\theta)|l\rangle$. The form \eqref{eq:Born} makes it clear that the choice of measurement ${\Pi_l}$ influences the information we gain about $\theta$. For a given quantum state family $\rho(\theta)$, some measurements will be more informative about $\theta$ than others. Bayesian estimation allows us to incorporate the measurement process directly: we update the probability distribution for $\theta$ according to the observed outcomes. If multiple independent quantum measurements are performed (for example, preparing the state anew each time and measuring), and one obtains a dataset $D = {l_1, l_2, \dots, l_N}$ of outcomes, the overall likelihood assuming identical probes is
+
+p(D \mid \theta) = \prod_{i=1}^N P(l_i \mid \theta),
+
+so the posterior after $N$ measurements is proportional to $p(\theta) \prod_{i=1}^N P(l_i|\theta)$. Sequential Bayesian updating (updating the posterior one measurement at a time) is particularly natural in this context, as we will illustrate later.
+
+
+
+Optimal Measurements: In frequentist quantum estimation theory, one
+quantifies the best achievable precision using the quantum Fisher
+information (QFI). The QFI $F_Q(\theta)$ is a property of the family
+of states $\rho(\theta)$; it gives the maximal classical Fisher
+information obtainable about $\theta$ per quantum measurement,
+optimized over all possible POVMs on $\rho(\theta)$. The quantum
+Cramér–Rao bound (QCRB) then states that any (unbiased) estimator
+$\hat{\theta}$ from $N$ measurements satisfies
+$\mathrm{Var}(\hat{\theta}) \ge \frac{1}{N F_Q(\theta)}$ . In the
+Bayesian context, where we allow a prior, the analogous optimal
+measurement problem was solved by Personick (1971), who found the POVM
+that minimizes the Bayesian mean-square error (i.e. optimizes the
+posterior variance or other cost) . This Bayesian optimal measurement
+generally differs from the one that maximizes QFI, especially for
+finite samples or informative priors. However, Personick’s solution is
+rarely used directly in practice, because implementing the globally
+optimal POVM can be complex. Instead, many practical schemes use
+adaptive measurements: at each step, the measurement setting can be
+chosen based on the current posterior (thus approximately maximizing
+the information gain locally). This approach is a form of Bayesian
+experimental design – choose the next measurement to maximally reduce
+the expected uncertainty in $\theta$. We will see examples of this
+adaptive strategy in later sections.
+
+
+
+\section{Single-Parameter vs. Multi-Parameter Estimation}
+
+Quantum sensing scenarios may involve estimating a single scalar
+parameter or multiple parameters simultaneously. Single-parameter
+estimation is the most common case – for instance, determining a
+magnetic field $B$ from the precession of a qubit, or estimating a
+phase difference $\phi$ in an interferometer. Bayesian inference
+handles this by maintaining a univariate posterior $p(\theta|D)$ that
+is updated with each measurement. The formalism is straightforward,
+and one can often visualize the posterior as a probability
+distribution on $\theta \in \mathbb{R}$ (or a bounded interval).
+
+
+
+In multi-parameter estimation, $\boldsymbol{\theta} = (\theta_1,
+\theta_2, \dots)$ is a vector of parameters. A concrete example is a
+3D magnetometer that wants to estimate $(B_x, B_y, B_z)$
+simultaneously using a quantum sensor. Another example in quantum
+computing calibration is estimating multiple control parameters
+(e.g. laser amplitude and detuning for a trapped-ion gate) at once
+. The Bayesian approach naturally generalizes: one maintains a joint
+posterior $p(\theta_1,\theta_2,\dots | D)$ over all parameters. In
+principle, Bayes’ theorem applies in the same way (with priors and
+likelihoods now over multi-dimensional space). However, the curse of
+dimensionality can make it computationally challenging to represent
+and update a high-dimensional posterior, especially if done naively on
+a grid. Techniques like particle filters or Markov Chain Monte Carlo
+(MCMC) sampling are often employed for Bayesian inference in higher
+dimensions. Moreover, quantum measurements of multiple parameters may
+face trade-offs: due to the Heisenberg uncertainty principle or
+non-commuting observables, one measurement setting may not be optimal
+for all parameters at once. In frequentist terms, the quantum Fisher
+information matrix for a multi-parameter problem may not be
+simultaneously attainable for all parameters (this is related to
+incompatibility of optimal measurements for different
+parameters). Bayesian methods can still be applied by treating the
+multi-parameter estimation as a joint inference problem, and in
+adaptive schemes, one can alternate or choose measurement settings to
+balance information gain about the different components of
+$\boldsymbol{\theta}$. Recent research has begun to explore Bayesian
+multi-parameter quantum metrology, developing adaptive schemes that
+extend Personick’s single-parameter optimal strategy to multiple
+parameters . For example, an adaptive Bayesian scheme was proposed for
+localizing multiple point emitters (a multi-parameter super-resolution
+imaging problem), demonstrating better performance than standard
+measurement strategies . Similarly, experiments with trapped ions have
+shown that one can simultaneously calibrate several control parameters
+(e.g. all the parameters of a two-qubit entangling gate) using a
+Bayesian algorithm that updates a multi-dimensional posterior and
+chooses new measurement settings based on it . The ability to
+incorporate prior correlations between parameters and update all
+parameters together is a key advantage of the Bayesian approach in
+multi-parameter quantum sensing.
+
+
+
+\section{Examples of Bayesian Quantum Sensing Applications}
+
+
+
+\subsection{NV Center Magnetometry (Single Qubit Sensor)}
+
+Nitrogen-vacancy (NV) centers in diamond are point defects that house
+an electron spin ($S=1$) which can be optically initialized and read
+out. NV centers are excellent quantum sensors for magnetic fields,
+with high sensitivity and spatial resolution down to the nanoscale
+. In conventional NV magnetometry, one sweeps a microwave frequency
+across a resonance and observes changes in fluorescence to determine
+the magnetic field (which shifts the spin transition frequency via the
+Zeeman effect). This can be time-consuming. A Bayesian approach can
+dramatically speed up this process by focusing measurements where they
+are most informative. In a 2020 experiment, Dushenko et
+al. demonstrated a sequential Bayesian experimental design for NV
+magnetometry . The idea is to treat the unknown magnetic field (or
+equivalently the unknown resonance frequency) as a parameter with a
+prior, and then iteratively update the posterior after each
+measurement. Crucially, after each update, the experimental controller
+chooses the next microwave frequency (the next measurement setting) in
+real-time to maximize the expected information gain (“utility”) based
+on the current posterior . By doing so, the experiment “zooms in” on
+the resonance much faster than a blind sweep. The reported result was
+more than an order of magnitude reduction in measurement time to reach
+a given precision, compared to traditional methods . This Bayesian
+adaptive magnetometry is effectively an instance of active learning:
+the experiment learns the parameter as it goes, and intelligently
+focuses on the most informative measurements. It highlights the power
+of Bayesian methods in quantum sensing – especially when data
+acquisition is costly or time-limited, an adaptive strategy can
+extract the most information with the fewest measurements.
+
+
+
+\subsection{Trapped Ion Sensors and Calibration}
+
+Trapped ions are among the most precise quantum systems, used in
+optical atomic clocks (for time/frequency measurement), as inertial
+sensors, and in quantum computing platforms that require careful
+calibration of laser and magnetic field parameters. Bayesian inference
+has found use in these contexts in two main ways: (1) Sensing external
+parameters (like frequencies or forces), and (2) Calibrating internal
+operation parameters of a quantum device. An example of the first kind
+is an atomic clock: one can use a Bayesian filter to lock a laser
+frequency to an ion’s transition by continuously updating the belief
+about the frequency offset, achieving optimal tracking of drifts. An
+example of the second kind is given by Gerster et al. (2022), who
+developed an experimental Bayesian calibration protocol for two-qubit
+entangling gates in a trapped-ion quantum processor . In their
+approach, multiple control parameters (like laser detuning, amplitude,
+etc.) are estimated simultaneously using a Bayesian algorithm. After
+each experiment (a sequence of operations whose success/fidelity
+depends on these parameters), the algorithm updates a
+multi-dimensional posterior over the parameter space. Crucially, it
+uses an adaptive strategy to decide which experiment or measurement to
+do next, based on the current posterior, and it stops automatically
+once the desired precision (gate fidelity) is reached . This automated
+Bayesian tune-up achieved a reliable calibration in under one minute –
+a significant speedup over traditional manual calibration . Even
+though this example comes from quantum computing, it is essentially a
+multi-parameter quantum sensing scenario (sensing/calibrating the
+“effective” Hamiltonian parameters of the system). Another trapped-ion
+example is Bayesian phase estimation for interferometry: for instance,
+de Neeve et al. (2023) implemented a Bayesian phase lock on a single
+trapped ion to track a time-varying phase with high accuracy, using an
+adaptive phase measurement schedule. These applications show that
+Bayesian methods are well-suited to systems where measurements are
+sequential and can be adjusted on the fly, and where prior information
+(or intermediate data) can be leveraged to optimize the experiment.
+
+
+
+\subsection{Superconducting Qubits and Quantum Devices}
+
+Superconducting qubits are a leading platform for quantum computing
+and are also used as sensitive detectors of, e.g., microwave photons
+or magnetic flux. In the context of quantum sensing and device
+calibration, Bayesian inference has been used to tackle noise and
+drift in superconducting qubit systems. For example, Sung et
+al. (2023) demonstrated a real-time Bayesian estimation approach for
+calibrating the frequency of a transmon qubit that experiences slow
+drift . They implemented an adaptive algorithm (nicknamed “frequency
+binary search”) on a classical FPGA controller: the controller
+performs a Ramsey experiment on the qubit with a carefully chosen
+evolution time, observes the outcome, and then updates a probability
+distribution (over possible qubit frequency values) on the fly . Each
+subsequent Ramsey experiment is chosen to maximally reduce the
+uncertainty (the algorithm essentially splits the probability
+distribution at its median, akin to a binary search in frequency
+space) . Using this Bayesian feedback loop, the qubit frequency drift
+was tracked in real-time and corrected via feedback to the qubit’s
+control frequency. This resulted in improved qubit coherence and gate
+fidelity, as the system could be kept closer to its optimal operating
+point despite fluctuations . The Bayesian approach in this case has
+advantages over a traditional frequentist calibration (which might
+repeat fixed sequences and average results): by always using the
+current “best guess” of the frequency, the calibration achieves high
+precision with fewer measurements and can react promptly to
+changes. More generally, superconducting qubit experiments have
+embraced Bayesian techniques for tasks like qubit state tomography
+with imperfect measurements (using Bayesian updates to estimate the
+state or error rates) and quantum error mitigation (inferring error
+parameters via Bayes). As quantum hardware scales up, fast Bayesian
+calibration routines are becoming important to maintain performance
+with reasonable calibration time budgets .
+
+
+
+\section{Bayesian Updating and Credible Intervals}
+
+A core feature of Bayesian inference is the cycle of posterior
+updating. After each measurement, the prior distribution is updated to
+the posterior via Bayes’ rule; this posterior can then serve as the
+prior for the next measurement. In practice, one often starts with a
+broad prior (reflecting high initial uncertainty), and as more data
+accumulate, the posterior typically becomes sharper (lower variance),
+concentrating around the true parameter value. This iterative
+refinement embodies the learning process. The following pseudocode
+illustrates the basic Bayesian update loop for a generic
+parameter-estimation experiment:
+
+
+
+\begin{verbatim}
+
+
+
+
+
+Initialize prior (discrete grid or analytic distribution)
+
+
+
+
+
+prior = initial_prior_distribution
+
+for each measurement i = 1 to N:
+
+choose measurement setting (e.g. pulse duration, basis angle) based on prior
+
+obtain outcome k_i from quantum measurement
+
+compute likelihood L(theta) = P(k_i | theta)  for all theta
+
+posterior = L(theta) * prior   (multiply prior by likelihood pointwise)
+
+normalize posterior
+
+prior = posterior  (use current posterior as prior for next iteration)
+
+\end{verbatim}
+
+
+
+After each update, one can compute summary statistics of the
+posterior. For example, the posterior mean gives the current best
+estimate of $\theta$, and the posterior variance quantifies the
+remaining uncertainty. As mentioned, one can also extract a credible
+interval: e.g., find an interval $[\theta_{\text{low}},
+  \theta_{\text{high}}]$ that contains, say, $95\%$ of the posterior
+probability. This credible interval shrinks as more data are acquired
+(for well-behaved likelihoods), reflecting increased confidence in
+$\theta$’s value. Figure \ref{fig:posterior_evolution} below shows an
+example of this updating process for a simulated phase estimation
+experiment.
+
+
+
+Figure \label{fig:posterior_evolution}: Evolution of the posterior
+distribution over a single unknown phase $\phi$ (in degrees) as
+measurements are performed. The initial prior is uniform
+(top-left). After 2 measurements (top-right), the distribution begins
+to concentrate around two symmetric high-probability regions (arising
+from ambiguity in the measurement results). After 4 measurements
+(bottom-left), one of the two candidate regions has been largely ruled
+out, and the posterior concentrates near the true phase. After 8
+measurements (bottom-right), the posterior is sharply peaked,
+indicating high confidence in the phase estimate. In this simulation,
+each measurement was a single-qubit Ramsey experiment with outcomes
+used to update the Bayesian estimate of $\phi$. All eight outcomes in
+this particular run happened to be consistent with the true phase
+$\approx 45^\circ$, resulting in a posterior mean essentially equal to
+the true value. The narrowing of the distribution illustrates how
+additional data improve precision.
+
+
+
+In addition to point estimates and credible intervals, one can
+quantify the information gained from data. One measure of information
+gain is the reduction in the entropy of the distribution: for example,
+the Shannon entropy of the prior $H[p(\theta)]$ minus that of the
+posterior $H[p(\theta|D)]$. Bayesian adaptive methods often choose the
+next measurement to maximize the expected reduction in entropy (or
+equivalently, maximize the expected Kullback–Leibler divergence
+between posterior and prior), which is the same as maximizing the
+expected information gain. Another closely related metric is the
+posterior variance: a smaller posterior variance means more
+information (narrower distribution). In fact, some adaptive algorithms
+are designed to greedily minimize the expected posterior variance at
+each step . In the superconducting qubit frequency-tracking example,
+the “binary search” strategy was essentially minimizing the worst-case
+posterior variance by bisecting the probability mass of the current
+distribution .
+
+
+
+Bayesian methods also allow real-time assessment of when enough data
+have been collected. Because the posterior at each step is an entire
+distribution, one can set a stopping criterion based on the
+uncertainty: for instance, stop measuring when the posterior standard
+deviation falls below a target threshold, or when the $95\%$ credible
+interval width is below some requirement. This was implemented in the
+trapped-ion gate calibration example, where the algorithm stopped
+automatically once the desired gate infidelity (which is a function of
+the parameter uncertainty) was reached . Such criteria are part of
+Bayesian experimental design – balancing the cost of more data against
+the benefit of improved precision.
+
+
+
+\section{Posterior Variance and Information Gain}
+
+The posterior variance $\mathrm{Var}[\theta | D]$ is a key figure of
+merit for Bayesian estimators. It quantifies the expected squared
+deviation of $\theta$ from its mean given the data, i.e. how uncertain
+we remain about $\theta$ after incorporating the evidence. Posterior
+variance is directly related to the MMSE (mean squared error) of the
+Bayesian estimator (since the Bayes estimator is typically the
+posterior mean under squared-error loss). We often seek to minimize
+this variance with optimal experiment design. Each new measurement can
+be viewed as reducing the variance on average – but by how much? This
+is where information gain comes in. The expected information gain from
+a measurement (before doing it) can be defined as the difference
+between the prior and expected posterior entropy, or equivalently as
+the expected reduction in variance or other uncertainty
+quantifier. Many adaptive Bayesian protocols choose the next
+measurement setting $x$ by maximizing the expected information gain:
+\[
+x^* = \arg\max_x \; \Big[ \mathbb{E}{k \sim p(k|\text{current posterior},\,x)} \big[ I{\text{prior}} - I_{\text{posterior after }k} \big] \Big]~,
+\]
+where $I$ is an information measure (like entropy or variance) and the
+expectation is over possible outcomes $k$ of the next
+measurement. This abstractly represents choosing the setting that, on
+average, will yield the most informative result. In practice, one
+might discretize possible measurement settings and try each in
+simulation (using the current posterior as a surrogate of truth) to
+evaluate the expected posterior variance. The NV center experiment
+described earlier effectively used such a utility function (though the
+details were described in terms of a “utility” rather than explicitly
+in terms of bits of entropy) . The superconducting qubit calibration
+used a strategy that is locally optimal in that it halves the
+distribution’s support in frequency space at each step, minimizing the
+worst-case posterior spread .
+
+
+
+It is worth noting that there is a Bayesian analogue of the Cramér–Rao
+bound called the Bayesian Cramér–Rao bound (or Van Trees
+inequality). This bound provides a lower limit on the posterior
+variance (or more generally, on the mean squared error) given a prior
+and likelihood model. It essentially combines prior uncertainty and
+likelihood Fisher information to bound the achievable
+precision. However, the Van Trees bound is rarely saturated in
+practice; it serves more as a benchmark. In some cases, one can show
+that as the prior becomes very broad (un-informative) and the number
+of measurements $N$ becomes large, the Bayesian approach approaches
+the frequentist limit. Specifically, the posterior tends towards a
+normal (Gaussian) distribution centered at the true parameter value,
+with variance approximately $1/(N F_{\text{cl}})$ where
+$F_{\text{cl}}$ is the classical Fisher information of the chosen
+measurement strategy . In this asymptotic regime, Bayesian credible
+intervals at (say) $95\%$ credibility will coincide with the $95\%$
+confidence intervals from frequentist analysis, and the Bayesian
+estimator’s variance will approach the Cramér–Rao bound . But outside
+of the asymptotic limit, and especially for adaptive schemes or
+informative priors, the Bayesian variance can be lower than the naive
+frequentist CRB computed for an unbiased estimator . This is not a
+violation of any principle; it stems from the fact that the Bayesian
+scenario (with a strong prior or a specific adaptive measurement
+sequence) is a different problem than the one the frequentist CRB is
+addressing . In summary, posterior variance gives a concrete handle on
+uncertainty in the Bayesian picture, and maximizing information gain
+is the guiding principle to reduce it as rapidly as possible in
+quantum sensing tasks.
+
+
+
+\section{Comparison with Frequentist Methods}
+
+It is insightful to contrast the Bayesian approach to quantum
+parameter estimation with the more traditional frequentist approach
+based on the quantum Fisher information (QFI) and quantum Cramér–Rao
+bound (QCRB). In the frequentist paradigm, the parameter $\theta$ is
+considered a fixed but unknown constant. One typically imagines
+repeating an experiment many times and constructing an estimator
+$\hat{\theta}(D)$ as a function of the data. The Quantum Fisher
+Information $F_Q(\theta)$ is a property of the quantum state family
+$\rho(\theta)$ that sets an upper limit on the achievable classical
+Fisher information for any measurement . The QCRB states
+$\mathrm{Var}(\hat{\theta}) \ge 1/(N F_Q(\theta))$ for any unbiased
+estimator using $N$ independent, identical probes . The power of the
+frequentist approach is that it gives a crisp benchmark: for example,
+it tells us that no matter what (unbiased) data analysis you do, you
+cannot beat that variance bound with $N$ measurements. It also
+prescribes, in principle, what measurement to perform – one that
+saturates the QFI (often the eigenbasis of the symmetric logarithmic
+derivative operator). However, this approach has limitations. Notably,
+the CRB is only an equality in the limit of large $N$ under certain
+regularity conditions (e.g., the likelihood must be well-behaved and
+the estimator unbiased). For finite samples, the CRB might not be
+tight, and for biased estimators or for Bayesian strategies (which
+incorporate priors), the CRB need not apply at all .
+
+
+
+Bayesian estimation, on the other hand, does not require the concept
+of an unbiased estimator or repeated trials in the same sense. By
+incorporating prior information, Bayesian methods can achieve better
+precision with fewer data points in scenarios where a good prior is
+available. Even with a flat (ignorance) prior, a Bayesian adaptive
+strategy can outperform a fixed strategy that the frequentist analysis
+assumes. For example, in the quantum phase estimation context,
+frequentist analysis might say that the best you can do (with $N$
+photons or $N$ runs) is the standard quantum limit or Heisenberg limit
+depending on the state and measurement, but a Bayesian adaptive phase
+estimation protocol can achieve that scaling and often saturate the
+bound with fewer resources by dynamically adjusting measurements
+. Pezzè et al. (2018) explicitly compare frequentist and Bayesian
+phase estimation, noting that frequentist CRB-style bounds do not
+directly apply to Bayesian strategies and vice versa . They also show
+examples where a Bayesian credible interval can be narrower than the
+nominal frequentist confidence interval in certain regimes – which is
+not a contradiction, but a reflection of the additional information
+(or different criteria) being used.
+
+
+
+Another point of comparison is how each framework treats multiple
+parameters. In frequentist quantum estimation, the QFI generalizes to
+a QFI matrix for a vector parameter $\boldsymbol{\theta}$, and one
+obtains a matrix-bound on the covariance of any unbiased estimator:
+$\mathrm{Cov}(\hat{\boldsymbol{\theta}}) \ge (N
+F_Q(\boldsymbol{\theta}))^{-1}$ (as a matrix inequality). However,
+when the optimal measurements for different components do not commute,
+one cannot simultaneously saturate all components of this bound. The
+Bayesian approach naturally sidesteps this by focusing on the overall
+error and allowing trade-offs via the prior and loss function. One
+can, for instance, assign a cost function that weights different
+parameters and directly minimize the Bayes risk for that cost; the
+“best” measurement might then be a compromise that no single-parameter
+CRB would capture.
+
+
+
+In summary, frequentist methods provide powerful analytic bounds and
+design principles (especially useful for determining the ultimate
+limits of precision in a given physical scenario), while Bayesian
+methods offer a flexible, adaptive way to actually achieve high
+precision in practice, especially when prior knowledge or on-the-fly
+adjustment is possible. Both approaches often converge in the limit of
+many measurements – e.g., a Bayesian method with a flat prior will
+produce a posterior that (by the Bernstein–von Mises theorem) is
+approximately Gaussian around the true value with width $1/\sqrt{N
+  F_Q}$, consistent with the CRB . But for finite $N$ and with prior
+information, the Bayesian approach can be more powerful and
+informative. As one reference succinctly put it, “frequentist
+precision bounds, such as the Cramér–Rao bound, do not apply to
+Bayesian strategies, and vice-versa” – they are different ways of
+framing the problem. A prudent quantum engineer should understand
+both: use frequentist QFI analysis to know what is theoretically
+possible, and use Bayesian techniques to design practical protocols
+that approach those ideals under realistic conditions.
+
+
+
+\section{Illustrative Example: Bayesian Phase Estimation Simulation}
+
+To solidify the concepts, let us consider a simple quantum phase
+estimation scenario and walk through a Bayesian inference
+simulation. Suppose we have a single qubit serving as an
+interferometer: it accumulates a phase $\phi$ (the parameter to be
+estimated) between two $\pi/2$ pulses, and we can measure the qubit in
+a basis that has some adjustable phase reference. Specifically, assume
+that if we measure the qubit in a basis rotated by an angle $\alpha$
+(relative to the $Z$-basis), the probability of obtaining outcome
+“$0$” (projecting onto the state $(|0\rangle +
+e^{i\alpha}|1\rangle)/\sqrt{2}$) is $P(0|\phi,\alpha) = \frac{1}{2}[1
+  + \cos(\phi - \alpha)]$. This is akin to a Ramsey interferometry
+fringe: by changing the analysis phase $\alpha$, we can probe
+different quadratures of the phase. Now, the task is to estimate an
+unknown $\phi$.
+
+
+
+For this simulation, let the true phase be $\phi_{\text{true}} =
+50^\circ$ (approximately $0.87$ radians). We start with a uniform
+prior on $\phi \in [0,360^\circ)$. We will perform a sequence of
+  measurements. A reasonable strategy here is to alternate between
+  $\alpha=0^\circ$ and $\alpha=90^\circ$ measurements, which
+  correspond to measuring $\cos\phi$ and $\sin\phi$ fringes,
+  respectively. (In practice, more sophisticated adaptive choices
+  exist, but we use a simple fixed sequence for illustration.) We
+  generate synthetic measurement outcomes from the true $\phi$ and
+  update the posterior after each one. The plots in
+  Fig. \ref{fig:posterior_evolution} (shown earlier) were generated
+  from one such simulation. All eight measurements in that run were
+  favorable (the qubit outcomes were all $0$, which statistically is
+  the most likely outcome for $\phi_{\text{true}}=50^\circ$ and our
+  chosen measurements, as $\cos 50^\circ$ and $\sin 50^\circ$ are
+  positive). Consequently, the posterior homed in quickly on the true
+  value. In other runs, one might get some outcomes as $1$, which
+  would shift the distribution differently – but on average the
+  distribution will still converge around the correct phase.
+
+
+
+This example can be implemented with a few lines of code in Python,
+using a discrete grid to represent $p(\phi)$. Below is a simplified
+version of such a code (using degrees for simplicity and an 8-bin
+discretization just for demonstration):
+
+
+
+\begin{verbatim}
+
+import numpy as np
+
+
+
+
+
+Discretize parameter space (0 to 360 degrees)
+
+
+
+
+
+phi_vals = np.linspace(0, 360, 8, endpoint=False)
+
+prior = np.ones_like(phi_vals) / len(phi_vals)   # uniform prior
+
+
+
+true_phi = 50  # true phase in degrees
+
+measurements = [(0), (90)] * 4  # sequence of 8 measurements: 0°,90°,0°,90°,…
+
+posterior = prior.copy()
+
+
+
+for alpha in measurements:
+
+# Outcome 0 probability given true_phi:
+
+p0 = 0.5 * (1 + np.cos(np.deg2rad(true_phi - alpha)))
+
+# Simulate an outcome from true_phi
+
+outcome = 0 if np.random.rand() < p0 else 1
+
+# Calculate likelihood for all phi_vals given this outcome
+
+likelihood = 0.5 * (1 + np.cos(np.deg2rad(phi_vals - alpha)))
+
+if outcome == 1:
+
+likelihood = 1 - likelihood
+
+# Bayesian update
+
+posterior = likelihood * posterior
+
+posterior = posterior / posterior.sum()
+
+# (posterior becomes prior for next iteration automatically)
+
+\end{verbatim}
+
+
+
+Despite using a coarse 8-point grid here, the code demonstrates the
+update rule clearly. In an actual implementation, one would use a much
+finer grid or a continuous representation. After running such a code,
+we obtain the posterior distribution. We can then extract, for
+example, the posterior mean or peak and a credible interval. If we
+repeated many random simulations, we would find that the estimates are
+unbiased and converge toward $\phi_{\text{true}}$ as we increase the
+number of measurements, consistent with theoretical expectations.
+
+
+
+The main takeaway from this example is the mechanics of Bayesian
+updating: multiplying the prior by the likelihood from the new data
+and normalizing. It also shows the role of measurement choice: by
+alternating measurement bases ($0^\circ$ and $90^\circ$), we avoided a
+situation where $\phi$ would be totally ambiguous (had we measured
+only at $0^\circ$ every time, a phase of $\phi$ and $(360^\circ-\phi)$
+would produce the same outcomes, leading to a bimodal posterior). With
+a good choice of measurements, the posterior concentrates around the
+true value. This mimics how real quantum sensor experiments operate:
+they intermix measurements in different bases or settings to gain
+information about all aspects of the parameter, and they update their
+knowledge in real-time.
+
+
+
