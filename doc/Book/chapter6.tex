@@ -75,7 +75,6 @@ fundamental lower limit on this variance in terms of the
 The \textbf{Fisher information} (FI) measures the amount of
 information that an observable random variable $x$ carries about the
 parameter $\theta$. It is defined as
-
 \begin{equation}
 F(\theta)=\mathbb{E}\Bigg[\Big(\frac{\partial}{\partial \theta}\ln p(x|\theta)\Big)^2\Bigg],
 \label{eq:FI-def}
@@ -126,14 +125,11 @@ matrix $F_{ij}(\bm{\theta}) = \mathbb{E}\left[ \frac{\partial \ln
     p(x|\bm{\theta})}{\partial \theta_i}\frac{\partial \ln
     p(x|\bm{\theta})}{\partial \theta_j} \right],
 \]
-
 known as the Fisher information matrix (FIM). The multi-parameter
-Cram'er-Rao inequality reads
-
+Cramer-Rao inequality reads
 \begin{equation}
 \widehat{Cov}(\hat{\bm{\theta}}) \succeq F(\bm{\theta})^{-1},
 \end{equation}
-
 meaning that the covariance matrix of any unbiased estimator is at
 least the inverse of the FIM (here $A \succeq B$ denotes that $A - B$
 is positive semi-definite). In particular, for any unbiased estimator
@@ -198,9 +194,8 @@ maximum of the Fisher information over all possible measurements
 \cite{BraunsteinCaves1994}:
 
 \begin{equation}
-F_Q(\theta) ;=; \max_{{E_x}} ; F(\theta;{E_x}) ,,
+F_Q(\theta) = \max_{{E_x}} ; F(\theta;{E_x}),
 \end{equation}
-
 where $F(\theta;{E_x})$ denotes the Fisher information obtained with
 measurement ${E_x}$. In other words, $F_Q$ quantifies the ultimate
 precision limit encoded in the state $\rho_\theta$, irrespective of
@@ -230,7 +225,7 @@ the symmetric logarithmic derivative.
 The \textbf{symmetric logarithmic derivative} $L_\theta$ is an operator defined implicitly by the equation
 
 \begin{equation}
-\frac{\partial \rho_\theta}{\partial \theta} ;=; \frac{1}{2},\big( L_\theta,\rho_\theta ;+; \rho_\theta,L_\theta \big) ,.
+\frac{\partial \rho_\theta}{\partial \theta} = \frac{1}{2},\big( L_\theta,\rho_\theta ;+; \rho_\theta,L_\theta \big).
 \label{eq:SLD-def}
 \end{equation}
 
@@ -243,7 +238,7 @@ decomposition $\rho_\theta = \sum_i \lambda_i
 and possibly depending on $\theta$), then one finds
 
 \begin{equation}
-L_\theta ;=; \sum_{i,j:;\lambda_i + \lambda_j > 0} \frac{2}{\lambda_i + \lambda_j} \langle \psi_i|\partial_\theta \rho_\theta|\psi_j \rangle ;|\psi_i\rangle\langle \psi_j| ,.
+L_\theta = \sum_{i,j:;\lambda_i + \lambda_j > 0} \frac{2}{\lambda_i + \lambda_j} \langle \psi_i|\partial_\theta \rho_\theta|\psi_j \rangle ;|\psi_i\rangle\langle \psi_j|.
 \label{eq:SLD-eigenbasis}
 \end{equation}
 
@@ -262,7 +257,7 @@ although a more convenient formula for pure states is given below.
 Once $L_\theta$ is obtained, the \textbf{quantum Fisher information} can be computed as
 
 \begin{equation}
-F_Q(\theta) ;=; \Tr!\big[\rho_\theta, L_\theta^2\big].
+F_Q(\theta) = \Tr!\big[\rho_\theta, L_\theta^2\big].
 \label{eq:QFI-def}
 \end{equation}
 
@@ -274,7 +269,7 @@ finding $L_\theta$. One useful expression is in terms of the
 eigen-decomposition above:
 
 \begin{equation}
-F_Q(\theta) ;=; \sum_{i,j:; \lambda_i + \lambda_j >0} \frac{2}{\lambda_i + \lambda_j} \left|\langle \psi_i(\theta)|\partial_\theta \rho_\theta|\psi_j(\theta)\rangle\right|^2 ,.
+F_Q(\theta) = \sum_{i,j:; \lambda_i + \lambda_j >0} \frac{2}{\lambda_i + \lambda_j} \left|\langle \psi_i(\theta)|\partial_\theta \rho_\theta|\psi_j(\theta)\rangle\right|^2.
 \label{eq:QFI-eigen}
 \end{equation}
 
@@ -283,7 +278,7 @@ considerably. Writing $|\partial_\theta \psi_\theta\rangle$ for the
 derivative with respect to $\theta$, one obtains:
 
 \begin{equation}
-F_Q(\theta) ;=; 4 \Big[, \langle \partial_\theta \psi_\theta | \partial_\theta \psi_\theta \rangle ;-; \big|\langle \psi_\theta | \partial_\theta \psi_\theta \rangle\big|^2,\Big] ,.
+F_Q(\theta) = 4 \Big[, \langle \partial_\theta \psi_\theta | \partial_\theta \psi_\theta \rangle ;-; \big|\langle \psi_\theta | \partial_\theta \psi_\theta \rangle\big|^2,\Big].
 \label{eq:QFI-pure}
 \end{equation}
 
@@ -311,10 +306,9 @@ to perform the optimal measurement on $\rho_\theta$. The
 \textbf{quantum Cram'er-Rao bound} is
 
 \begin{equation}
-\widehat{Var}(\hat{\theta}) ;\ge; \frac{1}{F_Q(\theta)} ,,
+\widehat{Var}(\hat{\theta}) ;\ge; \frac{1}{F_Q(\theta)},
 \label{eq:QCRB}
 \end{equation}
-
 for an unbiased estimator using the optimal measurement on the state
 $\rho_\theta$. This is directly analogous to the classical CRB
 \eqref{eq:CRB-classical}, but with $F_Q$ (which is $\ge$ any classical
@@ -375,39 +369,33 @@ parameters $\bm{\theta} = (\theta_1,\theta_2,\ldots,\theta_d)$, one
 can define SLD operators $L_i$ for each parameter via
 
 \begin{equation}
-\partial_{\theta_i} \rho_{\bm{\theta}} ;=; \frac{1}{2}(L_i,\rho_{\bm{\theta}} + \rho_{\bm{\theta}},L_i) ,,
+\partial_{\theta_i} \rho_{\bm{\theta}} = \frac{1}{2}(L_i,\rho_{\bm{\theta}} + \rho_{\bm{\theta}},L_i),
 \end{equation}
-
 in analogy to Eq.\eqref{eq:SLD-def}. The \textbf{quantum Fisher information matrix} (QFIM) has components given by
-
 \begin{equation}
-(F_Q){ij} ;=; \frac{1}{2}, \Tr!\Big[\rho{\bm{\theta}} (L_i L_j + L_j L_i)\Big] ,.
+(F_Q){ij} = \frac{1}{2}, \Tr!\Big[\rho{\bm{\theta}} (L_i L_j + L_j L_i)\Big].
 \label{eq:QFIM-def}
 \end{equation}
 
-Equivalently, one can write $(F_Q){ij} = \Tr[\partial{\theta_i}\rho, (G_j)]$ where $G_j$ is the symmetric operator defined by $G_j = \frac{1}{2}(L_j \rho + \rho L_j) = \partial_{\theta_j}\rho$ (i.e. $G_j$ is just the derivative of the state). In the eigenbasis form, a generalization of Eq.\eqref{eq:QFI-eigen} gives matrix elements for QFIM:
-
+Equivalently, one can write $(F_Q){ij} = \Tr[\partial{\theta_i}\rho, (G_j)]$ where $G_j$ is the symmetric operator defined by $G_j = \frac{1}{2}(L_j \rho + \rho L_j) = \partial_{\theta_j}\rho$ (i.e. $G_j$ is just the derivative of the state). In the eigenbasis form, a generalization of Eq.\eqref{eq:QFI-eigen} gives matrix elements for QFIM
 \begin{equation}
-(F_Q){ij} ;=; \sum{m,n} \frac{2}{\lambda_m + \lambda_n} \Re\big[\langle \psi_m|\partial_{\theta_i}\rho|\psi_n\rangle, \langle \psi_n|\partial_{\theta_j}\rho|\psi_m\rangle\big] ,,
+(F_Q){ij} = \sum{m,n} \frac{2}{\lambda_m + \lambda_n} \Re\big[\langle \psi_m|\partial_{\theta_i}\rho|\psi_n\rangle, \langle \psi_n|\partial_{\theta_j}\rho|\psi_m\rangle\big],
 \end{equation}
-
-with $\rho = \sum_m \lambda_m |\psi_m\rangle\langle \psi_m|$. For pure states, $F_Q$ is simpler: if $|\psi_{\bm{\theta}}\rangle$ is pure, then $(F_Q)_{ij} = 4,\Re[\langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi|\psi\rangle\langle\psi|\partial_j \psi\rangle]$.
-
-
-
-The QFIM provides a matrix bound (the \textbf{quantum multi-parameter
-  Cram'er-Rao bound}) on the covariance matrix of any unbiased
-multi-parameter estimator $\hat{\bm{\theta}}$:
-
+with
+\[
+\rho = \sum_m \lambda_m |\psi_m\rangle\langle \psi_m|.
+\]
+For pure states, $F_Q$ is simpler: if $|\psi_{\bm{\theta}}\rangle$ is pure, then
+\[
+(F_Q)_{ij} = 4,\Re[\langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi|\psi\rangle\langle\psi|\partial_j \psi\rangle].
+\]
+The QFIM provides a matrix bound (the \textbf{quantum multi-parameter Cramer-Rao bound}) on the covariance matrix of any unbiased
+multi-parameter estimator $\hat{\bm{\theta}}$
 \begin{equation}
-
-\Cov(\hat{\bm{\theta}}) ;\succeq; F_Q(\bm{\theta})^{-1} ,.
-
+\widehat{Cov}(\hat{\bm{\theta}}) ;\succeq; F_Q(\bm{\theta})^{-1}.
 \label{eq:QCRB-multi}
-
 \end{equation}
-
-This means $ \Cov(\hat{\bm{\theta}}) - F_Q^{-1}$ is positive
+This means $ \widehat{Cov}(\hat{\bm{\theta}}) - F_Q^{-1}$ is positive
 semi-definite, and in particular $\widehat{Var}(\hat{\theta}i) \ge
 (F_Q^{-1}){ii}$ for each component. Just as in the classical
 multi-parameter case, one usually cannot simultaneously saturate all
@@ -417,8 +405,6 @@ components of this matrix inequality unless certain conditions hold.
 
 \subsection{Compatible Measurements and Simultaneous Saturation}
 
-
-
 A fundamental new feature in the quantum multi-parameter scenario is
 that the optimal measurements for different parameters might be
 incompatible. In the single-parameter case, measuring in the
@@ -427,13 +413,11 @@ for that parameter. However, if we have multiple parameters with SLDs
 $L_1, L_2, \ldots$, there may not exist a single measurement that
 simultaneously diagonalizes all $L_i$ operators. This is only possible
 if the SLDs commute with each other (at least at the true value of the
-parameters):
-
+parameters)
 \begin{equation}
-[L_i, L_j] = 0 \qquad \text{for all } i,j ,.
+[L_i, L_j] = 0 \qquad \text{for all } i,j.
 \label{eq:SLD-comm}
 \end{equation}
-
 If this commutativity condition holds (and the eigenbases of the
 $\rho_{\bm{\theta}}$ do not themselves depend on $\bm{\theta}$ too
 strongly), then one can find a common eigenbasis of all $L_i$ and
@@ -530,8 +514,11 @@ is $P_1 \approx \frac{1}{2}[1 - \sin(\omega t)]$, which has a
 dependence on $\omega$ that allows estimation. In this simple
 single-particle interferometer, the (classical) Fisher information per
 trial can be calculated and is proportional to $t^2$ (at small $\omega
-t$), giving a variance scaling $\widehat{Var}(\hat{\omega}) \sim
-1/t^2$. However, $t$ cannot be increased arbitrarily due to
+t$), giving a variance scaling
+\[
+\widehat{Var}(\hat{\omega}) \sim 1/t^2.
+\]
+However, $t$ cannot be increased arbitrarily due to
 decoherence (the atom may lose phase coherence if kept too long). With
 $N$ independent atoms each doing Ramsey in parallel (each prepared and
 measured independently), the net effect is that the estimate of
@@ -542,14 +529,12 @@ samples), which is the standard quantum limit (SQL) scaling.
 
 Quantum entanglement offers a route to surpass the SQL. A famous
 example is the Greenberger-Horne-Zeilinger (\textbf{GHZ}) state (also
-known as a cat state in this context) of $N$ two-level atoms:
-
+known as a cat state in this context) of $N$ two-level atoms
 \begin{equation}
-|\Psi_{\text{GHZ}}\rangle ;=; \frac{1}{\sqrt{2}}\Big(|0 0 \cdots 0\rangle ;+; |1 1 \cdots 1\rangle\Big) ,,
+|\Psi_{\text{GHZ}}\rangle = \frac{1}{\sqrt{2}}\Big(|0 0 \cdots 0\rangle ;+; |1 1 \cdots 1\rangle\Big),
 \label{eq:GHZ-state}
 \end{equation}
-
-i.e. an equal superposition of all $N$ being in state $|0\rangle$ and
+that is an equal superposition of all $N$ being in state $|0\rangle$ and
 all $N$ being in $|1\rangle$. This state can be prepared, for example,
 by entangling $N$ atoms (as has been done with trapped ions and cold
 atoms). If we use this state as the input to our Ramsey sequence
@@ -560,9 +545,8 @@ picks up a phase $e^{-i N \omega t}$ relative to $|00\cdots0\rangle$
 (since all $N$ particles contribute). The state after free evolution
 is
 \[
-|\Psi_{\text{GHZ}}(t)\rangle = \frac{1}{\sqrt{2}}\Big(|0\cdots0\rangle + e^{-i N \omega t} |1\cdots1\rangle\Big) \,.
+|\Psi_{\text{GHZ}}(t)\rangle = \frac{1}{\sqrt{2}}\Big(|0\cdots0\rangle + e^{-i N \omega t} |1\cdots1\rangle\Big).
 \]
-
 Comparing to Eq.~\eqref{eq:GHZ-state}, we see the GHZ state
 accumulates an $N$-fold phase $N\omega t$. This means that the state
 is much more sensitive to the parameter $\omega$: a small change in
@@ -673,13 +657,11 @@ shot-noise limit), the phase uncertainty is limited by $\delta \phi
 photons used (again a $\frac{1}{\sqrt{N}}$ scaling). Quantum optics
 provides special states of light that can beat this limit. A famous
 example is the \textbf{NOON state} for two modes (two arms of the
-interferometer):
-
+interferometer)
 \begin{equation}
-|\Psi_{\text{NOON}}\rangle ;=; \frac{1}{\sqrt{2}}\big(|N\rangle_a |0\rangle_b ;+; |0\rangle_a |N\rangle_b \big) ,,
+|\Psi_{\text{NOON}}\rangle = \frac{1}{\sqrt{2}}\big(|N\rangle_a |0\rangle_b ;+; |0\rangle_a |N\rangle_b \big),
 \label{eq:NOON}
 \end{equation}
-
 where $|N\rangle_a$ means $N$ photons in arm $a$ and $|0\rangle_b$
 means 0 in arm $b$, etc. This state is the photonic analogue of the
 GHZ state: all $N$ photons are either in arm $a$ or all in arm $b$,
@@ -787,17 +769,40 @@ modest constant-factor improvement over the best classical strategy).
 
 
 
-Consider the atomic GHZ Ramsey example in Section~\ref{sec:GHZ-Ramsey}. In a real atomic clock or magnetometer, each atom might undergo spontaneous emission (if $|1\rangle$ is an excited state) or dephasing due to magnetic field fluctuations, etc. Huelga \textit{et al.} (1997) \cite{Huelga1997} analyzed a model where each of $N$ two-level atoms has a probability of spontaneous emission during the Ramsey interrogation time $t$. Spontaneous emission is an example of decoherence (it not only randomizes phase but can flip the state out of the two-level subspace). The result was striking: the GHZ state’s precision advantage is highly susceptible to this noise. In fact, they found that the optimal Ramsey interrogation time for a GHZ state shrinks as $N$ grows (because waiting longer allows more chance for an atom to decay, which ruins the GHZ state), and the net gain over $N$ unentangled atoms is lost for large $N$. The best that can be achieved in that model was a constant-factor improvement (like  constant $\approx \sqrt{2}$ advantage) but \emph{not} a scaling improvement.
+Consider the atomic GHZ Ramsey example in
+Section~\ref{sec:GHZ-Ramsey}. In a real atomic clock or magnetometer,
+each atom might undergo spontaneous emission (if $|1\rangle$ is an
+excited state) or dephasing due to magnetic field fluctuations,
+etc. Huelga \textit{et al.} (1997) \cite{Huelga1997} analyzed a model
+where each of $N$ two-level atoms has a probability of spontaneous
+emission during the Ramsey interrogation time $t$. Spontaneous
+emission is an example of decoherence (it not only randomizes phase
+but can flip the state out of the two-level subspace). The result was
+striking: the GHZ state’s precision advantage is highly susceptible to
+this noise. In fact, they found that the optimal Ramsey interrogation
+time for a GHZ state shrinks as $N$ grows (because waiting longer
+allows more chance for an atom to decay, which ruins the GHZ state),
+and the net gain over $N$ unentangled atoms is lost for large $N$. The
+best that can be achieved in that model was a constant-factor
+improvement (like constant $\approx \sqrt{2}$ advantage) but
+\emph{not} a scaling improvement.
 
 
 
-To illustrate the effect of dephasing noise, let’s consider a simpler model: pure dephasing of each qubit (no energy relaxation, just phase damping). Suppose each atom accumulates a phase $\omega t$ as before, but in addition, each has a coherence factor $e^{-\Gamma t}$ due to some stochastic phase noise (with rate $\Gamma$). This transforms the pure state into a mixed state. For a \emph{single qubit} initially $(|0\rangle+|1\rangle)/\sqrt{2}$, after time $t$ the off-diagonal element of its density matrix decays as $e^{-\Gamma t}$:
+To illustrate the effect of dephasing noise, let’s consider a simpler
+model: pure dephasing of each qubit (no energy relaxation, just phase
+damping). Suppose each atom accumulates a phase $\omega t$ as before,
+but in addition, each has a coherence factor $e^{-\Gamma t}$ due to
+some stochastic phase noise (with rate $\Gamma$). This transforms the
+pure state into a mixed state. For a \emph{single qubit} initially
+$(|0\rangle+|1\rangle)/\sqrt{2}$, after time $t$ the off-diagonal
+element of its density matrix decays as $e^{-\Gamma t}$:
 \[
-\rho_1(t) = \frac{1}{2}\begin{pmatrix}1 & e^{-\Gamma t} e^{-i \omega t} \\ e^{-\Gamma t} e^{i \omega t} & 1\end{pmatrix} \,.
+\rho_1(t) = \frac{1}{2}\begin{pmatrix}1 & e^{-\Gamma t} e^{-i \omega t} \\ e^{-\Gamma t} e^{i \omega t} & 1\end{pmatrix}.
 \]
 One can compute the QFI of this dephased single-qubit state for the parameter $\omega$. Using Eq.~\eqref{eq:QFI-eigen} or the formula for qubit states, one finds
 \[
-F_{Q, \text{single}}(\omega) = t^2 e^{-2\Gamma t} \,.
+F_{Q, \text{single}}(\omega) = t^2 e^{-2\Gamma t}.
 \]
 At short times (small $\Gamma t$), this is approximately $t^2$ as expected (since initially it’s like no decoherence); at long times, $F_Q$ decays as the coherence is lost.
 
@@ -817,11 +822,11 @@ the off-diagonal of the $N$-qubit density matrix decays as $e^{-N
 coherence; if any one decoheres, the GHZ superposition coherence is
 lost. The state becomes (at time $t$):
 \[
-\rho_{\text{GHZ}}(t) = \frac{1}{2}\Big(|0\cdots0\rangle\langle 0\cdots0| + |1\cdots1\rangle\langle 1\cdots1| + e^{-N\Gamma t} e^{-i N \omega t}|0\cdots0\rangle\langle 1\cdots1| + \text{h.c.}\Big) .
+\rho_{\text{GHZ}}(t) = \frac{1}{2}\Big(|0\cdots0\rangle\langle 0\cdots0| + |1\cdots1\rangle\langle 1\cdots1| + e^{-N\Gamma t} e^{-i N \omega t}|0\cdots0\rangle\langle 1\cdots1| + \text{h.c.}\Big).
 \]
 The QFI for this mixed state can be calculated (we did so numerically for small $N$ earlier). The result is
 \[
-F_{Q,\text{GHZ}}(\omega) = N^2 t^2 e^{-2 N \Gamma t} \,.
+F_{Q,\text{GHZ}}(\omega) = N^2 t^2 e^{-2 N \Gamma t}.
 \]
 This formula holds at least for the dephasing channel model and small $\omega t$. We can see the dramatic difference: although at very short times $F_Q$ grows as $N^2 t^2$, the decoherence factor is $e^{-2 N \Gamma t}$, which decays much faster with $t$ for large $N$.
 
