@@ -118,11 +118,30 @@ P(l \mid \theta) = \mathrm{Tr}!\big[\rho(\theta), \Pi_l\big],
 
 \end{equation}
 
-which serves as the likelihood function $p(D|\theta)$ for Bayesian inference (with $D$ corresponding to the outcome $l$ in this measurement) . In the special case of a projective measurement ${\Pi_l = |l\rangle\langle l|}$ on an eigenbasis, this reduces to $P(l|\theta) = \langle l|\rho(\theta)|l\rangle$. The form \eqref{eq:Born} makes it clear that the choice of measurement ${\Pi_l}$ influences the information we gain about $\theta$. For a given quantum state family $\rho(\theta)$, some measurements will be more informative about $\theta$ than others. Bayesian estimation allows us to incorporate the measurement process directly: we update the probability distribution for $\theta$ according to the observed outcomes. If multiple independent quantum measurements are performed (for example, preparing the state anew each time and measuring), and one obtains a dataset $D = {l_1, l_2, \dots, l_N}$ of outcomes, the overall likelihood assuming identical probes is
+which serves as the likelihood function $p(D|\theta)$ for Bayesian
+inference (with $D$ corresponding to the outcome $l$ in this
+measurement) . In the special case of a projective measurement ${\Pi_l
+  = |l\rangle\langle l|}$ on an eigenbasis, this reduces to
+$P(l|\theta) = \langle l|\rho(\theta)|l\rangle$. The form
+\eqref{eq:Born} makes it clear that the choice of measurement
+${\Pi_l}$ influences the information we gain about $\theta$. For a
+given quantum state family $\rho(\theta)$, some measurements will be
+more informative about $\theta$ than others. Bayesian estimation
+allows us to incorporate the measurement process directly: we update
+the probability distribution for $\theta$ according to the observed
+outcomes. If multiple independent quantum measurements are performed
+(for example, preparing the state anew each time and measuring), and
+one obtains a dataset $D = {l_1, l_2, \dots, l_N}$ of outcomes, the
+overall likelihood assuming identical probes is
 
+\[
 p(D \mid \theta) = \prod_{i=1}^N P(l_i \mid \theta),
+\]
 
-so the posterior after $N$ measurements is proportional to $p(\theta) \prod_{i=1}^N P(l_i|\theta)$. Sequential Bayesian updating (updating the posterior one measurement at a time) is particularly natural in this context, as we will illustrate later.
+so the posterior after $N$ measurements is proportional to $p(\theta)
+\prod_{i=1}^N P(l_i|\theta)$. Sequential Bayesian updating (updating
+the posterior one measurement at a time) is particularly natural in
+this context, as we will illustrate later.
 
 
 
