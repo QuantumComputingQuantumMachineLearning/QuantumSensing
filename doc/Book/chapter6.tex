@@ -62,7 +62,7 @@ from observed data. An \textit{estimator} $\hat{\theta}(x)$ is any
 function of the data used to estimate $\theta$. We often consider
 unbiased estimators, satisfying $E[\hat{\theta}] = \theta$. The
 precision of $\hat{\theta}$ is characterized by its variance
-$\Var(\hat{\theta})$. The \textit{Cram'er-Rao bound} gives a
+$\widehat{Var}(\hat{\theta})$. The \textit{Cram'er-Rao bound} gives a
 fundamental lower limit on this variance in terms of the
 \textit{Fisher information}.
 
@@ -77,7 +77,7 @@ information that an observable random variable $x$ carries about the
 parameter $\theta$. It is defined as
 
 \begin{equation}
-F(\theta) ;=; \mathbb{E}!\Bigg[\Big(\frac{\partial}{\partial \theta}\ln p(x|\theta)\Big)^2\Bigg],
+F(\theta)=\mathbb{E}\Bigg[\Big(\frac{\partial}{\partial \theta}\ln p(x|\theta)\Big)^2\Bigg],
 \label{eq:FI-def}
 \end{equation}
 
@@ -85,7 +85,7 @@ where the expectation is over $x\sim p(x|\theta)$. Intuitively,
 $F(\theta)$ is large if the likelihood function $p(x|\theta)$ is very
 sensitive to changes in $\theta$. An equivalent expression is
 \[
-F(\theta) = \int \frac{1}{p(x|\theta)}\left(\frac{\partial p(x|\theta)}{\partial \theta}\right)^2 dx.
+F(\theta)=\int \frac{1}{p(x|\theta)}\left(\frac{\partial p(x|\theta)}{\partial \theta}\right)^2 dx.
 \]
 
 
@@ -94,19 +94,19 @@ estimator $\hat{\theta}$ of $\theta$, its variance is bounded by the
 inverse of the Fisher information:
 
 \begin{equation}
-\Var(\hat{\theta}) ;\ge; \frac{1}{F(\theta)}.
+\widehat{Var}(\hat{\theta})\ge\frac{1}{F(\theta)}.
 \label{eq:CRB-classical}
 \end{equation}
 
 In other words, the Fisher information sets a lower bound on the
-estimator’s mean-squared error. The equality $\Var(\hat{\theta}) =
+estimator’s mean-squared error. The equality $\widehat{Var}(\hat{\theta}) =
 1/F(\theta)$ can be attained in the limit of large data
 (asymptotically unbiased estimators) under regularity conditions,
 e.g. by the efficient maximum likelihood estimator \cite{Kay1993}. If
 we have $N$ independent and identically distributed (i.i.d.) samples
 $x_1,\dots,x_N$ drawn from $p(x|\theta)$, the total Fisher information
 scales linearly, $F_{\text{tot}} = N F(\theta)$, and the CRB becomes
-$\Var(\hat{\theta}) \ge 1/(N F(\theta))$. This expresses the intuitive
+$\widehat{Var}(\hat{\theta}) \ge 1/(N F(\theta))$. This expresses the intuitive
 $\frac{1}{\sqrt{N}}$ scaling of precision with number of independent
 measurements (the standard quantum limit or shot-noise scaling, in
 analogy with independent particles or photons).
@@ -120,24 +120,24 @@ analogy with independent particles or photons).
 The classical CRB can be generalized to the case of estimating a
 vector of parameters
 \[
-\vec{\theta} =
+\bm{\theta} =
 (\theta_1,\theta_2,\dots,\theta_d)$. The Fisher information becomes a
-matrix $F_{ij}(\vec{\theta}) = \mathbb{E}\left[ \frac{\partial \ln
-    p(x|\vec{\theta})}{\partial \theta_i}\frac{\partial \ln
-    p(x|\vec{\theta})}{\partial \theta_j} \right],
+matrix $F_{ij}(\bm{\theta}) = \mathbb{E}\left[ \frac{\partial \ln
+    p(x|\bm{\theta})}{\partial \theta_i}\frac{\partial \ln
+    p(x|\bm{\theta})}{\partial \theta_j} \right],
 \]
 
 known as the Fisher information matrix (FIM). The multi-parameter
 Cram'er-Rao inequality reads
 
 \begin{equation}
-\Cov(\hat{\vec{\theta}}) \succeq F(\vec{\theta})^{-1},
+\widehat{Cov}(\hat{\bm{\theta}}) \succeq F(\bm{\theta})^{-1},
 \end{equation}
 
 meaning that the covariance matrix of any unbiased estimator is at
 least the inverse of the FIM (here $A \succeq B$ denotes that $A - B$
 is positive semi-definite). In particular, for any unbiased estimator
-of $\theta_i$, we have $\Var(\hat{\theta}i) \ge [F^{-1}]{ii}$. In the
+of $\theta_i$, we have $\widehat{Var}(\hat{\theta}i) \ge [F^{-1}]{ii}$. In the
 multi-parameter case, the CRB can be saturated simultaneously for all
 parameters only under certain conditions (e.g. when the likelihood has
 a Gaussian form or when the estimators for different parameters
@@ -292,7 +292,7 @@ quantum state parameter manifold. In particular, if
 $|\psi_\theta\rangle = e^{-i\theta H}|\psi_0\rangle$ (a unitary
 encoding with generator $H$ acting on the initial state
 $|\psi_0\rangle$), then one can show $F_Q =
-4,\Var_{|\psi_0\rangle}(H)$, i.e. four times the variance of $H$ in
+4,\widehat{Var}_{|\psi_0\rangle}(H)$, i.e. four times the variance of $H$ in
 the initial state \cite{BraunsteinCaves1994, Paris2009}. This is a
 useful rule of thumb: the more the state “splays out” into orthogonal
 directions in Hilbert space as $\theta$ changes (i.e. the bigger the
@@ -311,7 +311,7 @@ to perform the optimal measurement on $\rho_\theta$. The
 \textbf{quantum Cram'er-Rao bound} is
 
 \begin{equation}
-\Var(\hat{\theta}) ;\ge; \frac{1}{F_Q(\theta)} ,,
+\widehat{Var}(\hat{\theta}) ;\ge; \frac{1}{F_Q(\theta)} ,,
 \label{eq:QCRB}
 \end{equation}
 
@@ -323,7 +323,7 @@ bound on the precision given the quantum state itself, before choosing
 a measurement. If we have $N$ copies of the state (or prepare the
 state $N$ times independently and perform optimal measurements on
 each), then the total QFI scales as $N F_Q$ and the bound becomes
-$\Var(\hat{\theta}) \ge 1/(N F_Q)$, matching the $\frac{1}{N}$
+$\widehat{Var}(\hat{\theta}) \ge 1/(N F_Q)$, matching the $\frac{1}{N}$
 improvement expected for $N$ independent trials. In many quantum
 sensing scenarios, however, one considers using entangled states of
 $N$ probes or $N$ particles in a single collective state preparation
@@ -370,18 +370,18 @@ saturable.
 
 
 
-For a family of density matrices $\rho_{\vec{\theta}}$ depending on
-parameters $\vec{\theta} = (\theta_1,\theta_2,\ldots,\theta_d)$, one
+For a family of density matrices $\rho_{\bm{\theta}}$ depending on
+parameters $\bm{\theta} = (\theta_1,\theta_2,\ldots,\theta_d)$, one
 can define SLD operators $L_i$ for each parameter via
 
 \begin{equation}
-\partial_{\theta_i} \rho_{\vec{\theta}} ;=; \frac{1}{2}(L_i,\rho_{\vec{\theta}} + \rho_{\vec{\theta}},L_i) ,,
+\partial_{\theta_i} \rho_{\bm{\theta}} ;=; \frac{1}{2}(L_i,\rho_{\bm{\theta}} + \rho_{\bm{\theta}},L_i) ,,
 \end{equation}
 
 in analogy to Eq.\eqref{eq:SLD-def}. The \textbf{quantum Fisher information matrix} (QFIM) has components given by
 
 \begin{equation}
-(F_Q){ij} ;=; \frac{1}{2}, \Tr!\Big[\rho{\vec{\theta}} (L_i L_j + L_j L_i)\Big] ,.
+(F_Q){ij} ;=; \frac{1}{2}, \Tr!\Big[\rho{\bm{\theta}} (L_i L_j + L_j L_i)\Big] ,.
 \label{eq:QFIM-def}
 \end{equation}
 
@@ -391,24 +391,24 @@ Equivalently, one can write $(F_Q){ij} = \Tr[\partial{\theta_i}\rho, (G_j)]$ whe
 (F_Q){ij} ;=; \sum{m,n} \frac{2}{\lambda_m + \lambda_n} \Re\big[\langle \psi_m|\partial_{\theta_i}\rho|\psi_n\rangle, \langle \psi_n|\partial_{\theta_j}\rho|\psi_m\rangle\big] ,,
 \end{equation}
 
-with $\rho = \sum_m \lambda_m |\psi_m\rangle\langle \psi_m|$. For pure states, $F_Q$ is simpler: if $|\psi_{\vec{\theta}}\rangle$ is pure, then $(F_Q)_{ij} = 4,\Re[\langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi|\psi\rangle\langle\psi|\partial_j \psi\rangle]$.
+with $\rho = \sum_m \lambda_m |\psi_m\rangle\langle \psi_m|$. For pure states, $F_Q$ is simpler: if $|\psi_{\bm{\theta}}\rangle$ is pure, then $(F_Q)_{ij} = 4,\Re[\langle \partial_i \psi | \partial_j \psi \rangle - \langle \partial_i \psi|\psi\rangle\langle\psi|\partial_j \psi\rangle]$.
 
 
 
 The QFIM provides a matrix bound (the \textbf{quantum multi-parameter
   Cram'er-Rao bound}) on the covariance matrix of any unbiased
-multi-parameter estimator $\hat{\vec{\theta}}$:
+multi-parameter estimator $\hat{\bm{\theta}}$:
 
 \begin{equation}
 
-\Cov(\hat{\vec{\theta}}) ;\succeq; F_Q(\vec{\theta})^{-1} ,.
+\Cov(\hat{\bm{\theta}}) ;\succeq; F_Q(\bm{\theta})^{-1} ,.
 
 \label{eq:QCRB-multi}
 
 \end{equation}
 
-This means $ \Cov(\hat{\vec{\theta}}) - F_Q^{-1}$ is positive
-semi-definite, and in particular $\Var(\hat{\theta}i) \ge
+This means $ \Cov(\hat{\bm{\theta}}) - F_Q^{-1}$ is positive
+semi-definite, and in particular $\widehat{Var}(\hat{\theta}i) \ge
 (F_Q^{-1}){ii}$ for each component. Just as in the classical
 multi-parameter case, one usually cannot simultaneously saturate all
 components of this matrix inequality unless certain conditions hold.
@@ -435,7 +435,7 @@ parameters):
 \end{equation}
 
 If this commutativity condition holds (and the eigenbases of the
-$\rho_{\vec{\theta}}$ do not themselves depend on $\vec{\theta}$ too
+$\rho_{\bm{\theta}}$ do not themselves depend on $\bm{\theta}$ too
 strongly), then one can find a common eigenbasis of all $L_i$ and
 measure in that basis. In such a case, the classical Fisher
 information matrix for that measurement equals the QFIM, and the bound
@@ -530,7 +530,7 @@ is $P_1 \approx \frac{1}{2}[1 - \sin(\omega t)]$, which has a
 dependence on $\omega$ that allows estimation. In this simple
 single-particle interferometer, the (classical) Fisher information per
 trial can be calculated and is proportional to $t^2$ (at small $\omega
-t$), giving a variance scaling $\Var(\hat{\omega}) \sim
+t$), giving a variance scaling $\widehat{Var}(\hat{\omega}) \sim
 1/t^2$. However, $t$ cannot be increased arbitrarily due to
 decoherence (the atom may lose phase coherence if kept too long). With
 $N$ independent atoms each doing Ramsey in parallel (each prepared and
@@ -568,7 +568,7 @@ accumulates an $N$-fold phase $N\omega t$. This means that the state
 is much more sensitive to the parameter $\omega$: a small change in
 $\omega$ produces a larger relative phase change $N\delta\omega t$. In
 terms of quantum Fisher information, one can calculate (using
-e.g. $F_Q = 4,\Var(H)$ for pure states under unitary $U=e^{-i\omega
+e.g. $F_Q = 4,\widehat{Var}(H)$ for pure states under unitary $U=e^{-i\omega
   J_z t}$, where $J_z = \frac{1}{2}\sum_{k=1}^N \sigma^{(k)}_z$) that
 \[
 F_Q = N^2 t^2,
@@ -718,7 +718,7 @@ advantage.
 
 Nonetheless, conceptually, NOON states demonstrate the quantum
 limit. If one could maintain them, the QCRB for $\phi$ would be
-$\Var(\hat{\phi}) \ge 1/(N^2)$ (for one shot; with many shots $M$,
+$\widehat{Var}(\hat{\phi}) \ge 1/(N^2)$ (for one shot; with many shots $M$,
 $1/(M N^2)$). They also illustrate multi-parameter issues: in an
 interferometer with loss, one often has to estimate both $\phi$ and a
 loss parameter; NOON states cannot simultaneously be optimal for both
@@ -962,7 +962,7 @@ described. The QFI for $\theta$ in this pure state can be calculated
 from Eq.~\eqref{eq:QFI-pure}, or using the variance picture: here the
 generator is $H=\sigma_z/2$ with variance $1/4$ in the $|+\rangle$
 state, so $F_Q = 4 \times \frac{1}{4} = 1$. Indeed, one finds $F_Q =
-1$ for all $\theta$; hence $\Var(\hat{\theta}) \ge 1$ (in radians$^2$)
+1$ for all $\theta$; hence $\widehat{Var}(\hat{\theta}) \ge 1$ (in radians$^2$)
 for one shot, meaning the smallest uncertainty (one standard
 deviation) is $1$ rad, which makes sense given a single qubit gives a
 binary outcome at best (with many repeats $\sim \frac{1}{\sqrt{M}}$
@@ -979,7 +979,7 @@ small parameter we estimate), the state becomes $\rho(\theta) =
   c^2$ (assuming $\theta$ small or general $\theta$ since the QFI for
   phase is independent of the phase value). If $c=0.8$ for example,
   $F_Q = 0.64$. This means the best one can do is now
-  $\Var(\hat{\theta}) \ge 1/0.64 \approx 1.56$ rad$^2$ per shot, a
+  $\widehat{Var}(\hat{\theta}) \ge 1/0.64 \approx 1.56$ rad$^2$ per shot, a
   larger uncertainty than without dephasing. As $c \to 0$ (complete
   dephasing), $F_Q \to 0$ and you cannot estimate $\theta$ at all
   (indeed the state becomes completely mixed, which contains no
