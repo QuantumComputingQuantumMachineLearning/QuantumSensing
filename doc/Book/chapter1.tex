@@ -1,25 +1,32 @@
 
+
 \chapter{Introduction to Quantum Sensing}
 
 Quantum sensing is an emerging field that utilizes uniquely quantum
-phenomena—such as superposition, entanglement, and quantum
-discreteness—to achieve measurement capabilities beyond those of
+phenomena such as superposition, entanglement, and quantum
+discreteness to achieve measurement capabilities beyond those of
 classical sensors . A working definition of a \emph{quantum sensor}
-can be broad: (i) a quantum object (e.g. an atom or electron spin)
-used to measure a physical quantity, (ii) the use of quantum coherence
-(superposition states) in a measurement, or (iii) the use of
-specifically quantum correlations (entanglement) to enhance
-sensitivity beyond classical limits . Under the strictest definition,
-only the third category truly exploits quantum advantage, but in
-practice the term “quantum sensing” encompasses any sensor leveraging
-quantum properties of matter or light to gain precision or other
-advantages .
+can be broad:
+\begin{itemize}
+\item A quantum object (e.g. an atom or electron spin) used to measure a physical quantity;
+\item The use of quantum coherence (superposition states) in a measurement;
+\item or (iii) the use of specifically quantum correlations (in particular entanglement) to enhance
+  sensitivity beyond classical limits.
+\end{itemize}
+
+
+Under the strictest definition, only the third category truly exploits
+quantum advantage, but in practice the term {\em quantum sensing}
+encompasses any sensor leveraging quantum properties of matter or
+light to gain precision or other advantages .
 
 
 
 At its core, quantum sensing builds on the framework of quantum
-metrology—the science of making quantitative measurements with quantum
-systems . In conventional (classical) sensors, measurement uncertainty
+metrology the science of making quantitative measurements with quantum
+systems.
+
+In conventional (classical) sensors, measurement uncertainty
 is often bounded by sources of noise such as thermal noise or shot
 noise, leading to the \textit{standard quantum limit} (SQL) in many
 scenarios. Quantum sensors aim to surpass these limits by harnessing
@@ -67,7 +74,7 @@ less sensitive to certain noise.
 
 Quantum sensing technologies can be categorized by the physical
 platform or quantum system they employ. In the following sections, we
-provide an overview of major quantum sensing platforms, including
+present an overview of major quantum sensing platforms, including
 solid-state spin-based sensors (exemplified by the nitrogen-vacancy
 center in diamond), atomic and optical quantum sensors (including
 atomic magnetometers and atom interferometers), and cavity
@@ -84,7 +91,7 @@ provided by quantum approaches.
 Quantum metrology provides the theoretical underpinnings for quantum
 sensing, by establishing the ultimate precision limits allowed by
 quantum mechanics and how to attain them. A central concept is the
-\emph{quantum Cram'er-Rao bound}, which sets the minimum achievable
+\emph{quantum Cramer-Rao bound}, which sets the minimum achievable
 variance $\mathrm{Var}(\hat{\theta})$ in estimating a parameter
 $\theta$ as $\mathrm{Var}(\hat{\theta}) \ge 1/(\nu F_Q)$, where $\nu$
 is the number of independent repeats of the experiment and $F_Q$ is
@@ -96,9 +103,9 @@ providing Fisher information $\sim 1$), $F_Q \sim N$ and we recover
 the standard quantum limit scaling $\Delta \theta \sim N^{-1/2}$. For
 an entangled $N$-particle GHZ (Greenberger–Horne–Zeilinger) state or
 N00N state, $F_Q \sim N^2$, yielding $\Delta \theta \sim N^{-1}$, the
-Heisenberg limit .
+Heisenberg limit.
 
-
+% add material abour Cramer-Rao in later sections
 
 In practical terms, reaching the Heisenberg limit is extremely
 challenging due to decoherence and noise. Even a small amount of
