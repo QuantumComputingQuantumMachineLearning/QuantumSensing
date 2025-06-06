@@ -4,3 +4,1282 @@
 \section{Density Operators and Mixed States}
 \section{Time Evolution and Measurement}
 \section{Conclusion}
+
+
+\paragraph{Density matrix}
+
+Using the above linear expansion we can now define the density matrix of the state $\vert \psi\rangle$ as the outer product
+\[
+\bm{\rho}=\vert \psi \rangle\langle \psi \vert = \alpha\alpha^* \vert 0 \rangle\langle 0\vert+\alpha\beta^* \vert 0 \rangle\langle 1\vert+\beta\alpha^* \vert 1 \rangle\langle 0\vert+\beta\beta^* \vert 1 \rangle\langle 1\vert,
+\]
+which leads to
+\[
+\bm{\rho}=\begin{bmatrix} \alpha\alpha^* & \alpha\beta^*\\ \beta\alpha^* & \beta\beta^*\end{bmatrix}.
+\]
+
+Finally, we note that the trace of the density matrix is simply given by unity
+\[
+\mathrm{tr}\bm{\rho}=\alpha\alpha^* +\beta\beta^*=1.
+\]
+
+
+\paragraph{Other important matrices}
+
+We present other operators (as matrices) which play an important role in quantum computing, the so-called Hadamard matrix (or gate as we will use later)
+\[
+\bm{H}=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix}.
+\]
+
+The action of the operator $\bm{H}$ on a computational basis state like $\vert 0\rangle$ gives
+\[
+\bm{H}\vert 0 \rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix}\begin{bmatrix} 1 \\ 0\end{bmatrix}=\frac{1}{\sqrt{2}}(\vert 0\rangle + \vert 1\rangle),
+\]
+and 
+
+\[
+\bm{H}\vert 1 \rangle = \frac{1}{\sqrt{2}}\begin{bmatrix} 1 & 1 \\ 1 & -1\end{bmatrix}\begin{bmatrix} 0 \\ 1\end{bmatrix}=\frac{1}{\sqrt{2}}(\vert 0\rangle - \vert 1\rangle),
+\]
+that is we create a superposition of the states $\vert 0\rangle$ and $\vert 1\rangle$.
+
+
+\paragraph{Phase matrix}
+Another famous operation is the phase matrix given by
+\[
+\bm{S} = \begin{bmatrix} 1 & 0 \\ 0 & \imath\end{bmatrix}.
+\]
+
+
+\paragraph{Tensor products}
+
+Consider now two vectors with length $n=2$, with elements
+
+\[
+\vert x \rangle = \begin{bmatrix} x_0 \\ x_1 \end{bmatrix}, 
+\]
+and
+\[
+\vert y \rangle = \begin{bmatrix} y_0 \\ y_1 \end{bmatrix}. 
+\]
+The tensor product of these two vectors is defined as
+\[
+\vert x \rangle \otimes \vert y \rangle = \vert xy \rangle  = \begin{bmatrix} x_0y_0 \\ x_0y_1 \\ x_1y_0 \\ x_1y_1 \end{bmatrix}, 
+\]
+which is now a vector of length $4$.
+
+
+\paragraph{Examples of tensor products}
+If we now go back to our original one-qubit basis states, we can form teh following tensor products
+\[
+\vert 0 \rangle \otimes \vert 0 \rangle = \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix} =\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}=\vert 00 \rangle, 
+\]
+\[
+\vert 0 \rangle \otimes \vert 1 \rangle = \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1\end{bmatrix} =\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}=\vert 01 \rangle.
+\]
+
+
+\paragraph{More states}
+
+\[
+\vert 1 \rangle \otimes \vert 0 \rangle = \begin{bmatrix} 0 \\ 1\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix} =\begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}=\vert 10 \rangle, 
+\]
+and finally
+\[
+\vert 1 \rangle \otimes \vert 1 \rangle = \begin{bmatrix} 0 \\ 1\end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1\end{bmatrix} =\begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}=\vert 11 \rangle. 
+\]
+
+
+\paragraph{Three qubits}
+We have now four different states and we could try to make a new list
+by relabeling the states as follows $\vert 00 \rangle =\vert 0
+\rangle$, $\vert 01 \rangle =\vert 1 \rangle$, $\vert 10 \rangle
+=\vert 2 \rangle$, $\vert 11 \rangle =\vert 3 \rangle$.
+
+In similar ways we can define the tensor product of three qubits (or single-particle states) as
+\[
+\vert 0 \rangle \otimes \vert 0 \rangle \otimes \vert 0 \rangle = \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix}=\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \\ 0 \\0 \\ 0 \\ 0\end{bmatrix}=\vert 000 \rangle, 
+\]
+which is a new vector of length eight.
+
+
+\paragraph{Generalizing}
+
+We note that with a single-particle basis given the states $\vert
+0\rangle$ and $\vert 1\rangle$ we can, with $N$ particles construct
+$2^N$ different states.  This is something we can generalize to
+\begin{itemize}
+\item discuss ways of labeling states
+
+\item how to write a code which does it
+\end{itemize}
+
+
+
+\paragraph{Tensor products of matrices}
+The tensor product of two $2\times 2$ matrices $\bm{A}$ and $\bm{B}$ is given by
+
+\[
+\bm{A} \times \bm{B} = \begin{bmatrix} a_{00} & a_{01} \\ a_{10} & a_{11} \end{bmatrix} \otimes \begin{bmatrix} b_{00} & b_{01} \\ b_{10} & b_{11} \end{bmatrix} =
+\begin{bmatrix} a_{00} b_{00} &  a_{00}b_{01} & a_{01} b_{00} & a_{01}b_{01} \\
+                a_{00} b_{10} &  a_{00}b_{11} & a_{01} b_{10} & a_{01}b_{11} \\
+                a_{10} b_{00} &  a_{10}b_{01} & a_{11} b_{00} & a_{11}b_{01} \\
+                a_{10} b_{10} &  a_{10}b_{11} & a_{11} b_{10} & a_{11}b_{11} \end{bmatrix}
+\]
+
+
+\paragraph{Measurements}
+
+The probability of a measurement on a quantum system giving a certain
+result is determined by the weight of the relevant basis state in the
+state vector. After the measurement, the system is in a state that
+corresponds to the result of the measurement. The operators and
+gates discussed below are examples of operations we can perform on
+specific states.
+
+We  consider the state
+\[
+\vert \psi\rangle = \alpha \vert 0 \rangle +\beta \vert 1 \rangle
+\]
+
+
+\paragraph{Definitions of measurements}
+
+\begin{enumerate}
+\item A measurement can yield only one of the above states, either $\vert 0\rangle$ or $\vert 1\rangle$.
+
+\item The probability of a measurement resulting in $\vert 0\rangle$ is $\alpha^*\alpha = \vert \alpha \vert^2$.
+
+\item The probability of a measurement resulting in $\vert 1\rangle$ is $\beta^*\beta = \vert \beta \vert^2$.
+
+\item And we note that the sum of the outcomes gives $\alpha^*\alpha+\beta^*\beta=1$ since the two states are normalized.
+\end{enumerate}
+
+
+After the measurement, the state of the system is the state associated with the result of the measurement.
+
+We have already encountered the projection operators $P$ and $Q$. Let
+us now look at other types of operations we can make on qubit states.
+
+
+\paragraph{Different operators and gates}
+
+In quantum computing, the so-called Pauli matrices, and other simple
+$2\times 2$ matrices, play an important role, ranging from the setup
+of quantum gates to a rewrite of creation and annihilation operators
+and other quantum mechanical operators. Let us start with the familiar
+Pauli matrices and remind ourselves of some of their basic properties.
+
+Assume we operate with $\sigma_x$ on our basis state $\vert 0 \rangle$. This gives
+\[
+\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix}=\begin{bmatrix} 0  \\ 1  \end{bmatrix},
+\]
+that is we switch from $\vert 0\rangle$ to $\vert 1\rangle$ (often called a spin flip operation) and similary we have
+\[
+\begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix}=\begin{bmatrix} 1  \\ 0  \end{bmatrix}.
+\]
+
+
+\paragraph{More on Pauli matrices}
+
+This matrix plays an important role in quantum computing since we can
+link this with the classical \textbf{NOT} operation.  If we send in bit 0,
+the \textbf{NOT} gate outputs bit 1 and vice versa. We can use the $\sigma_x$
+matrix to implement the quantum mechanical equivalent of a classical
+\textbf{NOT} gate. If we input what we could represent as bit 0 in terms of
+the basis state $\vert 0\rangle$, operating on this state results in
+the state $\vert 1\rangle$, which we in turn can interpret as the
+classical bit 1.
+
+
+\paragraph{Linear superposition}
+If we have a linear superposition of these states we obtain
+\[
+\begin{bmatrix}0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix}\alpha \\ \beta \end{bmatrix}=\begin{bmatrix}\beta \\ \alpha \end{bmatrix}.
+\]
+
+The $\sigma_y$ matrix introduces an imaginary sign, which we will later encounter in terms of so-called phase-shift operations.
+
+
+\paragraph{The $\sigma_z$ matrix}
+The $\sigma_z$ matrix has the following effect
+\[
+\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix}=\begin{bmatrix} 1  \\ 0  \end{bmatrix},
+\]
+and 
+\[
+\begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix}=\begin{bmatrix} 0  \\ -1  \end{bmatrix},
+\]
+which we will also link with a specific phase-shift.
+
+
+\paragraph{Unitarity}
+
+The matrices we introduced here are so-called unitary matrices. This
+is an important element in quantum mechanics since the evolution of a
+closed quantum system is described by operations involving unitary
+operations only.
+
+We have defined a new state $\vert \psi_p\rangle$ as a linear expansion in terms of an orthogonal and normalized basis (our computational basis) $\phi_{\lambda}$
+\begin{equation}
+\vert \psi_i\rangle = \sum_{j} u_{ij}\vert \phi_{j}\rangle.
+\end{equation}
+
+
+\paragraph{Hamiltonians and basis functions}
+
+It is normal to choose a basis defined as the eigenfunctions of parts
+of the full Hamiltonian. The typical situation consists of the
+solutions of the one-body part of the Hamiltonian, that is we have
+
+\[
+\hat{h}_0\vert \phi_{i}\rangle=\epsilon_{i}\vert \phi_{i}\rangle.
+\]
+
+This is normally referred to as a single-particle basis $\vert\phi_{i}(\mathbf{r})\rangle$,
+defined by the quantum numbers $i$ and $\mathbf{r}$.
+
+
+\paragraph{Unitary transformations}
+A unitary transformation is important since it keeps the orthogonality.
+To see this consider first a basis of vectors $\mathbf{v}_i$,
+\[
+\mathbf{v}_i = \begin{bmatrix} v_{i1} \\ \dots \\ \dots \\v_{in} \end{bmatrix}
+\]
+We assume that the basis is orthogonal, that is 
+\[
+\mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+\]
+An orthogonal or unitary transformation
+\[
+\mathbf{w}_i=\mathbf{U}\mathbf{v}_i,
+\]
+preserves the dot product and orthogonality since
+\[
+\mathbf{w}_j^T\mathbf{w}_i=(\mathbf{U}\mathbf{v}_j)^T\mathbf{U}\mathbf{v}_i=\mathbf{v}_j^T\mathbf{U}^T\mathbf{U}\mathbf{v}_i= \mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
+\]
+
+
+\paragraph{Orthogonality preserved}
+
+This means that if the coefficients $u_{p\lambda}$ belong to a unitary
+or orthogonal transformation (using the Dirac bra-ket notation)
+
+\[
+\vert \psi_i\rangle = \sum_{j} u_{ij}\vert \phi_{j}\rangle.
+\]
+
+orthogonality is preserved.
+
+This propertry is extremely useful when we build up a basis of
+many-body determinant based states.
+
+Note also that although a basis $\left\{\vert \phi_i \rangle\right\}$ contains an infinity of states, for practical calculations we have always to make some truncations.
+
+
+\paragraph{Example}
+
+Assume we have two one-qubit states represented by
+\[
+\vert \psi \rangle = \alpha \vert 0 \rangle + \beta \vert 1\rangle=\begin{bmatrix}\alpha \\ \beta \end{bmatrix},
+\]
+and
+\[
+\vert \phi \rangle = \gamma \vert 0 \rangle + \delta \vert 1\rangle=\begin{bmatrix}\gamma \\ \delta \end{bmatrix}.
+\]
+
+We assume that the state $\vert \phi \rangle$ is obtained through a
+unitary transformation of $\vert \psi \rangle$ through a matrix
+$\bm{U}$ with its hermitian conjugate $\bm{U}^{\dagger}$ with matrix
+elements $u_{ij}^{\dagger}=u_{ji}^*$ and
+$\bm{I}=\bm{U}\bm{U}^{\dagger}=\bm{U}^{\dagger}\bm{U}$.
+
+
+\paragraph{Inverse of unitary matrices}
+
+Note that this means that the hermitian conjugate of a unitary matrix
+is equal to its inverse. This has important consequences for what is
+called reversibility. We say quantum mechanics is a theory which is
+reversible with a probabilistic determinism. Classical mechanics on
+the other is reversible in a deterministic way, that is, knowing all
+initial conditions we can in principle determine the future motion of
+an object which obey the laws of motion of classical mechanics.
+
+We have then
+\[
+\begin{bmatrix}\gamma \\ \delta \end{bmatrix}=\begin{bmatrix}u_{00} & u_{01} \\ u_{10} & u_{11} \end{bmatrix}\begin{bmatrix}\alpha \\ \beta \end{bmatrix}.
+\]
+
+
+\paragraph{New basis is also orthogonal}
+
+Since our original basis $\vert \psi\rangle$ is orthogonal and normalized with $\vert\alpha\vert^2+\vert\beta\vert^2=1$, the new basis is also orthogonal and normalized, as we can see below here.
+
+Since the inverse of a hermitian matrix is equal to its hermitian
+conjugate/adjoint), unitary transformations are always reversible.
+
+Why are only unitary transformations allowed? The key lies in the way the inner product tranforms.
+
+To see this we rewrite the new basis from the previous example in its two components as
+\[
+\vert \phi\rangle_i=\sum_{j}u_{ij}\vert \psi\rangle_j,
+\]
+or in terms of a matrix-vector notatio we have
+\[
+\vert \phi\rangle=\bm{U}\vert \psi\rangle,
+\]
+
+
+\paragraph{More on orthogonality}
+
+We have already assumed that $\langle \psi \vert \psi \rangle = \vert\alpha\vert^2+\vert\beta\vert^2=1$.
+
+We have that 
+\[
+\langle \phi\vert_i=\sum_{j}u_{ij}^*\langle \psi\vert_j,
+\]
+or in terms of a matrix-vector notation we have
+\[
+\langle \phi\vert=\langle \psi\vert\bm{U}^{\dagger}.
+\]
+
+Note that the two vectors are row vectors now.
+
+If we stay with this notation we have
+
+\[
+\langle \phi\vert\phi\rangle = \langle \psi \bm{U}^{\dagger}\bm{U}\vert \psi\rangle = \langle \psi\vert \psi\rangle=1!
+\]
+
+Unitary transformations are rotations in state space which preserve the
+length (the square root of the inner product) of the state vector.
+
+
+\paragraph{Entanglement}
+
+In order to study entanglement and why it is so important for quantum
+computing, we need to introduce some basic measures and useful
+quantities.  These quantities are the spectral decomposition of
+hermitian operators, how these are then used to define measurements
+and how we can define so-called density operators (matrices). These
+are all quantities which will become very useful when we discuss
+entanglement and in particular how to quantify it. In order to define
+these quantities we need first to remind ourselves about some basic linear
+algebra properties of hermitian operators and matrices.
+
+
+\paragraph{Basic properties of hermitian operators}
+
+The operators we typically encounter in quantum mechanical studies are
+\begin{enumerate}
+\item Hermitian (self-adjoint) meaning that for example the elements of a Hermitian matrix $\bm{U}$ obey $u_{ij}=u_{ji}^*$.
+
+\item Unitary $\bm{U}\bm{U}^{\dagger}=\bm{U}^{\dagger}\bm{U}=\bm{I}$, where $\bm{I}$ is the unit matrix
+
+\item The oparator $\bm{U}$ and its self-adjoint commute (often labeled as normal operators), that is  $[\bm{U},\bm{U}^{\dagger}]=0$. An operator is \textbf{normal} if and only if it is diagonalizable. A Hermitian operator is normal.
+\end{enumerate}
+
+
+Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\bm{U}$ is a unitary operator acting on a state $\vert \psi_j\rangle$, the action of
+
+\[
+\vert \phi_i\rangle=\bm{U}\vert \psi_j\rangle,
+\]
+preserves both the norm and orthogonality, that is $\langle \phi_i \vert \phi_j\rangle=\langle \psi_i \vert \psi_j\rangle=\delta_{ij}$, as discussed earlier.
+
+
+\paragraph{The Pauli matrices again}
+
+As example, consider the Pauli matrix $\sigma_x$. We have already seen that this matrix is a unitary matrix. Consider then an orthogonal and normalized basis $\vert 0\rangle^{\dagger} =\begin{bmatrix} 1 {\&} 0\end{bmatrix}$ and $\vert 1\rangle^{\dagger} =\begin{bmatrix} 0 {\&} 1\end{bmatrix}$ and a state which is a linear superposition of these two basis states
+
+\[
+\vert \psi_a\rangle=\alpha_0\vert 0\rangle +\alpha_1\vert 1\rangle.
+\]
+
+A new state $\vert \psi_b\rangle$ is given by
+\[
+\vert \psi_b\rangle=\sigma_x\vert \psi_a\rangle=\alpha_0\vert 1\rangle +\alpha_1\vert 0\rangle.
+\]
+
+
+\paragraph{Spectral Decomposition}
+
+An important technicality which we will use in the discussion of
+density matrices, entanglement, quantum entropies and other properties
+is the so-called spectral decomposition of an operator.
+
+Let $\vert \psi\rangle$ be a vector in a Hilbert space of dimension $n$ and a hermitian operator $\bm{A}$ defined in this
+space. Assume $\vert \psi\rangle$ is an eigenvector of $\bm{A}$ with eigenvalue $\lambda$, that is
+
+\[
+\bm{A}\vert \psi\rangle = \lambda\vert \psi\rangle = \lambda \bm{I}\vert \psi \rangle,
+\]
+where we used $\bm{I}\vert \psi \rangle = 1 \vert \psi \rangle$.
+Subtracting the right hand side from the left hand side gives
+\[
+\left[\bm{A}-\lambda \bm{I}\right]\vert \psi \rangle=0,
+\]
+
+which has a nontrivial solution only if the determinant
+$\mathrm{det}(\bm{A}-\lambda\bm{I})=0$.
+
+
+\paragraph{ONB again and again}
+
+We define now an orthonormal basis $\vert i \rangle =\{\vert 0
+\rangle, \vert 1\rangle, \dots, \vert n-1\rangle$ in the same Hilbert
+space. We will assume that this basis is an eigenbasis of $\bm{A}$ with eigenvalues $\lambda_i$
+
+We expand a new vector using this eigenbasis of $\bm{A}$
+\[
+\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\vert i\rangle,
+\]
+with the normalization condition $\sum_{i=0}^{n-1}\vert \alpha_i\vert^2$.
+Acting with $\bm{A}$ on this new state results in
+
+\[
+\bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\bm{A}\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle.
+\]
+
+
+\paragraph{Projection operators}
+
+If we then use that the outer product of any state with itself defines a projection operator we have the projection operators
+\[
+\bm{P}_{\psi} = \vert \psi\rangle\langle \psi\vert,
+\]
+and
+\[
+\bm{P}_{j} = \vert j\rangle\langle j\vert,
+\]
+we have that 
+\[
+\bm{P}_{j}\vert \psi\rangle=\vert j\rangle\langle j\vert\sum_{i=0}^{n-1}\alpha_i\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\vert j\rangle\langle j\vert i\rangle.
+\]
+
+
+\paragraph{Further manipulations}
+
+This results in
+\[
+\bm{P}_{j}\vert \psi\rangle=\alpha_j\vert j\rangle,
+\]
+since $\langle j\vert i\rangle$.
+With the last equation we can rewrite
+\[
+\bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i\vert \psi\rangle,
+\]
+from which we conclude that
+\[
+\bm{A}=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i.
+\]
+
+
+\paragraph{Spectral decomposition}
+
+This is the spectral decomposition of a hermitian and normal
+operator. It is true for any state and it is independent of the
+basis. The spectral decomposition can in turn be used to exhaustively
+specify a measurement, as we will see in the next section.
+
+As an example, consider two states $\vert \psi_a\rangle$ and $\vert
+\psi_b\rangle$ that are eigenstates of $\bm{A}$ with eigenvalues
+$\lambda_a$ and $\lambda_b$, respectively. In the diagonalization
+process we have obtained the coefficients $\alpha_0$, $\alpha_1$,
+$\beta_0$ and $\beta_1$ using an expansion in terms of the orthogonal
+basis $\vert 0\rangle$ and $\vert 1\rangle$.
+
+
+\paragraph{Explicit results}
+
+We have then
+
+\[
+\vert \psi_a\rangle = \alpha_0\vert 0\rangle+\alpha_1\vert 1\rangle,
+\]
+and
+\[
+\vert \psi_b\rangle = \beta_0\vert 0\rangle+\beta_1\vert 1\rangle,
+\]
+with corresponding projection operators
+
+\[
+\bm{P}_a=\vert \psi_a\rangle \langle \psi_a\vert = \begin{bmatrix} \vert \alpha_0\vert^2 &\alpha_0\alpha_1^* \\
+                                                                   \alpha_1\alpha_0^* & \vert \alpha_1\vert^* \end{bmatrix},
+\]    
+and
+\[
+\bm{P}_b=\vert \psi_b\rangle \langle \psi_b\vert = \begin{bmatrix} \vert \beta_0\vert^2 &\beta_0\beta_1^* \\
+                                                                   \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
+\]
+
+
+\paragraph{The spectral decomposition}
+The results from the previous slide gives us
+the following spectral decomposition of $\bm{A}$
+\[
+\bm{A}=\lambda_a \vert \psi_a\rangle \langle \psi_a\vert+\lambda_b \vert \psi_b\rangle \langle \psi_b\vert,
+\]
+which written out in all its details reads
+\[
+\bm{A}=\lambda_a\begin{bmatrix} \vert \alpha_0\vert^2 &\alpha_0\alpha_1^* \\
+                                                                   \alpha_1\alpha_0^* & \vert \alpha_1\vert^* \end{bmatrix} +\lambda_b\begin{bmatrix} \vert \beta_0\vert^2 &\beta_0\beta_1^* \\
+                                                                   \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
+\]
+
+
+\paragraph{First exercise set}
+
+The last two exercises are meant to build the basis for
+the two projects we will work on during the semester.  The first
+project deals with implementing the so-called
+\textbf{Variational Quantum Eigensolver} algorithm for finding the eigenvalues and eigenvectors of selected Hamiltonians.
+
+
+\paragraph{Ex1: Bell states}
+
+Show that the so-called Bell states listed here (and to be encountered many times in this course) form an orthogonal basis
+\[
+\vert \Phi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle +\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ 1\end{bmatrix},
+\]
+
+\[
+\vert \Phi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle -\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ -1\end{bmatrix},
+\]
+
+
+\paragraph{And the next two}
+\[
+\vert \Psi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle +\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ 1 \\ 0\end{bmatrix},
+\]
+
+and
+
+\[
+\vert \Psi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle -\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ -1 \\ 0\end{bmatrix}.
+\]
+
+
+\paragraph{Ex2: Entangled state}
+
+Show that the state $\alpha \vert 00\rangle+\beta\vert 11\rangle$ cannot be written as the product of the tensor product of two states and is thus entangle. The constants  $\alpha$ and $\beta$ are both nonzero.
+
+
+\paragraph{Ex3: Commutator identities}
+Prove the following commutator relations for different operators (marked with a hat)
+\begin{enumerate}
+\item $[\hat{A}+\hat{B},\hat{C}]= [\hat{A},\hat{C}]+[\hat{B},\hat{C}]$;
+
+\item $[\hat{A},\hat{B}\hat{C}]= [\hat{A},\hat{B}]\hat{C}+\hat{B}[\hat{A},\hat{C}]$; and 
+
+\item $[\hat{A},[\hat{B}\hat{C}]]= [\hat{B},[\hat{C},\hat{A}]]+[\hat{C},[\hat{A},\hat{B}]]=0$ (the so-called Jacobi identity).
+\end{enumerate}
+
+
+
+\paragraph{Ex4: Pauli matrices}
+\begin{enumerate}
+\item Set up the commutation rules for Pauli matrices, that is find $[\sigma_i,\sigma_j]$ where $i,j=x,y,z$.
+
+\item We define $\bm{X}=\sigma_x$, $\bm{Y}=\sigma_y$ and $\bm{Z}=\sigma_z$. Show that $\bm{XX}=\bm{YY}=\bm{ZZ}=\bm{I}$.
+
+\item Which one of the Pauli matrices has the qubit basis $\vert 0\rangle$ and $\vert 1\rangle$ as eigenbasis? What are the eigenvalues?
+\end{enumerate}
+
+
+
+\paragraph{Ex5: Shared eigenvectors}
+
+Prove that if two operators $\hat{A}$ and $\hat{B}$ commute they will share a basis of eigenstates
+
+
+\paragraph{Ex6: One-qubit basis and  Pauli matrices}
+
+Write a function which sets up a one-qubit basis and apply the various Pauli matrices to these basis states.
+
+
+\paragraph{Ex7: Hadamard and Phase gates}
+
+Apply the Hadamard and Phase gates to the same one-qubit basis states and study their actions on these states.
+
+
+\paragraph{Measurements}
+
+The probability of a measurement on a quantum system giving a certain
+result is determined by the weight of the relevant basis state in the
+state vector. After the measurement, the system is in a state that
+corresponds to the result of the measurement. The operators and
+gates discussed below are examples of operations we can perform on
+specific states.
+
+We  consider the state
+\[
+\vert \psi\rangle = \alpha \vert 0 \rangle +\beta \vert 1 \rangle
+\]
+
+
+\paragraph{Properties of a measurement}
+
+\begin{enumerate}
+\item A measurement can yield only one of the above states, either $\vert 0\rangle$ or $\vert 1\rangle$.
+
+\item The probability of a measurement resulting in $\vert 0\rangle$ is $\alpha^*\alpha = \vert \alpha \vert^2$.
+
+\item The probability of a measurement resulting in $\vert 1\rangle$ is $\beta^*\beta = \vert \beta \vert^2$.
+
+\item And we note that the sum of the outcomes gives $\alpha^*\alpha+\beta^*\beta=1$ since the two states are normalized.
+\end{enumerate}
+
+
+After the measurement, the state of the system is the state associated with the result of the measurement.
+
+We have already encountered the projection operators $P$ and $Q$. Let
+us now look at other types of operations we can make on qubit states.
+
+
+\paragraph{Basic properties of hermitian operators}
+
+The operators we typically encounter in quantum mechanical studies are
+\begin{enumerate}
+\item Hermitian (self-adjoint) meaning that for example the elements of a Hermitian matrix $\bm{U}$ obey $u_{ij}=u_{ji}^*$.
+
+\item Unitary $\bm{U}\bm{U}^{\dagger}=\bm{U}^{\dagger}\bm{U}=\bm{I}$, where $\bm{I}$ is the unit matrix
+
+\item The operator $\bm{U}$ and its self-adjoint commute (often labeled as normal operators), that is  $[\bm{U},\bm{U}^{\dagger}]=0$. An operator is \textbf{normal} if and only if it is diagonalizable. A Hermitian operator is normal.
+\end{enumerate}
+
+
+Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\bm{U}$ is a unitary operator acting on a state $\vert \psi_j\rangle$, the action of
+
+\[
+\vert \phi_i\rangle=\bm{U}\vert \psi_j\rangle,
+\]
+preserves both the norm and orthogonality, that is $\langle \phi_i \vert \phi_j\rangle=\langle \psi_i \vert \psi_j\rangle=\delta_{ij}$, as discussed earlier.
+
+
+\paragraph{The Pauli matrices again}
+
+As example, consider the Pauli matrix $\sigma_x$. We have already seen that this matrix is a unitary matrix. Consider then an orthogonal and normalized basis $\vert 0\rangle^{\dagger} =\begin{bmatrix} 1 {\&} 0\end{bmatrix}$ and $\vert 1\rangle^{\dagger} =\begin{bmatrix} 0 {\&} 1\end{bmatrix}$ and a state which is a linear superposition of these two basis states
+
+\[
+\vert \psi_a\rangle=\alpha_0\vert 0\rangle +\alpha_1\vert 1\rangle.
+\]
+
+A new state $\vert \psi_b\rangle$ is given by
+\[
+\vert \psi_b\rangle=\sigma_x\vert \psi_a\rangle=\alpha_0\vert 1\rangle +\alpha_1\vert 0\rangle.
+\]
+
+
+\paragraph{Spectral Decomposition}
+
+An important technicality which we will use in the discussion of
+density matrices, entanglement, quantum entropies and other properties
+is the so-called spectral decomposition of an operator.
+
+Let $\vert \psi\rangle$ be a vector in a Hilbert space of dimension $n$ and a hermitian operator $\bm{A}$ defined in this
+space. Assume $\vert \psi\rangle$ is an eigenvector of $\bm{A}$ with eigenvalue $\lambda$, that is
+
+\[
+\bm{A}\vert \psi\rangle = \lambda\vert \psi\rangle = \lambda \bm{I}\vert \psi \rangle,
+\]
+where we used $\bm{I}\vert \psi \rangle = 1 \vert \psi \rangle$.
+Subtracting the right hand side from the left hand side gives
+\[
+\left[\bm{A}-\lambda \bm{I}\right]\vert \psi \rangle=0,
+\]
+
+which has a nontrivial solution only if the determinant
+$\mathrm{det}(\bm{A}-\lambda\bm{I})=0$.
+
+
+\paragraph{ONB again and again}
+
+We define now an orthonormal basis $\vert i \rangle =\{\vert 0
+\rangle, \vert 1\rangle, \dots, \vert n-1\rangle$ in the same Hilbert
+space. We will assume that this basis is an eigenbasis of $\bm{A}$ with eigenvalues $\lambda_i$
+
+We expand a new vector using this eigenbasis of $\bm{A}$
+\[
+\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\vert i\rangle,
+\]
+with the normalization condition $\sum_{i=0}^{n-1}\vert \alpha_i\vert^2$.
+Acting with $\bm{A}$ on this new state results in
+
+\[
+\bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\bm{A}\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle.
+\]
+
+
+\paragraph{Projection operators}
+
+If we then use that the outer product of any state with itself defines a projection operator we have the projection operators
+\[
+\bm{P}_{\psi} = \vert \psi\rangle\langle \psi\vert,
+\]
+and
+\[
+\bm{P}_{j} = \vert j\rangle\langle j\vert,
+\]
+we have that 
+\[
+\bm{P}_{j}\vert \psi\rangle=\vert j\rangle\langle j\vert\sum_{i=0}^{n-1}\alpha_i\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\vert j\rangle\langle j\vert i\rangle.
+\]
+
+
+\paragraph{Further manipulations}
+
+This results in
+\[
+\bm{P}_{j}\vert \psi\rangle=\alpha_j\vert j\rangle,
+\]
+since $\langle j\vert i\rangle$.
+With the last equation we can rewrite
+\[
+\bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i\vert \psi\rangle,
+\]
+from which we conclude that
+\[
+\bm{A}=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i.
+\]
+
+
+\paragraph{Spectral decomposition}
+
+This is the spectral decomposition of a hermitian and normal
+operator. It is true for any state and it is independent of the
+basis. The spectral decomposition can in turn be used to exhaustively
+specify a measurement, as we will see in the next section.
+
+As an example, consider two states $\vert \psi_a\rangle$ and $\vert
+\psi_b\rangle$ that are eigenstates of $\bm{A}$ with eigenvalues
+$\lambda_a$ and $\lambda_b$, respectively. In the diagonalization
+process we have obtained the coefficients $\alpha_0$, $\alpha_1$,
+$\beta_0$ and $\beta_1$ using an expansion in terms of the orthogonal
+basis $\vert 0\rangle$ and $\vert 1\rangle$.
+
+
+\paragraph{Explicit results}
+
+We have then
+
+\[
+\vert \psi_a\rangle = \alpha_0\vert 0\rangle+\alpha_1\vert 1\rangle,
+\]
+and
+\[
+\vert \psi_b\rangle = \beta_0\vert 0\rangle+\beta_1\vert 1\rangle,
+\]
+with corresponding projection operators
+
+\[
+\bm{P}_a=\vert \psi_a\rangle \langle \psi_a\vert = \begin{bmatrix} \vert \alpha_0\vert^2 &\alpha_0\alpha_1^* \\
+                                                                   \alpha_1\alpha_0^* & \vert \alpha_1\vert^* \end{bmatrix},
+\]    
+and
+\[
+\bm{P}_b=\vert \psi_b\rangle \langle \psi_b\vert = \begin{bmatrix} \vert \beta_0\vert^2 &\beta_0\beta_1^* \\
+                                                                   \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
+\]
+
+
+\paragraph{The spectral decomposition}
+
+The results from the previous slide gives us
+the following spectral decomposition of $\bm{A}$
+\[
+\bm{A}=\lambda_a \vert \psi_a\rangle \langle \psi_a\vert+\lambda_b \vert \psi_b\rangle \langle \psi_b\vert,
+\]
+which written out in all its details reads
+\[
+\bm{A}=\lambda_a\begin{bmatrix} \vert \alpha_0\vert^2 &\alpha_0\alpha_1^* \\
+                                                                   \alpha_1\alpha_0^* & \vert \alpha_1\vert^* \end{bmatrix} +\lambda_b\begin{bmatrix} \vert \beta_0\vert^2 &\beta_0\beta_1^* \\
+                                                                   \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
+\]
+
+
+\paragraph{Bloch sphere}
+
+Classically, in a binary system, the bits take only two distinct
+values, either $0$ or $1$.  The quantum mechanical counterpart is
+given by two state vectors (our simple computational basis)
+$\vert 0 \rangle$ and $\vert 1\rangle $ which can be used to realize the
+superposition
+\[
+\vert \psi \rangle = \alpha \vert 0 \rangle +\beta\vert 1\rangle, 
+\]
+which can be represented using the so-called Bloch sphere, depicted on the next slide (best seen using the jupyter-notebook).
+
+
+\paragraph{Meet the Bloch sphere}
+The Bloch shere gives a vialable way to visualize a qubit and itsv possible realizations in terms of the angles $0\le \theta \le \pi$ and
+$0\le \phi \le 2\pi$. 
+
+
+
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+import numpy as np
+from qiskit.visualization import plot_bloch_vector
+plot_bloch_vector([0,1,0], title="New Bloch Sphere")
+
+\end{Verbatim}
+
+You can use spherical coordinates instead of cartesian ones.
+
+
+\begin{Verbatim}[numbers=none,fontsize=\fontsize{9pt}{9pt},baselinestretch=0.95]
+plot_bloch_vector([1, np.pi/2, np.pi/3], coord_type='spherical')
+
+\end{Verbatim}
+
+Using the Bloch sphere representation of the qubit $\vert \psi \rangle = \alpha \vert 0 \rangle +\beta\vert 1\rangle$, we can rewrite it as
+\[
+\vert \psi \rangle = \cos{(\frac{\theta}{2})} \vert 0 \rangle +\sin{(\frac{\theta}{2})}\exp{(\imath\phi)}\vert 1\rangle, 
+\]
+
+
+\paragraph{Bloch sphere exercise}
+
+Determine the Bloch sphere angles $\theta$ and $\phi$ for the eigenstates of each Pauli matrix (see lectures from last week for the definition of Pauli matrices).
+
+
+\paragraph{Measurements}
+
+Armed with the spectral decomposition, we are now ready to discuss how
+to compute measurements of observables.  When we make a measurement,
+quantum mechanics postulates that mutually exclusive measurement
+outcomes correspond to orthogonal projection operators.
+
+We assume now we can contruct a series of such orthogonal operators based on $\vert i \rangle \in \{\vert 0\rangle, \vert 1\rangle,\dots, \vert n-1\rangle$ computational basis states. These projection operators $\bm{P}_0,\bm{P}_1,\dots,\bm{P}_{n-1}$ are all idempotent and sum to one
+\[
+\sum_{i=0}^{n-1}\bm{P}_i=\bm{I}.
+\]
+
+
+\paragraph{Qubit example}
+
+As an example, consider the basis of two qubits $\vert 0\rangle$ and $\vert 1\rangle$ with the correspong sum
+\[
+\sum_{i=0}^{1}\bm{P}_i=\begin{bmatrix} 1 & 0 \\ 0 & 1\end{bmatrix}.
+\]
+Based on the spectral decomposition discussed above, we can define the probability of eigenvalue $\lambda_i$ as
+\[
+\mathrm{Prob}(\lambda_i) = \vert \bm{P}_i\vert \psi\rangle\vert^2,
+\]
+where $\vert \psi_a\rangle$ is a quantum state representing the system prior to a specific measurement.
+
+
+\paragraph{Total probability}
+
+We can rewrite this as 
+\[
+\mathrm{Prob}(\lambda_i) = \langle \psi\vert \bm{P}_i^{\dagger}\bm{P}_i\vert \psi\rangle =\langle \psi\vert \bm{P}_i\vert \psi\rangle.
+\]
+The total probability for all measurements is the sum overt all probabilities
+\[
+\sum_{i=0}^{n-1}\mathrm{Prob}(\lambda_i)=1.
+\]
+We can in turn define the post-measurement normalized pure quantum state as, for the specific outcome $\lambda_i$, as
+\[
+\vert \psi'\rangle = \frac{\bm{P}_i\vert \psi\rangle}{\sqrt{\langle \psi \vert \bm{P}_i\vert \psi\rangle}}. 
+\]
+
+
+\paragraph{Binary example system}
+
+As an example, consider the binary system states $\vert 0\rangle$ and $\vert 1\rangle$ with corresponding projection operators
+\[
+\bm{P}_0 =\vert 0 \rangle \langle 0\vert,
+\]
+and 
+\[
+\bm{P}_1 =\vert 1 \rangle \langle 1\vert,
+\]
+with the properties
+
+\[
+\sum_{i=0}^1\bm{P}_i^{\dagger}\bm{P}_1=\bm{I},
+\]
+
+\[
+\bm{P}_0^{\dagger}\bm{P}_0=\bm{P}_0^2=\bm{P}_0,
+\]
+and
+\[
+\bm{P}_1^{\dagger}\bm{P}_1=\bm{P}_1^2=\bm{P}_1.
+\]
+
+
+\paragraph{Superposition of states}
+
+Assume thereafter that we have a state $\vert \psi\rangle$ which is a superposition of the above two qubit states
+\[
+\vert \psi \rangle = \alpha\vert 0 \rangle + \beta \vert 1\rangle.
+\]
+The probability of finding either $\vert 0\rangle$ or $\vert 1\rangle$ is then
+\[
+\bm{P}_{\psi(0)}=\langle \psi\vert \bm{P}_0^{\dagger}\bm{P}_0\vert \psi\rangle=\vert \alpha\vert^2,
+\]
+and similarly we have 
+\[
+\bm{P}_{\psi(1)}=\langle \psi\vert \bm{P}_1^{\dagger}\bm{P}_1\vert \psi\rangle=\vert \beta\vert^2.
+\]
+
+\paragraph{More derivations}
+
+If we set 
+\[
+\vert \psi \rangle = \frac{1}{\sqrt{2}}\left(\vert 0 \rangle + \vert 1\rangle\right),
+\]
+we have $\vert \alpha\vert^2=\vert \beta\vert^2=1/2$. In general for this system we have
+\[
+\vert \psi'_0\rangle = \frac{\bm{P}_0\vert \psi\rangle}{\sqrt{\langle \psi \vert \bm{P}_0\vert \psi\rangle}}=\frac{\alpha}{\vert \alpha\vert}\vert 0 \rangle,
+\]
+and
+\[
+\vert \psi'_1\rangle = \frac{\bm{P}_1\vert \psi\rangle}{\sqrt{\langle \psi \vert \bm{P}_1\vert \psi\rangle}}=\frac{\beta}{\vert \beta\vert}\vert 1 \rangle. 
+\]
+
+
+\paragraph{Final result}
+In general we have that 
+\[
+\bm{P}_{\psi(x)}=\langle \psi\vert \bm{P}_x^{\dagger}\bm{P}_x\vert \psi\rangle,,
+\]
+which we can rewrite as
+\[
+\mathrm{Prob}(\psi(x))=\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\vert \psi\rangle\langle \psi\vert\right].
+\]
+
+
+\paragraph{Example}
+
+The last equation can be understood better through the following example with a state $\vert \psi\rangle$
+
+\[
+\vert \psi \rangle = \alpha \vert 0\rangle+\beta \vert 1\rangle,
+\]
+which results in a projection operator
+\[
+\vert \psi \rangle\langle \psi\vert = \begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ \alpha^*\beta & \vert\beta\vert^2\end{bmatrix}.
+\]
+
+
+\paragraph{Computing matrix products}
+We have that
+\[
+\bm{P}_0^{\dagger}\bm{P}_0=\bm{P}_0=\begin{bmatrix} 1 & 0 \\ 0 & 0\end{bmatrix},
+\]
+and computing the matrix product $\bm{P}_0\vert\psi\rangle\langle \psi\vert$ gives
+\[
+\bm{P}_0\vert\psi\rangle\langle \psi\vert=\begin{bmatrix} 1 & 0 \\ 0 & 0\end{bmatrix}\begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ \alpha^*\beta & \vert\beta\vert^2\end{bmatrix}=\begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ 0 & 0\end{bmatrix}.
+\]
+
+
+\paragraph{Taking the trace}
+
+Taking the trace of the above matrix, that is computing
+\[
+\mathrm{Prob}(\psi(0))=\mathrm{Tr}\left[\bm{P}_0^{\dagger}\bm{P}_0\vert \psi\rangle\langle \psi\vert\right]=\vert \alpha\vert^2,
+\]
+we obtain the same results as the one we had earlier by computing
+the probabliblity for $0$ given by the expression
+\[
+\bm{P}_{\psi(0)}=\langle \psi\vert \bm{P}_0^{\dagger}\bm{P}_0\vert \psi\rangle=\vert \alpha\vert^2.
+\]
+
+
+\paragraph{Outcome probability}
+
+It is straight forward to show that
+\[
+\mathrm{Prob}(\psi(1))=\mathrm{Tr}\left[\bm{P}_1^{\dagger}\bm{P}_1\vert \psi\rangle\langle \psi\vert\right]=\vert \beta\vert^2,
+\]
+which we also could have obtained by computing
+\[
+\bm{P}_{\psi(1)}=\langle \psi\vert \bm{P}_1^{\dagger}\bm{P}_1\vert \psi\rangle=\vert \beta\vert^2.
+\]
+
+
+\paragraph{Extending the expressions}
+
+We can now extend these expressions to the complete ensemble of measurements. Using the spectral decomposition we have that the probability of an outcome $p(x)$ is
+\[
+p(x)=\sum_{i=0}^{n-1}p_i\bm{P}_{\psi_i(x)},
+\]
+where $p_i$ are the probabilities of a specific outcome. 
+
+With these prerequisites we are now ready to introduce the density  matrices, or density operators.
+
+
+\paragraph{Density matrices/operators}
+
+The last equation can be rewritten as 
+
+\[
+p(x)=\sum_{i=0}^{n-1}p_i\bm{P}_{\psi_i(x)}=\sum_{i=0}^{n-1}p_i\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\vert \psi_i\rangle\langle \psi_i\vert\right],
+\]
+and we define the \textbf{density matrix/operator} as
+\[
+\rho=\sum_{i=0}^{n-1}p_i\vert \psi_i\rangle\langle \psi_i\vert,
+\]
+we can rewrite the first equation above as 
+\[
+p(x)=\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\rho\right].
+\]
+If we can define the state of a system in terms of the density matrix, the probability of a specific outcome is then given by
+\[
+p(x)_{\rho}=\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\rho\right].
+\]
+
+
+\paragraph{Properties of density matrices}
+
+A density matrix in a Hilbert space with $n$ states has the following properties (which we state without proof)
+\begin{enumerate}
+\item There exists a probability $p_i\geq 0$ with $\sum_ip_i=1$,
+
+\item There exists an orthonormal basis $\psi_i$ such that we can define $\rho=\sum_ip_i\vert\psi_i\rangle\langle \psi_i\vert$,
+
+\item We have $0 \leq \rho^2\leq 1$ and
+
+\item The norm $\vert\vert \rho \vert\vert_2\leq 1$.
+\end{enumerate}
+
+
+With the density matrix we can also define the state the system collapses to after a measurement, namely
+
+\[
+\rho'_x=\frac{\bm{P}_x\rho\bm{P}_x^{\dagger}}{\mathrm{Tr}[\bm{P}_x^{\dagger}\bm{P}_x\rho]}.
+\]
+
+
+\paragraph{First entanglement encounter, two qubit system}
+
+We define a system that can be thought of as composed of two subsystems
+$A$ and $B$. Each subsystem has computational basis states
+
+\[
+\vert 0\rangle_{\mathrm{A,B}}=\begin{bmatrix} 1 & 0\end{bmatrix}^T \hspace{1cm} \vert 1\rangle_{\mathrm{A,B}}=\begin{bmatrix} 0 & 1\end{bmatrix}^T.
+\]
+The subsystems could represent single particles or composite many-particle systems of a given symmetry.
+
+
+\paragraph{Computational basis}
+
+This leads to the many-body computational basis states
+
+\[
+\vert 00\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 1 & 0 & 0 &0\end{bmatrix}^T,
+\]
+and
+\[
+\vert 01\rangle = \vert 0\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 1 & 0 &0\end{bmatrix}^T,
+\]
+and
+\[
+\vert 10\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 0\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 1 &0\end{bmatrix}^T,
+\]
+and finally
+\[
+\vert 11\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 0 &1\end{bmatrix}^T.
+\]
+
+
+\paragraph{Bell states}
+
+The above computational basis states, which define an ONB, can in turn
+be used to define another ONB. As an example, consider the so-called
+Bell states
+
+\[
+\vert \Phi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle +\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ 1\end{bmatrix},
+\]
+
+\[
+\vert \Phi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle -\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ -1\end{bmatrix},
+\]
+
+
+\paragraph{The next two}
+
+\[
+\vert \Psi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle +\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ 1 \\ 0\end{bmatrix},
+\]
+
+and
+
+\[
+\vert \Psi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle -\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ -1 \\ 0\end{bmatrix}.
+\]
+It is easy to convince oneself that these states also form an orthonormal basis. 
+
+
+\paragraph{Measurement}
+
+Measuring one of the qubits of one of the above Bell states,
+automatically determines, as we will see below, the state of the
+second qubit. To convince ourselves about this, let us assume we perform a measurement on the qubit in system $A$ by introducing the projections with outcomes $0$ or $1$ as
+
+\[
+\bm{P}_0=\vert 0\rangle\langle 0\vert_A\otimes \bm{I}_B=\begin{bmatrix} 1 & 0\\ 0 & 0\end{bmatrix}\otimes\begin{bmatrix} 1& 0 \\ 0 & 1\end{bmatrix}=\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{bmatrix},
+\]
+for the projection of the $\vert 0 \rangle$ state in system $A$ and similarly
+\[
+\bm{P}_1=\vert 1\rangle\langle 1\vert_A\otimes \bm{I}_B=\begin{bmatrix} 0 & 0\\ 0 & 1\end{bmatrix}\otimes\begin{bmatrix} 1& 0 \\ 0 & 1\end{bmatrix}=\begin{bmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1\end{bmatrix},
+\]
+for the projection of the $\vert 1 \rangle$ state in system $A$.
+
+
+\paragraph{Probability of  outcome}
+
+We can then calculate the probability for the various outcomes by
+computing for example the probability for measuring qubit $0$ 
+
+\[
+\langle \Phi^+\vert \bm{P}_0\vert \Phi^+\rangle = \frac{1}{2} \left[\langle 00\vert +\langle 11\vert\right]\begin{bmatrix} 1 & 0 & 0 & 0 \\ 0 & 1 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0\end{bmatrix}\left[\vert 00\rangle +\vert 11\rangle\right]=\frac{1}{2}.
+\]
+Similarly, we obtain
+\[
+\langle \Phi^+\vert \bm{P}_1\vert \Phi^+\rangle = \frac{1}{2}\left[\langle 00\vert +\langle 11\vert\right]\begin{bmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1\end{bmatrix}\left[\vert 00\rangle +\vert 11\rangle\right]=\frac{1}{2}.
+\]
+
+
+\paragraph{States after measurement}
+After the above measurements the system is in the states
+
+\[
+\vert \Phi'_0 \rangle = \sqrt{2}\left[\vert 0\rangle\langle 0\vert_A\otimes \bm{I}_B\right]\vert\Phi^+\rangle=\vert 00\rangle,
+\]
+and 
+\[
+\vert \Phi'_1 \rangle = \sqrt{2}\left[\vert 1\rangle\langle 1\vert_A\otimes \bm{I}_B\right]\vert\Phi^+\rangle=\vert 11\rangle.
+\]
+
+We see from the last two equations that the state of the second qubit
+is determined even though the measurement has only taken place locally
+on system $A$.
+
+
+\paragraph{Other states}
+
+If we on the other hand consider a state like
+
+\[
+\vert 00 \rangle = \vert 0\rangle_A\otimes \vert 0\rangle_B,
+\]
+this is a pure \textbf{product} state of the single-qubit, or single-particle
+states, of two qubits (particles) in system $A$ and system $B$,
+respectively. We call such a state for a \textbf{pure product state}.  Quantum states
+that cannot be written as a mixture of other states are called pure
+quantum states or just product states, while all other states are called mixed quantum states.
+
+
+\paragraph{More on Bell states}
+A state like one of the Bell states (where we introduce the subscript $AB$ to indicate that the state is composed of single states from two subsystem)
+\[
+\vert \Phi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle_{AB} +\vert 11\rangle_{AB}\right],
+\]
+is on the other hand a mixed state and we cannot determine whether system $A$ is in a state $0$ or $1$. The above state is a superposition of the states $\vert 00\rangle_{AB}$ and $\vert 11\rangle_{AB}$ and it is not possible to determine individual states of systems $A$ and $B$, respectively.
+
+
+\paragraph{Entanglement}
+
+We say that the state is entangled. This yields the following
+definition of entangled states: a pure bipartite state $\vert
+\psi\rangle_{AB}$ is entangled if it cannot be written as a product
+state $\vert\psi\rangle_{A}\otimes\vert\phi\rangle_B$ for any choice
+of the states $\vert\psi\rangle_{A}$ and $\vert\phi\rangle_B$. Otherwise we say the state is separable.
+
+
+\paragraph{Examples of entanglement}
+
+As an example, considere an ansatz for the ground state of the helium
+atom with two electrons in the lowest $1s$ state (hydrogen-like
+orbits) and with spin $s=1/2$ and spin projections $m_s=-1/2$ and
+$m_s=1/2$.  The two single-particle states are given by the tensor
+products of their spatial $1s$ single-particle states
+$\vert\phi_{1s}\rangle$ and and their spin up or spin down spinors
+$\vert\xi_{sm_s}\rangle$. The ansatz for the ground state is given by a Slater
+determinant with total orbital momentum $L=l_1+l_2=0$ and totalt spin
+$S=s_1+s_2=0$, normally labeled as a spin-singlet state.
+
+
+\paragraph{Ground state of helium}
+This ansatz
+for the ground state is then written as, using the compact notations
+\[
+\vert \psi_{i}\rangle = \vert\phi_{1s}\rangle_i\otimes \vert \xi\rangle_{s_im_{s_i}}=\vert 1s,s,m_s\rangle_i,  \]
+with $i$ being electron $1$ or $2$, and the tensor product of the two single-electron states as
+$\vert 1s,s,m_s\rangle_1\vert 1s,s,m_s\rangle_2=\vert 1s,s,m_s\rangle_1\otimes \vert 1s,s,m_s\rangle_2$, we arrive at
+\[
+\Psi(\bm{r}_1,\bm{r}_2;s_1,s_2)=\frac{1}{\sqrt{2}}\left[\vert 1s,1/2,1/2\rangle_1\vert 1s,1/2,-1/2\rangle_2-\vert 1s,1/2,-1/2\rangle_1\vert 1s,1/2,1/2\rangle_2\right].
+\]
+This is also an example of a state which cannot be written out as a pure state. We call this for an entangled state as well.
+
+
+\paragraph{Maximally entangled}
+
+A so-called maximally entangled state for a bipartite system has equal  probability amplitudes
+\[
+\vert \Psi \rangle = \frac{1}{\sqrt{d}}\sum_{i=0}^{d-1}\vert ii\rangle.
+\]
+
+We call a bipartite state composed of systems $A$ and $B$ (these
+systems can be single-particle systems, or single-qubit systems
+representing low-lying states of complicated many-body systems) for
+separable if its density matrix $\rho_{AB}$ can be written out as the
+tensor product of the individual density matrices $\rho_A$ and
+$\rho_B$, that is we have for a given probability distribution $p_i$
+
+\[
+\rho_{AB}=\sum_ip_i\rho_A(i)\otimes \rho_B(i).
+\]
+
+
+\paragraph{Second exercise set}
+
+We bring back the  last two exercises from last week as they are meant to build the basis for
+the two projects we will work on during the semester.  The first
+project deals with implementing the so-called
+\textbf{Variational Quantum Eigensolver} algorithm for finding the eigenvalues and eigenvectors of selected Hamiltonians.
+
+
+\paragraph{Ex1: One-qubit basis and  Pauli matrices}
+
+Write a function which sets up a one-qubit basis and apply the various Pauli matrices to these basis states.
+
+
+\paragraph{Ex2: Hadamard and Phase gates}
+
+Apply the Hadamard and Phase gates to the same one-qubit basis states and study their actions on these states.
+
+
+\paragraph{Ex3: Traces of operators}
+
+Prove that the trace is cyclic, that is for three operators $\bm{A}$, $\bm{B}$ and $\bm{C}$, we have
+\[
+\mathrm{Tr}\{\bm{ABC}\}=\mathrm{Tr}\{\bm{CAB}\}=\mathrm{Tr}\{\bm{BCA}\}.
+\]
+
+
+\paragraph{Ex4: Exponentiated operators}
+
+Let $\bm{A}$ be an operator on a vector space satisfying $\bm{A}^2=1$ and $\alpha$ any real constant. Show that
+\[
+\exp{\imath\alpha \bm{A}}=\sum_{n=0}^{\infty} \frac{(i\alpha)^n}{n!}\bm{A}^n=\bm{I}\cos{\alpha}+\imath\bm{A}\sin{\alpha}.
+\]
+Does this apply to the Pauli matrices?
+
+
+\paragraph{Ex5: Reduced density operators I}
+
+For each of the Bell states, find the reduced density operator/matrix for each qubit.
+
+
+\paragraph{Ex6: Reduced density operators II}
+
+Suppose we have a composite system which consists of systems $A$ and
+$B$ in the state $\vert a\rangle \otimes \vert b\rangle$, where $\vert
+a\rangle $ is a pure state of system $A$ and $\vert b\rangle$ is a
+pure state of system $B$. Show that the reduced density operator of
+system $A$ alone is a pure state. What about system $B$?
