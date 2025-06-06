@@ -1,4 +1,6 @@
 \chapter{Quantum Mechanics Preliminaries}
+
+
 \section{Qubits and Hilbert Space}
 \section{Density Operators and Mixed States}
 \section{Time Evolution and Measurement}
@@ -17,8 +19,8 @@ $\bm{x}\in \mathbb{R}^{n}$ and if we have a complex vector we have $\bm{x}\in \m
 For a matrix of dimension $n\times n$ we have 
 $\bm{A}\in \mathbb{R}^{n\times n}$ and the first matrix element starts with row element (row-wise ordering) zero and column element zero.
 
-% !split
-\subsection{Some  mathematical notations}
+
+\paragraph{Some  mathematical notations}
 \begin{enumerate}
 \item For all/any  $\forall$
 
@@ -33,9 +35,9 @@ $\bm{A}\in \mathbb{R}^{n\times n}$ and the first matrix element starts with row 
 \item Complex  variable $\mathbb{C}$
 \end{enumerate}
 
-\noindent
-% !split
-\subsection{Vectors}
+
+
+\paragraph{Vectors}
 
 We start by defining a vector $\bm{x}$  with $n$ components, with $x_0$ as our first element, as
 
@@ -51,8 +53,8 @@ In case we have a complex vector we define the hermitian conjugate
 \bm{x}^{\dagger} = \begin{bmatrix} x_0^* & x_1^* & x_2^* & \dots & \dots & x_{n-1}^* \end{bmatrix},
 \]
 
-% !split
-\subsection{Inner products of vectors}
+
+\paragraph{Inner products of vectors}
 
 With a given vector $\bm{x}$, we define the inner product as
 \[
@@ -63,8 +65,8 @@ or in case of a complex vector
 \bm{x}^{\dagger} \bm{x} = \sum_{i=0}^{n-1} x_i^*x_i=\vert x_0\vert^2+\vert x_1\vert^2+\dots + \vert x_{n-1}\vert^2,
 \]
 
-% !split
-\subsection{Hermitian conjugate}
+
+\paragraph{Hermitian conjugate}
 
 The hermitian conjugate of a matrix is obtained by taking the complex
 conjugate of each element and then taking the transpose of the
@@ -74,8 +76,8 @@ deal with hermitian quantities and our matrices will in most cases be square mat
 
 Unitarity, as we will see below, plays also a central role in this course.
 
-% !split
-\subsection{Outer products}
+
+\paragraph{Outer products}
 
 In addition to inner products between vectors/states, the outer
 product plays a central role in many applications. It is
@@ -92,8 +94,8 @@ defined as
 \]
 The latter defines also our basic matrix layout.
 
-% !split
-\subsection{Basic Matrix Features}
+
+\paragraph{Basic Matrix Features}
 
 A general $n\times n$ matrix is given by 
 \[
@@ -113,8 +115,8 @@ or in terms of its column vectors $\bm{a}_i$ as
 \]
 We can think of a matrix as a diagram of in general $n$ rowns and $m$ columns. In the example here we have a square matrix.
 
-% !split
-\subsection{The inverse of a matrix}
+
+\paragraph{The inverse of a matrix}
 \begin{block}{}
 The inverse of a square matrix (if it exists) is defined by
 
@@ -124,8 +126,8 @@ The inverse of a square matrix (if it exists) is defined by
 where $\bm{I}$ is the unit matrix.
 \end{block}
 
-% !split
-\subsection{Selected Matrix Features}
+
+\paragraph{Selected Matrix Features}
 
 
 {\footnotesize
@@ -142,9 +144,9 @@ $\bm{A} = \left (\bm{A}^{\dagger} \right )^{-1}$ & unitary         & $\sum_k a_{
 \end{tabular}
 }
 
-\noindent
-% !split
-\subsection{Some famous Matrices}
+
+
+\paragraph{Some famous Matrices}
 
 \begin{itemize}
   \item Diagonal if $a_{ij}=0$ for $i\ne j$
@@ -166,9 +168,9 @@ $\bm{A} = \left (\bm{A}^{\dagger} \right )^{-1}$ & unitary         & $\sum_k a_{
   \item Banded, block upper triangular, block lower triangular....
 \end{itemize}
 
-\noindent
-% !split
-\subsection{Matrix Features}
+
+
+\paragraph{Matrix Features}
 
 \begin{block}{Some equivalent statements for square matrices }
 For an $n\times n$ matrix  $\bm{A}$ the following properties are all equivalent
@@ -187,11 +189,11 @@ For an $n\times n$ matrix  $\bm{A}$ the following properties are all equivalent
   \item $0$ is not an eigenvalue of $\bm{A}$.
 \end{itemize}
 
-\noindent
+
 \end{block}
 
-% !split
-\subsection{Important Mathematical Operations}
+
+\paragraph{Important Mathematical Operations}
 
 The basic matrix operations that we will deal with are addition and subtraction
 
@@ -204,8 +206,8 @@ and scalar-matrix multiplication
 \bm{A}= \gamma\bm{B}  \Longrightarrow a_{ij} = \gamma b_{ij}.
 \]
 
-% !split
-\subsection{Vector-matrix and Matrix-matrix multiplication}
+
+\paragraph{Vector-matrix and Matrix-matrix multiplication}
 
 We have also vector-matrix multiplications 
 \[
@@ -222,8 +224,8 @@ and transpositions of a matrix
 \bm{A}=\bm{B}^T   \Longrightarrow a_{ij} = b_{ji}.
 \]
 
-% !split
-\subsection{Important Mathematical Operations}
+
+\paragraph{Important Mathematical Operations}
 
 Similarly, important vector operations that we will deal with are addition and subtraction
 
@@ -236,8 +238,8 @@ scalar-vector multiplication
 \bm{x}= \gamma\bm{y}  \Longrightarrow x_{i} = \gamma y_{i},
 \]
 
-% !split
-\subsection{Other important mathematical operations}
+
+\paragraph{Other important mathematical operations}
 and vector-vector multiplication (called Hadamard multiplication)
 \[
 \bm{x}=\bm{yz}   \Longrightarrow x_{i} = y_{i}z_i.
@@ -253,8 +255,8 @@ and the outer product, which yields a matrix,
 \bm{A}=  \bm{y}\bm{z}^T \Longrightarrow  a_{ij} = y_{i}z_{j},
 \]
 
-% !split
-\subsection{Defining basis states and quantum mechanical operators}
+
+\paragraph{Defining basis states and quantum mechanical operators}
 
 We extend now to quantum mechanics our definitions of vectors, matrices and more.
 
@@ -265,8 +267,8 @@ various quantum mechanical degrees of freedom) with $n$ components as
 \bm{x} = \begin{bmatrix} x_0\\ x_1 \\ x_2 \\ \dots \\ \dots \\ x_{n-1} \end{bmatrix}.
 \]
 
-% !split
-\subsection{Dirac notation}
+
+\paragraph{Dirac notation}
 
 Throughout these notes we will use the so-called Dirac \textbf{bra-ket}
 formalism and we will replace the above standard boldfaced notation
@@ -280,8 +282,8 @@ and
 \bm{x}^{\dagger} = \langle x \vert = \begin{bmatrix} x_0^* & x_1^* & x_2^* & \dots & \dots & x_{n-1}^* \end{bmatrix},
 \]
 
-% !split
-\subsection{Inner product in Dirac notation}
+
+\paragraph{Inner product in Dirac notation}
 
 With a given vector $\vert x \rangle$, we define the inner product as
 \[
@@ -294,8 +296,8 @@ general expression
 \langle y \vert x\rangle = \sum_{i=0}^{n-1} y_i^*x_i=y_0^*x_0+y_1^*x_1+\dots + y_{n-1}^*x_{n-1}. 
 \]
 
-% !split
-\subsection{The inner product is a real number}
+
+\paragraph{The inner product is a real number}
 
 \begin{block}{}
 Note well that the inner product $\langle x \vert x\rangle$ is always a real number while for a two different vectors $\langle y \vert x\rangle$ is in general not equal to
@@ -308,8 +310,8 @@ $\langle x\vert^{\dagger}=\vert x\rangle$ and $(\vert
 x\rangle^{\dagger})^{\dagger}=\vert x \rangle$.
 \end{block}
 
-% !split
-\subsection{Examples}
+
+\paragraph{Examples}
 
 Let us assume that $\vert x \rangle$ is given by
 \[
@@ -321,8 +323,8 @@ The inner product gives us
 \]
 a real number.
 
-% !split
-\subsection{Norm}
+
+\paragraph{Norm}
 We can use the norm/inner product to normalize the vector $\vert x \rangle$ and obtain
 \[
 \vert x \rangle = \frac{1}{\sqrt{7}}\begin{bmatrix} 1-\imath \\ 2+\imath \end{bmatrix}.
@@ -342,8 +344,8 @@ $\langle y\vert x \rangle = -1-\imath$. This leads to the important rule
 \langle x\vert y\rangle^* = \langle y \vert x\rangle. 
 \]
 
-% !split
-\subsection{Outer products}
+
+\paragraph{Outer products}
 
 In addition to inner products between vectors/states, the outer
 product plays a central role in all of quantum mechanics. It is
@@ -359,8 +361,8 @@ defined as
 	       x_{n-1}y_0^* & x_{n-1}y_1^* & x_{n-1}y_2^* & \dots & \dots & x_{n-1}y_{n-2}^* & x_{n-1}y_{n-1}^* \end{bmatrix}	       
 \]
 
-% !split
-\subsection{Different operators and gates}
+
+\paragraph{Different operators and gates}
 
 In quantum computing, the so-called Pauli matrices, and other simple
 $2\times 2$ matrices, play an important role, ranging from the setup
@@ -380,8 +382,8 @@ and
 \sigma_z = \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}.
 \]
 
-% !split
-\subsection{Properties of Pauli matrices}
+
+\paragraph{Properties of Pauli matrices}
 
 It is easy to show that the matrices obey the properties (being involutory)
 \[
@@ -394,8 +396,8 @@ meaning that their inverses are equal to their hermitian conjugated
 matrices. The determinants of the Pauli matrices are all equal to $-1$,
 as can be easily verified.
 
-% !split
-\subsection{Commutation relations}
+
+\paragraph{Commutation relations}
 
 The Pauli matrices obey also the following commutation rules
 \[
@@ -407,8 +409,8 @@ operate on various quantum mechanical states, let us try to define
 various basis sets and their pertinent notations. We will often refer
 to these basis states as our computational basis.
 
-% !split
-\subsection{Definition of Computational basis states}
+
+\paragraph{Definition of Computational basis states}
 
 % to do: make figures with examples of basis states, hydrogen like systems, harmonic oscillator
 Assume we have a two-level system where the two states are represented
@@ -424,8 +426,8 @@ normally search after effective ways by which we can reduce the
 involved dimensionalities to a number of degrees of freedom we can
 handle by a given many-body method.
 
-% !split
-\subsection{Projection operators}
+
+\paragraph{Projection operators}
 
 We will now relabel the above two states as two orthogonal and normalized basis (ONB) states 
 \[
@@ -436,8 +438,8 @@ and
 \vert \phi_1 \rangle = \vert 1 \rangle = \begin{bmatrix} 0 \\ 1 \end{bmatrix}.
 \]
 
-% !split
-\subsection{Identity and projection operators}
+
+\paragraph{Identity and projection operators}
 
 It is straight forward to see that $\langle 1 \vert 0\rangle=0$. With these two states we can define the define the identity operator $\bm{I}$ as the sum of the outer products of these two states, namely
 \[
@@ -452,8 +454,8 @@ and
 \bm{Q} = \vert 1\rangle \langle 1\vert = \begin{bmatrix} 0 & 0 \\ 0 & 1 \end{bmatrix}.
 \]
 
-% !split
-\subsection{Idempotent operators}
+
+\paragraph{Idempotent operators}
 
 We note that $P^2=P$, $Q^2=Q$ (the operators are idempotent) and that
 their determinants are zero, meaning in turn that we cannot use these
@@ -462,8 +464,8 @@ important roles in defining effective Hilbert spaces for many-body
 studies. Finally, before proceeding we note also that the two matrices
 commute and we have $\bm{P}\bm{Q}=0$ and $\left[ \bm{P},\bm{Q}\right]=0$.
 
-% !split
-\subsection{Superposition and more}
+
+\paragraph{Superposition and more}
 
 Using the properties of ONBs we can expand a new state in terms of the
 above states. These states could also form  a basis which is an
@@ -480,8 +482,8 @@ where the coefficients $\alpha = \langle 0 \vert \psi \rangle$ and
 $\beta =\langle 1 \vert \psi\rangle$ reresent the overlaps between the
 computational basis states and the state $\vert \psi\rangle$. In quantum speech, we say the state is in a superposition of the states $\vert 0\rangle$ and $\vert 1\rangle$.
 
-% !split
-\subsection{Inner products}
+
+\paragraph{Inner products}
 Computing the inner product of $\vert \psi \rangle$ we obtain
 \[
 \langle \psi \vert \psi \rangle = \vert \alpha \vert ^2\langle 0\vert 0\rangle + \vert \beta \vert ^2\langle 1\vert 1\rangle = \vert \alpha \vert ^2 + \vert \beta \vert ^2 = 1,
@@ -493,8 +495,8 @@ computational basis $\vert 0\rangle$ and $\vert 1\rangle$. To see
 this, consider the unitary transformation (show derivation of
 preserving orthogonality).
 
-% !split
-\subsection{Acting with projection operators}
+
+\paragraph{Acting with projection operators}
 
 If we now act with the projection operators $\bm{P}$ and $\bm{Q}$ on
 the state $\vert \psi\rangle$ we get
@@ -516,8 +518,8 @@ The above results can easily be derived by multiplying the pertinent
 matrices with the vectors $\vert 0\rangle$ and $\vert 1\rangle$,
 respectively.
 
-% !split
-\subsection{Density matrix}
+
+\paragraph{Density matrix}
 
 Using the above linear expansion we can now define the density matrix of the state $\vert \psi\rangle$ as the outer product
 \[
@@ -533,8 +535,8 @@ Finally, we note that the trace of the density matrix is simply given by unity
 \mathrm{tr}\bm{\rho}=\alpha\alpha^* +\beta\beta^*=1.
 \]
 
-% !split
-\subsection{Other important matrices}
+
+\paragraph{Other important matrices}
 
 We present other operators (as matrices) which play an important role in quantum computing, the so-called Hadamard matrix (or gate as we will use later)
 \[
@@ -552,15 +554,15 @@ and
 \]
 that is we create a superposition of the states $\vert 0\rangle$ and $\vert 1\rangle$.
 
-% !split
-\subsection{Phase matrix}
+
+\paragraph{Phase matrix}
 Another famous operation is the phase matrix given by
 \[
 \bm{S} = \begin{bmatrix} 1 & 0 \\ 0 & \imath\end{bmatrix}.
 \]
 
-% !split
-\subsection{Tensor products}
+
+\paragraph{Tensor products}
 
 Consider now two vectors with length $n=2$, with elements
 
@@ -577,8 +579,8 @@ The tensor product of these two vectors is defined as
 \]
 which is now a vector of length $4$.
 
-% !split
-\subsection{Examples of tensor products}
+
+\paragraph{Examples of tensor products}
 If we now go back to our original one-qubit basis states, we can form teh following tensor products
 \[
 \vert 0 \rangle \otimes \vert 0 \rangle = \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix} =\begin{bmatrix} 1 \\ 0 \\ 0 \\ 0 \end{bmatrix}=\vert 00 \rangle, 
@@ -587,8 +589,8 @@ If we now go back to our original one-qubit basis states, we can form teh follow
 \vert 0 \rangle \otimes \vert 1 \rangle = \begin{bmatrix} 1 \\ 0\end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1\end{bmatrix} =\begin{bmatrix} 0 \\ 1 \\ 0 \\ 0 \end{bmatrix}=\vert 01 \rangle.
 \]
 
-% !split
-\subsection{More states}
+
+\paragraph{More states}
 
 \[
 \vert 1 \rangle \otimes \vert 0 \rangle = \begin{bmatrix} 0 \\ 1\end{bmatrix} \otimes \begin{bmatrix} 1 \\ 0\end{bmatrix} =\begin{bmatrix} 0 \\ 0 \\ 1 \\ 0 \end{bmatrix}=\vert 10 \rangle, 
@@ -598,8 +600,8 @@ and finally
 \vert 1 \rangle \otimes \vert 1 \rangle = \begin{bmatrix} 0 \\ 1\end{bmatrix} \otimes \begin{bmatrix} 0 \\ 1\end{bmatrix} =\begin{bmatrix} 0 \\ 0 \\ 0 \\ 1 \end{bmatrix}=\vert 11 \rangle. 
 \]
 
-% !split
-\subsection{Three qubits}
+
+\paragraph{Three qubits}
 We have now four different states and we could try to make a new list
 by relabeling the states as follows $\vert 00 \rangle =\vert 0
 \rangle$, $\vert 01 \rangle =\vert 1 \rangle$, $\vert 10 \rangle
@@ -611,8 +613,8 @@ In similar ways we can define the tensor product of three qubits (or single-part
 \]
 which is a new vector of length eight.
 
-% !split
-\subsection{Generalizing}
+
+\paragraph{Generalizing}
 
 We note that with a single-particle basis given the states $\vert
 0\rangle$ and $\vert 1\rangle$ we can, with $N$ particles construct
@@ -623,9 +625,9 @@ $2^N$ different states.  This is something we can generalize to
 \item how to write a code which does it
 \end{itemize}
 
-\noindent
-% !split
-\subsection{Tensor products of matrices}
+
+
+\paragraph{Tensor products of matrices}
 The tensor product of two $2\times 2$ matrices $\bm{A}$ and $\bm{B}$ is given by
 
 \[
@@ -636,8 +638,8 @@ The tensor product of two $2\times 2$ matrices $\bm{A}$ and $\bm{B}$ is given by
                 a_{10} b_{10} &  a_{10}b_{11} & a_{11} b_{10} & a_{11}b_{11} \end{bmatrix}
 \]
 
-% !split
-\subsection{Measurements}
+
+\paragraph{Measurements}
 
 The probability of a measurement on a quantum system giving a certain
 result is determined by the weight of the relevant basis state in the
@@ -651,8 +653,8 @@ We  consider the state
 \vert \psi\rangle = \alpha \vert 0 \rangle +\beta \vert 1 \rangle
 \]
 
-% !split
-\subsection{Definitions of measurements}
+
+\paragraph{Definitions of measurements}
 
 \begin{enumerate}
 \item A measurement can yield only one of the above states, either $\vert 0\rangle$ or $\vert 1\rangle$.
@@ -664,14 +666,14 @@ We  consider the state
 \item And we note that the sum of the outcomes gives $\alpha^*\alpha+\beta^*\beta=1$ since the two states are normalized.
 \end{enumerate}
 
-\noindent
+
 After the measurement, the state of the system is the state associated with the result of the measurement.
 
 We have already encountered the projection operators $P$ and $Q$. Let
 us now look at other types of operations we can make on qubit states.
 
-% !split
-\subsection{Different operators and gates}
+
+\paragraph{Different operators and gates}
 
 In quantum computing, the so-called Pauli matrices, and other simple
 $2\times 2$ matrices, play an important role, ranging from the setup
@@ -688,8 +690,8 @@ that is we switch from $\vert 0\rangle$ to $\vert 1\rangle$ (often called a spin
 \begin{bmatrix} 0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix} 0 \\ 1 \end{bmatrix}=\begin{bmatrix} 1  \\ 0  \end{bmatrix}.
 \]
 
-% !split
-\subsection{More on Pauli matrices}
+
+\paragraph{More on Pauli matrices}
 
 This matrix plays an important role in quantum computing since we can
 link this with the classical \textbf{NOT} operation.  If we send in bit 0,
@@ -700,8 +702,8 @@ the basis state $\vert 0\rangle$, operating on this state results in
 the state $\vert 1\rangle$, which we in turn can interpret as the
 classical bit 1.
 
-% !split
-\subsection{Linear superposition}
+
+\paragraph{Linear superposition}
 If we have a linear superposition of these states we obtain
 \[
 \begin{bmatrix}0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix}\alpha \\ \beta \end{bmatrix}=\begin{bmatrix}\beta \\ \alpha \end{bmatrix}.
@@ -709,8 +711,8 @@ If we have a linear superposition of these states we obtain
 
 The $\sigma_y$ matrix introduces an imaginary sign, which we will later encounter in terms of so-called phase-shift operations.
 
-% !split
-\subsection{The $\sigma_z$ matrix}
+
+\paragraph{The $\sigma_z$ matrix}
 The $\sigma_z$ matrix has the following effect
 \[
 \begin{bmatrix} 1 & 0 \\ 0 & -1 \end{bmatrix}\begin{bmatrix} 1 \\ 0 \end{bmatrix}=\begin{bmatrix} 1  \\ 0  \end{bmatrix},
@@ -721,8 +723,8 @@ and
 \]
 which we will also link with a specific phase-shift.
 
-% !split
-\subsection{Unitarity}
+
+\paragraph{Unitarity}
 
 The matrices we introduced here are so-called unitary matrices. This
 is an important element in quantum mechanics since the evolution of a
@@ -734,8 +736,8 @@ We have defined a new state $\vert \psi_p\rangle$ as a linear expansion in terms
 \vert \psi_i\rangle = \sum_{j} u_{ij}\vert \phi_{j}\rangle.
 \end{equation}
 
-% !split
-\subsection{Hamiltonians and basis functions}
+
+\paragraph{Hamiltonians and basis functions}
 
 It is normal to choose a basis defined as the eigenfunctions of parts
 of the full Hamiltonian. The typical situation consists of the
@@ -748,8 +750,8 @@ solutions of the one-body part of the Hamiltonian, that is we have
 This is normally referred to as a single-particle basis $\vert\phi_{i}(\mathbf{r})\rangle$,
 defined by the quantum numbers $i$ and $\mathbf{r}$.
 
-% !split
-\subsection{Unitary transformations}
+
+\paragraph{Unitary transformations}
 A unitary transformation is important since it keeps the orthogonality.
 To see this consider first a basis of vectors $\mathbf{v}_i$,
 \[
@@ -768,8 +770,8 @@ preserves the dot product and orthogonality since
 \mathbf{w}_j^T\mathbf{w}_i=(\mathbf{U}\mathbf{v}_j)^T\mathbf{U}\mathbf{v}_i=\mathbf{v}_j^T\mathbf{U}^T\mathbf{U}\mathbf{v}_i= \mathbf{v}_j^T\mathbf{v}_i = \delta_{ij}.
 \]
 
-% !split
-\subsection{Orthogonality preserved}
+
+\paragraph{Orthogonality preserved}
 
 This means that if the coefficients $u_{p\lambda}$ belong to a unitary
 or orthogonal transformation (using the Dirac bra-ket notation)
@@ -785,8 +787,8 @@ many-body determinant based states.
 
 Note also that although a basis $\left\{\vert \phi_i \rangle\right\}$ contains an infinity of states, for practical calculations we have always to make some truncations.
 
-% !split
-\subsection{Example}
+
+\paragraph{Example}
 
 Assume we have two one-qubit states represented by
 \[
@@ -803,8 +805,8 @@ $\bm{U}$ with its hermitian conjugate $\bm{U}^{\dagger}$ with matrix
 elements $u_{ij}^{\dagger}=u_{ji}^*$ and
 $\bm{I}=\bm{U}\bm{U}^{\dagger}=\bm{U}^{\dagger}\bm{U}$.
 
-% !split
-\subsection{Inverse of unitary matrices}
+
+\paragraph{Inverse of unitary matrices}
 
 Note that this means that the hermitian conjugate of a unitary matrix
 is equal to its inverse. This has important consequences for what is
@@ -819,8 +821,8 @@ We have then
 \begin{bmatrix}\gamma \\ \delta \end{bmatrix}=\begin{bmatrix}u_{00} & u_{01} \\ u_{10} & u_{11} \end{bmatrix}\begin{bmatrix}\alpha \\ \beta \end{bmatrix}.
 \]
 
-% !split
-\subsection{New basis is also orthogonal}
+
+\paragraph{New basis is also orthogonal}
 
 Since our original basis $\vert \psi\rangle$ is orthogonal and normalized with $\vert\alpha\vert^2+\vert\beta\vert^2=1$, the new basis is also orthogonal and normalized, as we can see below here.
 
@@ -838,8 +840,8 @@ or in terms of a matrix-vector notatio we have
 \vert \phi\rangle=\bm{U}\vert \psi\rangle,
 \]
 
-% !split
-\subsection{More on orthogonality}
+
+\paragraph{More on orthogonality}
 
 We have already assumed that $\langle \psi \vert \psi \rangle = \vert\alpha\vert^2+\vert\beta\vert^2=1$.
 
@@ -863,8 +865,8 @@ If we stay with this notation we have
 Unitary transformations are rotations in state space which preserve the
 length (the square root of the inner product) of the state vector.
 
-% !split
-\subsection{Entanglement}
+
+\paragraph{Entanglement}
 
 In order to study entanglement and why it is so important for quantum
 computing, we need to introduce some basic measures and useful
@@ -876,8 +878,8 @@ entanglement and in particular how to quantify it. In order to define
 these quantities we need first to remind ourselves about some basic linear
 algebra properties of hermitian operators and matrices.
 
-% !split
-\subsection{Basic properties of hermitian operators}
+
+\paragraph{Basic properties of hermitian operators}
 
 The operators we typically encounter in quantum mechanical studies are
 \begin{enumerate}
@@ -888,7 +890,7 @@ The operators we typically encounter in quantum mechanical studies are
 \item The oparator $\bm{U}$ and its self-adjoint commute (often labeled as normal operators), that is  $[\bm{U},\bm{U}^{\dagger}]=0$. An operator is \textbf{normal} if and only if it is diagonalizable. A Hermitian operator is normal.
 \end{enumerate}
 
-\noindent
+
 Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\bm{U}$ is a unitary operator acting on a state $\vert \psi_j\rangle$, the action of
 
 \[
@@ -896,8 +898,8 @@ Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\b
 \]
 preserves both the norm and orthogonality, that is $\langle \phi_i \vert \phi_j\rangle=\langle \psi_i \vert \psi_j\rangle=\delta_{ij}$, as discussed earlier.
 
-% !split
-\subsection{The Pauli matrices again}
+
+\paragraph{The Pauli matrices again}
 
 As example, consider the Pauli matrix $\sigma_x$. We have already seen that this matrix is a unitary matrix. Consider then an orthogonal and normalized basis $\vert 0\rangle^{\dagger} =\begin{bmatrix} 1 {\&} 0\end{bmatrix}$ and $\vert 1\rangle^{\dagger} =\begin{bmatrix} 0 {\&} 1\end{bmatrix}$ and a state which is a linear superposition of these two basis states
 
@@ -910,8 +912,8 @@ A new state $\vert \psi_b\rangle$ is given by
 \vert \psi_b\rangle=\sigma_x\vert \psi_a\rangle=\alpha_0\vert 1\rangle +\alpha_1\vert 0\rangle.
 \]
 
-% !split
-\subsection{Spectral Decomposition}
+
+\paragraph{Spectral Decomposition}
 
 An important technicality which we will use in the discussion of
 density matrices, entanglement, quantum entropies and other properties
@@ -932,8 +934,8 @@ Subtracting the right hand side from the left hand side gives
 which has a nontrivial solution only if the determinant
 $\mathrm{det}(\bm{A}-\lambda\bm{I})=0$.
 
-% !split
-\subsection{ONB again and again}
+
+\paragraph{ONB again and again}
 
 We define now an orthonormal basis $\vert i \rangle =\{\vert 0
 \rangle, \vert 1\rangle, \dots, \vert n-1\rangle$ in the same Hilbert
@@ -950,8 +952,8 @@ Acting with $\bm{A}$ on this new state results in
 \bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\bm{A}\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle.
 \]
 
-% !split
-\subsection{Projection operators}
+
+\paragraph{Projection operators}
 
 If we then use that the outer product of any state with itself defines a projection operator we have the projection operators
 \[
@@ -966,8 +968,8 @@ we have that
 \bm{P}_{j}\vert \psi\rangle=\vert j\rangle\langle j\vert\sum_{i=0}^{n-1}\alpha_i\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\vert j\rangle\langle j\vert i\rangle.
 \]
 
-% !split
-\subsection{Further manipulations}
+
+\paragraph{Further manipulations}
 
 This results in
 \[
@@ -983,8 +985,8 @@ from which we conclude that
 \bm{A}=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i.
 \]
 
-% !split
-\subsection{Spectral decomposition}
+
+\paragraph{Spectral decomposition}
 
 This is the spectral decomposition of a hermitian and normal
 operator. It is true for any state and it is independent of the
@@ -998,8 +1000,8 @@ process we have obtained the coefficients $\alpha_0$, $\alpha_1$,
 $\beta_0$ and $\beta_1$ using an expansion in terms of the orthogonal
 basis $\vert 0\rangle$ and $\vert 1\rangle$.
 
-% !split
-\subsection{Explicit results}
+
+\paragraph{Explicit results}
 
 We have then
 
@@ -1022,8 +1024,8 @@ and
                                                                    \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
 \]
 
-% !split
-\subsection{The spectral decomposition}
+
+\paragraph{The spectral decomposition}
 The results from the previous slide gives us
 the following spectral decomposition of $\bm{A}$
 \[
@@ -1036,16 +1038,16 @@ which written out in all its details reads
                                                                    \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
 \]
 
-% !split
-\subsection{First exercise set}
+
+\paragraph{First exercise set}
 
 The last two exercises are meant to build the basis for
 the two projects we will work on during the semester.  The first
 project deals with implementing the so-called
 \textbf{Variational Quantum Eigensolver} algorithm for finding the eigenvalues and eigenvectors of selected Hamiltonians.
 
-% !split
-\subsection{Ex1: Bell states}
+
+\paragraph{Ex1: Bell states}
 
 Show that the so-called Bell states listed here (and to be encountered many times in this course) form an orthogonal basis
 \[
@@ -1056,8 +1058,8 @@ Show that the so-called Bell states listed here (and to be encountered many time
 \vert \Phi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle -\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ -1\end{bmatrix},
 \]
 
-% !split
-\subsection{And the next two}
+
+\paragraph{And the next two}
 \[
 \vert \Psi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle +\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ 1 \\ 0\end{bmatrix},
 \]
@@ -1068,13 +1070,13 @@ and
 \vert \Psi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle -\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ -1 \\ 0\end{bmatrix}.
 \]
 
-% !split
-\subsection{Ex2: Entangled state}
+
+\paragraph{Ex2: Entangled state}
 
 Show that the state $\alpha \vert 00\rangle+\beta\vert 11\rangle$ cannot be written as the product of the tensor product of two states and is thus entangle. The constants  $\alpha$ and $\beta$ are both nonzero.
 
-% !split
-\subsection{Ex3: Commutator identities}
+
+\paragraph{Ex3: Commutator identities}
 Prove the following commutator relations for different operators (marked with a hat)
 \begin{enumerate}
 \item $[\hat{A}+\hat{B},\hat{C}]= [\hat{A},\hat{C}]+[\hat{B},\hat{C}]$;
@@ -1084,9 +1086,9 @@ Prove the following commutator relations for different operators (marked with a 
 \item $[\hat{A},[\hat{B}\hat{C}]]= [\hat{B},[\hat{C},\hat{A}]]+[\hat{C},[\hat{A},\hat{B}]]=0$ (the so-called Jacobi identity).
 \end{enumerate}
 
-\noindent
-% !split
-\subsection{Ex4: Pauli matrices}
+
+
+\paragraph{Ex4: Pauli matrices}
 \begin{enumerate}
 \item Set up the commutation rules for Pauli matrices, that is find $[\sigma_i,\sigma_j]$ where $i,j=x,y,z$.
 
@@ -1095,24 +1097,24 @@ Prove the following commutator relations for different operators (marked with a 
 \item Which one of the Pauli matrices has the qubit basis $\vert 0\rangle$ and $\vert 1\rangle$ as eigenbasis? What are the eigenvalues?
 \end{enumerate}
 
-\noindent
-% !split
-\subsection{Ex5: Shared eigenvectors}
+
+
+\paragraph{Ex5: Shared eigenvectors}
 
 Prove that if two operators $\hat{A}$ and $\hat{B}$ commute they will share a basis of eigenstates
 
-% !split
-\subsection{Ex6: One-qubit basis and  Pauli matrices}
+
+\paragraph{Ex6: One-qubit basis and  Pauli matrices}
 
 Write a function which sets up a one-qubit basis and apply the various Pauli matrices to these basis states.
 
-% !split
-\subsection{Ex7: Hadamard and Phase gates}
+
+\paragraph{Ex7: Hadamard and Phase gates}
 
 Apply the Hadamard and Phase gates to the same one-qubit basis states and study their actions on these states.
 
 
-\subsection{Measurements}
+\paragraph{Measurements}
 
 The probability of a measurement on a quantum system giving a certain
 result is determined by the weight of the relevant basis state in the
@@ -1126,8 +1128,8 @@ We  consider the state
 \vert \psi\rangle = \alpha \vert 0 \rangle +\beta \vert 1 \rangle
 \]
 
-% !split
-\subsection{Properties of a measurement}
+
+\paragraph{Properties of a measurement}
 
 \begin{enumerate}
 \item A measurement can yield only one of the above states, either $\vert 0\rangle$ or $\vert 1\rangle$.
@@ -1139,14 +1141,14 @@ We  consider the state
 \item And we note that the sum of the outcomes gives $\alpha^*\alpha+\beta^*\beta=1$ since the two states are normalized.
 \end{enumerate}
 
-\noindent
+
 After the measurement, the state of the system is the state associated with the result of the measurement.
 
 We have already encountered the projection operators $P$ and $Q$. Let
 us now look at other types of operations we can make on qubit states.
 
-% !split
-\subsection{Basic properties of hermitian operators}
+
+\paragraph{Basic properties of hermitian operators}
 
 The operators we typically encounter in quantum mechanical studies are
 \begin{enumerate}
@@ -1157,7 +1159,7 @@ The operators we typically encounter in quantum mechanical studies are
 \item The operator $\bm{U}$ and its self-adjoint commute (often labeled as normal operators), that is  $[\bm{U},\bm{U}^{\dagger}]=0$. An operator is \textbf{normal} if and only if it is diagonalizable. A Hermitian operator is normal.
 \end{enumerate}
 
-\noindent
+
 Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\bm{U}$ is a unitary operator acting on a state $\vert \psi_j\rangle$, the action of
 
 \[
@@ -1165,8 +1167,8 @@ Unitary operators in a Hilbert space preserve the norm and orthogonality. If $\b
 \]
 preserves both the norm and orthogonality, that is $\langle \phi_i \vert \phi_j\rangle=\langle \psi_i \vert \psi_j\rangle=\delta_{ij}$, as discussed earlier.
 
-% !split
-\subsection{The Pauli matrices again}
+
+\paragraph{The Pauli matrices again}
 
 As example, consider the Pauli matrix $\sigma_x$. We have already seen that this matrix is a unitary matrix. Consider then an orthogonal and normalized basis $\vert 0\rangle^{\dagger} =\begin{bmatrix} 1 {\&} 0\end{bmatrix}$ and $\vert 1\rangle^{\dagger} =\begin{bmatrix} 0 {\&} 1\end{bmatrix}$ and a state which is a linear superposition of these two basis states
 
@@ -1179,8 +1181,8 @@ A new state $\vert \psi_b\rangle$ is given by
 \vert \psi_b\rangle=\sigma_x\vert \psi_a\rangle=\alpha_0\vert 1\rangle +\alpha_1\vert 0\rangle.
 \]
 
-% !split
-\subsection{Spectral Decomposition}
+
+\paragraph{Spectral Decomposition}
 
 An important technicality which we will use in the discussion of
 density matrices, entanglement, quantum entropies and other properties
@@ -1201,8 +1203,8 @@ Subtracting the right hand side from the left hand side gives
 which has a nontrivial solution only if the determinant
 $\mathrm{det}(\bm{A}-\lambda\bm{I})=0$.
 
-% !split
-\subsection{ONB again and again}
+
+\paragraph{ONB again and again}
 
 We define now an orthonormal basis $\vert i \rangle =\{\vert 0
 \rangle, \vert 1\rangle, \dots, \vert n-1\rangle$ in the same Hilbert
@@ -1219,8 +1221,8 @@ Acting with $\bm{A}$ on this new state results in
 \bm{A}\vert \psi \rangle = \sum_{i=0}^{n-1}\alpha_i\bm{A}\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\lambda_i\vert i\rangle.
 \]
 
-% !split
-\subsection{Projection operators}
+
+\paragraph{Projection operators}
 
 If we then use that the outer product of any state with itself defines a projection operator we have the projection operators
 \[
@@ -1235,8 +1237,8 @@ we have that
 \bm{P}_{j}\vert \psi\rangle=\vert j\rangle\langle j\vert\sum_{i=0}^{n-1}\alpha_i\vert i\rangle=\sum_{i=0}^{n-1}\alpha_i\vert j\rangle\langle j\vert i\rangle.
 \]
 
-% !split
-\subsection{Further manipulations}
+
+\paragraph{Further manipulations}
 
 This results in
 \[
@@ -1252,8 +1254,8 @@ from which we conclude that
 \bm{A}=\sum_{i=0}^{n-1}\lambda_i\bm{P}_i.
 \]
 
-% !split
-\subsection{Spectral decomposition}
+
+\paragraph{Spectral decomposition}
 
 This is the spectral decomposition of a hermitian and normal
 operator. It is true for any state and it is independent of the
@@ -1267,8 +1269,8 @@ process we have obtained the coefficients $\alpha_0$, $\alpha_1$,
 $\beta_0$ and $\beta_1$ using an expansion in terms of the orthogonal
 basis $\vert 0\rangle$ and $\vert 1\rangle$.
 
-% !split
-\subsection{Explicit results}
+
+\paragraph{Explicit results}
 
 We have then
 
@@ -1291,8 +1293,8 @@ and
                                                                    \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
 \]
 
-% !split
-\subsection{The spectral decomposition}
+
+\paragraph{The spectral decomposition}
 
 The results from the previous slide gives us
 the following spectral decomposition of $\bm{A}$
@@ -1306,8 +1308,8 @@ which written out in all its details reads
                                                                    \beta_1\beta_0^* & \vert \beta_1\vert^* \end{bmatrix}.
 \]
 
-% !split
-\subsection{Bloch sphere}
+
+\paragraph{Bloch sphere}
 
 Classically, in a binary system, the bits take only two distinct
 values, either $0$ or $1$.  The quantum mechanical counterpart is
@@ -1319,8 +1321,8 @@ superposition
 \]
 which can be represented using the so-called Bloch sphere, depicted on the next slide (best seen using the jupyter-notebook).
 
-% !split
-\subsection{Meet the Bloch sphere}
+
+\paragraph{Meet the Bloch sphere}
 The Bloch shere gives a vialable way to visualize a qubit and itsv possible realizations in terms of the angles $0\le \theta \le \pi$ and
 $0\le \phi \le 2\pi$. 
 
@@ -1347,13 +1349,13 @@ Using the Bloch sphere representation of the qubit $\vert \psi \rangle = \alpha 
 \vert \psi \rangle = \cos{(\frac{\theta}{2})} \vert 0 \rangle +\sin{(\frac{\theta}{2})}\exp{(\imath\phi)}\vert 1\rangle, 
 \]
 
-% !split
-\subsection{Bloch sphere exercise}
+
+\paragraph{Bloch sphere exercise}
 
 Determine the Bloch sphere angles $\theta$ and $\phi$ for the eigenstates of each Pauli matrix (see lectures from last week for the definition of Pauli matrices).
 
-% !split
-\subsection{Measurements}
+
+\paragraph{Measurements}
 
 Armed with the spectral decomposition, we are now ready to discuss how
 to compute measurements of observables.  When we make a measurement,
@@ -1365,8 +1367,8 @@ We assume now we can contruct a series of such orthogonal operators based on $\v
 \sum_{i=0}^{n-1}\bm{P}_i=\bm{I}.
 \]
 
-% !split
-\subsection{Qubit example}
+
+\paragraph{Qubit example}
 
 As an example, consider the basis of two qubits $\vert 0\rangle$ and $\vert 1\rangle$ with the correspong sum
 \[
@@ -1378,8 +1380,8 @@ Based on the spectral decomposition discussed above, we can define the probabili
 \]
 where $\vert \psi_a\rangle$ is a quantum state representing the system prior to a specific measurement.
 
-% !split
-\subsection{Total probability}
+
+\paragraph{Total probability}
 
 We can rewrite this as 
 \[
@@ -1394,8 +1396,8 @@ We can in turn define the post-measurement normalized pure quantum state as, for
 \vert \psi'\rangle = \frac{\bm{P}_i\vert \psi\rangle}{\sqrt{\langle \psi \vert \bm{P}_i\vert \psi\rangle}}. 
 \]
 
-% !split
-\subsection{Binary example system}
+
+\paragraph{Binary example system}
 
 As an example, consider the binary system states $\vert 0\rangle$ and $\vert 1\rangle$ with corresponding projection operators
 \[
@@ -1419,8 +1421,8 @@ and
 \bm{P}_1^{\dagger}\bm{P}_1=\bm{P}_1^2=\bm{P}_1.
 \]
 
-% !split
-\subsection{Superposition of states}
+
+\paragraph{Superposition of states}
 
 Assume thereafter that we have a state $\vert \psi\rangle$ which is a superposition of the above two qubit states
 \[
@@ -1434,8 +1436,8 @@ and similarly we have
 \[
 \bm{P}_{\psi(1)}=\langle \psi\vert \bm{P}_1^{\dagger}\bm{P}_1\vert \psi\rangle=\vert \beta\vert^2.
 \]
-% !split
-\subsection{More derivations}
+
+\paragraph{More derivations}
 
 If we set 
 \[
@@ -1450,8 +1452,8 @@ and
 \vert \psi'_1\rangle = \frac{\bm{P}_1\vert \psi\rangle}{\sqrt{\langle \psi \vert \bm{P}_1\vert \psi\rangle}}=\frac{\beta}{\vert \beta\vert}\vert 1 \rangle. 
 \]
 
-% !split
-\subsection{Final result}
+
+\paragraph{Final result}
 In general we have that 
 \[
 \bm{P}_{\psi(x)}=\langle \psi\vert \bm{P}_x^{\dagger}\bm{P}_x\vert \psi\rangle,,
@@ -1461,8 +1463,8 @@ which we can rewrite as
 \mathrm{Prob}(\psi(x))=\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\vert \psi\rangle\langle \psi\vert\right].
 \]
 
-% !split
-\subsection{Example}
+
+\paragraph{Example}
 
 The last equation can be understood better through the following example with a state $\vert \psi\rangle$
 
@@ -1474,8 +1476,8 @@ which results in a projection operator
 \vert \psi \rangle\langle \psi\vert = \begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ \alpha^*\beta & \vert\beta\vert^2\end{bmatrix}.
 \]
 
-% !split
-\subsection{Computing matrix products}
+
+\paragraph{Computing matrix products}
 We have that
 \[
 \bm{P}_0^{\dagger}\bm{P}_0=\bm{P}_0=\begin{bmatrix} 1 & 0 \\ 0 & 0\end{bmatrix},
@@ -1485,8 +1487,8 @@ and computing the matrix product $\bm{P}_0\vert\psi\rangle\langle \psi\vert$ giv
 \bm{P}_0\vert\psi\rangle\langle \psi\vert=\begin{bmatrix} 1 & 0 \\ 0 & 0\end{bmatrix}\begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ \alpha^*\beta & \vert\beta\vert^2\end{bmatrix}=\begin{bmatrix} \vert \alpha \vert^2 & \alpha\beta^* \\ 0 & 0\end{bmatrix}.
 \]
 
-% !split
-\subsection{Taking the trace}
+
+\paragraph{Taking the trace}
 
 Taking the trace of the above matrix, that is computing
 \[
@@ -1498,8 +1500,8 @@ the probabliblity for $0$ given by the expression
 \bm{P}_{\psi(0)}=\langle \psi\vert \bm{P}_0^{\dagger}\bm{P}_0\vert \psi\rangle=\vert \alpha\vert^2.
 \]
 
-% !split
-\subsection{Outcome probability}
+
+\paragraph{Outcome probability}
 
 It is straight forward to show that
 \[
@@ -1510,8 +1512,8 @@ which we also could have obtained by computing
 \bm{P}_{\psi(1)}=\langle \psi\vert \bm{P}_1^{\dagger}\bm{P}_1\vert \psi\rangle=\vert \beta\vert^2.
 \]
 
-% !split
-\subsection{Extending the expressions}
+
+\paragraph{Extending the expressions}
 
 We can now extend these expressions to the complete ensemble of measurements. Using the spectral decomposition we have that the probability of an outcome $p(x)$ is
 \[
@@ -1521,8 +1523,8 @@ where $p_i$ are the probabilities of a specific outcome.
 
 With these prerequisites we are now ready to introduce the density  matrices, or density operators.
 
-% !split
-\subsection{Density matrices/operators}
+
+\paragraph{Density matrices/operators}
 
 The last equation can be rewritten as 
 
@@ -1542,8 +1544,8 @@ If we can define the state of a system in terms of the density matrix, the proba
 p(x)_{\rho}=\mathrm{Tr}\left[\bm{P}_x^{\dagger}\bm{P}_x\rho\right].
 \]
 
-% !split
-\subsection{Properties of density matrices}
+
+\paragraph{Properties of density matrices}
 
 A density matrix in a Hilbert space with $n$ states has the following properties (which we state without proof)
 \begin{enumerate}
@@ -1556,15 +1558,15 @@ A density matrix in a Hilbert space with $n$ states has the following properties
 \item The norm $\vert\vert \rho \vert\vert_2\leq 1$.
 \end{enumerate}
 
-\noindent
+
 With the density matrix we can also define the state the system collapses to after a measurement, namely
 
 \[
 \rho'_x=\frac{\bm{P}_x\rho\bm{P}_x^{\dagger}}{\mathrm{Tr}[\bm{P}_x^{\dagger}\bm{P}_x\rho]}.
 \]
 
-% !split
-\subsection{First entanglement encounter, two qubit system}
+
+\paragraph{First entanglement encounter, two qubit system}
 
 We define a system that can be thought of as composed of two subsystems
 $A$ and $B$. Each subsystem has computational basis states
@@ -1574,8 +1576,8 @@ $A$ and $B$. Each subsystem has computational basis states
 \]
 The subsystems could represent single particles or composite many-particle systems of a given symmetry.
 
-% !split
-\subsection{Computational basis}
+
+\paragraph{Computational basis}
 
 This leads to the many-body computational basis states
 
@@ -1595,8 +1597,8 @@ and finally
 \vert 11\rangle = \vert 1\rangle_{\mathrm{A}}\otimes \vert 1\rangle_{\mathrm{B}}=\begin{bmatrix} 0 & 0 & 0 &1\end{bmatrix}^T.
 \]
 
-% !split
-\subsection{Bell states}
+
+\paragraph{Bell states}
 
 The above computational basis states, which define an ONB, can in turn
 be used to define another ONB. As an example, consider the so-called
@@ -1610,8 +1612,8 @@ Bell states
 \vert \Phi^-\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle -\vert 11\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 1 \\ 0 \\ 0 \\ -1\end{bmatrix},
 \]
 
-% !split
-\subsection{The next two}
+
+\paragraph{The next two}
 
 \[
 \vert \Psi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 10\rangle +\vert 01\rangle\right]=\frac{1}{\sqrt{2}}\begin{bmatrix} 0 \\ 1 \\ 1 \\ 0\end{bmatrix},
@@ -1624,8 +1626,8 @@ and
 \]
 It is easy to convince oneself that these states also form an orthonormal basis. 
 
-% !split
-\subsection{Measurement}
+
+\paragraph{Measurement}
 
 Measuring one of the qubits of one of the above Bell states,
 automatically determines, as we will see below, the state of the
@@ -1640,8 +1642,8 @@ for the projection of the $\vert 0 \rangle$ state in system $A$ and similarly
 \]
 for the projection of the $\vert 1 \rangle$ state in system $A$.
 
-% !split
-\subsection{Probability of  outcome}
+
+\paragraph{Probability of  outcome}
 
 We can then calculate the probability for the various outcomes by
 computing for example the probability for measuring qubit $0$ 
@@ -1654,8 +1656,8 @@ Similarly, we obtain
 \langle \Phi^+\vert \bm{P}_1\vert \Phi^+\rangle = \frac{1}{2}\left[\langle 00\vert +\langle 11\vert\right]\begin{bmatrix} 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 1 & 0 \\ 0 & 0 & 0 & 1\end{bmatrix}\left[\vert 00\rangle +\vert 11\rangle\right]=\frac{1}{2}.
 \]
 
-% !split
-\subsection{States after measurement}
+
+\paragraph{States after measurement}
 After the above measurements the system is in the states
 
 \[
@@ -1670,8 +1672,8 @@ We see from the last two equations that the state of the second qubit
 is determined even though the measurement has only taken place locally
 on system $A$.
 
-% !split
-\subsection{Other states}
+
+\paragraph{Other states}
 
 If we on the other hand consider a state like
 
@@ -1684,16 +1686,16 @@ respectively. We call such a state for a \textbf{pure product state}.  Quantum s
 that cannot be written as a mixture of other states are called pure
 quantum states or just product states, while all other states are called mixed quantum states.
 
-% !split
-\subsection{More on Bell states}
+
+\paragraph{More on Bell states}
 A state like one of the Bell states (where we introduce the subscript $AB$ to indicate that the state is composed of single states from two subsystem)
 \[
 \vert \Phi^+\rangle = \frac{1}{\sqrt{2}}\left[\vert 00\rangle_{AB} +\vert 11\rangle_{AB}\right],
 \]
 is on the other hand a mixed state and we cannot determine whether system $A$ is in a state $0$ or $1$. The above state is a superposition of the states $\vert 00\rangle_{AB}$ and $\vert 11\rangle_{AB}$ and it is not possible to determine individual states of systems $A$ and $B$, respectively.
 
-% !split
-\subsection{Entanglement}
+
+\paragraph{Entanglement}
 
 We say that the state is entangled. This yields the following
 definition of entangled states: a pure bipartite state $\vert
@@ -1701,8 +1703,8 @@ definition of entangled states: a pure bipartite state $\vert
 state $\vert\psi\rangle_{A}\otimes\vert\phi\rangle_B$ for any choice
 of the states $\vert\psi\rangle_{A}$ and $\vert\phi\rangle_B$. Otherwise we say the state is separable.
 
-% !split
-\subsection{Examples of entanglement}
+
+\paragraph{Examples of entanglement}
 
 As an example, considere an ansatz for the ground state of the helium
 atom with two electrons in the lowest $1s$ state (hydrogen-like
@@ -1714,8 +1716,8 @@ $\vert\xi_{sm_s}\rangle$. The ansatz for the ground state is given by a Slater
 determinant with total orbital momentum $L=l_1+l_2=0$ and totalt spin
 $S=s_1+s_2=0$, normally labeled as a spin-singlet state.
 
-% !split
-\subsection{Ground state of helium}
+
+\paragraph{Ground state of helium}
 This ansatz
 for the ground state is then written as, using the compact notations
 \[
@@ -1727,8 +1729,8 @@ $\vert 1s,s,m_s\rangle_1\vert 1s,s,m_s\rangle_2=\vert 1s,s,m_s\rangle_1\otimes \
 \]
 This is also an example of a state which cannot be written out as a pure state. We call this for an entangled state as well.
 
-% !split
-\subsection{Maximally entangled}
+
+\paragraph{Maximally entangled}
 
 A so-called maximally entangled state for a bipartite system has equal  probability amplitudes
 \[
@@ -1746,34 +1748,34 @@ $\rho_B$, that is we have for a given probability distribution $p_i$
 \rho_{AB}=\sum_ip_i\rho_A(i)\otimes \rho_B(i).
 \]
 
-% !split
-\subsection{Second exercise set}
+
+\paragraph{Second exercise set}
 
 We bring back the  last two exercises from last week as they are meant to build the basis for
 the two projects we will work on during the semester.  The first
 project deals with implementing the so-called
 \textbf{Variational Quantum Eigensolver} algorithm for finding the eigenvalues and eigenvectors of selected Hamiltonians.
 
-% !split
-\subsection{Ex1: One-qubit basis and  Pauli matrices}
+
+\paragraph{Ex1: One-qubit basis and  Pauli matrices}
 
 Write a function which sets up a one-qubit basis and apply the various Pauli matrices to these basis states.
 
-% !split
-\subsection{Ex2: Hadamard and Phase gates}
+
+\paragraph{Ex2: Hadamard and Phase gates}
 
 Apply the Hadamard and Phase gates to the same one-qubit basis states and study their actions on these states.
 
-% !split
-\subsection{Ex3: Traces of operators}
+
+\paragraph{Ex3: Traces of operators}
 
 Prove that the trace is cyclic, that is for three operators $\bm{A}$, $\bm{B}$ and $\bm{C}$, we have
 \[
 \mathrm{Tr}\{\bm{ABC}\}=\mathrm{Tr}\{\bm{CAB}\}=\mathrm{Tr}\{\bm{BCA}\}.
 \]
 
-% !split
-\subsection{Ex4: Exponentiated operators}
+
+\paragraph{Ex4: Exponentiated operators}
 
 Let $\bm{A}$ be an operator on a vector space satisfying $\bm{A}^2=1$ and $\alpha$ any real constant. Show that
 \[
@@ -1781,30 +1783,16 @@ Let $\bm{A}$ be an operator on a vector space satisfying $\bm{A}^2=1$ and $\alph
 \]
 Does this apply to the Pauli matrices?
 
-% !split
-\subsection{Ex5: Reduced density operators I}
+
+\paragraph{Ex5: Reduced density operators I}
 
 For each of the Bell states, find the reduced density operator/matrix for each qubit.
 
-% !split
-\subsection{Ex6: Reduced density operators II}
+
+\paragraph{Ex6: Reduced density operators II}
 
 Suppose we have a composite system which consists of systems $A$ and
 $B$ in the state $\vert a\rangle \otimes \vert b\rangle$, where $\vert
 a\rangle $ is a pure state of system $A$ and $\vert b\rangle$ is a
 pure state of system $B$. Show that the reduced density operator of
 system $A$ alone is a pure state. What about system $B$?
-
-% !split
-\subsection{The next lecture, February 5, 2025}
-
-In our next lecture, we will discuss
-\begin{enumerate}
-\item Discussion of entropy and entanglement
-
-\item Gates and circuits and how to perform operations on states
-\end{enumerate}
-
-\noindent
-\href{{https://github.com/CompPhysics/QuantumComputingMachineLearning/blob/gh-pages/doc/Textbooks/Programming/chapter2.pdf}}{Reading: Chapters 2.1-2.11 of Hundt's text}
-
