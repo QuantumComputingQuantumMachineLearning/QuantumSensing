@@ -1,9 +1,7 @@
 \chapter{Quantum Mechanics}
 \section{Introduction}
-\section{Qubits and Hilbert Space}
+%\section{Qubits and Hilbert Space}
 \section{Density Operators and Mixed States}
-\section{Time Evolution and Measurement}
-\section{Conclusion}
 
 
 \paragraph{Density matrix}
@@ -745,50 +743,515 @@ $\rho_B$, that is we have for a given probability distribution $p_i$
 \]
 
 
-\paragraph{Second exercise set}
 
-We bring back the  last two exercises from last week as they are meant to build the basis for
-the two projects we will work on during the semester.  The first
-project deals with implementing the so-called
-\textbf{Variational Quantum Eigensolver} algorithm for finding the eigenvalues and eigenvectors of selected Hamiltonians.
+\section{Time Evolution and Measurement}
+\section{Conclusion}
 
 
-\paragraph{Ex1: One-qubit basis and  Pauli matrices}
-
-Write a function which sets up a one-qubit basis and apply the various Pauli matrices to these basis states.
 
 
-\paragraph{Ex2: Hadamard and Phase gates}
+The time-dependent Schrödinger equation (or equation of motion) reads
 
-Apply the Hadamard and Phase gates to the same one-qubit basis states and study their actions on these states.
-
-
-\paragraph{Ex3: Traces of operators}
-
-Prove that the trace is cyclic, that is for three operators $\bm{A}$, $\bm{B}$ and $\bm{C}$, we have
 \[
-\mathrm{Tr}\{\bm{ABC}\}=\mathrm{Tr}\{\bm{CAB}\}=\mathrm{Tr}\{\bm{BCA}\}.
+\imath \hbar\frac{\partial }{\partial t}|\Psi_S(t)\rangle = \hat{H}\Psi_S(t)\rangle,
+\]
+
+where the subscript $S$ stands for Schrödinger here.
+A formal solution is given by 
+
+\[
+|\Psi_S(t)\rangle = \exp{(-\imath\hat{H}(t-t_0)/\hbar)}|\Psi_S(t_0)\rangle.
 \]
 
 
-\paragraph{Ex4: Exponentiated operators}
+The Hamiltonian $\hat{H}$ is hermitian and the exponent represents a unitary 
+operator with an operation carried out on the wave function at a time $t_0$.
 
-Let $\bm{A}$ be an operator on a vector space satisfying $\bm{A}^2=1$ and $\alpha$ any real constant. Show that
+The exponential term $\exp{(-\imath\hat{H}(t-t_0)/\hbar)}$ is our
+unitary transformation $U(t,t_0)$ and we have
+
 \[
-\exp{\imath\alpha \bm{A}}=\sum_{n=0}^{\infty} \frac{(i\alpha)^n}{n!}\bm{A}^n=\bm{I}\cos{\alpha}+\imath\bm{A}\sin{\alpha}.
+|\Psi_S(t)\rangle = \exp{(-\imath\hat{H}(t-t_0)/\hbar)}|\Psi_S(t_0)\rangle=U(t,t_0)|\Psi_S(t_0)\rangle.
 \]
-Does this apply to the Pauli matrices?
 
 
-\paragraph{Ex5: Reduced density operators I}
+%===== Interaction picture  =====
 
-For each of the Bell states, find the reduced density operator/matrix for each qubit.
+Our Hamiltonian is normally written out as the sum of an unperturbed part $\hat{H}_0$ and an interaction part $\hat{H}_I$, that is
+
+\[
+\hat{H}=\hat{H}_0+\hat{H}_I.
+\]
+
+In general we have $[\hat{H}_0,\hat{H}_I]\ne 0$ since $[\hat{T},\hat{V}]\ne 0$.
+We wish now to define a unitary transformation in terms of $\hat{H}_0$ by defining
+
+\[
+|\Psi_I(t)\rangle = \exp{(\imath\hat{H}_0t/\hbar)}|\Psi_S(t)\rangle,
+\]
+
+which is again a unitary transformation carried out now at the time $t$ on the 
+wave function in the Schrödinger picture. 
 
 
-\paragraph{Ex6: Reduced density operators II}
 
-Suppose we have a composite system which consists of systems $A$ and
-$B$ in the state $\vert a\rangle \otimes \vert b\rangle$, where $\vert
-a\rangle $ is a pure state of system $A$ and $\vert b\rangle$ is a
-pure state of system $B$. Show that the reduced density operator of
-system $A$ alone is a pure state. What about system $B$?
+We can easily find the equation of motion by taking the time derivative
+
+\[
+\imath \hbar\frac{\partial }{\partial t}|\Psi_I(t)\rangle = -\hat{H}_0\exp{(\imath\hat{H}_0t/\hbar)}\Psi_S(t)\rangle+\exp{(\imath\hat{H}_0t/\hbar)}
+\imath \hbar\frac{\partial }{\partial t}\Psi_S(t)\rangle.
+\]
+
+
+Using the definition of the Schrödinger equation, we can rewrite the last equation as 
+
+\[
+\imath \hbar\frac{\partial }{\partial t}|\Psi_I(t)\rangle = \exp{(\imath\hat{H}_0t/\hbar)}\left[-\hat{H}_0+\hat{H}_0+\hat{H}_I\right]\exp{(-\imath\hat{H}_0t/\hbar)}\Psi_I(t)\rangle,
+\]
+
+which gives us
+
+\[
+\imath \hbar\frac{\partial }{\partial t}|\Psi_I(t)\rangle = \hat{H}_I(t)\Psi_I(t)\rangle,
+\]
+
+ with 
+
+\[
+\hat{H}_I(t)=
+\exp{(\imath\hat{H}_0t/\hbar)}\hat{H}_I\exp{(-\imath\hat{H}_0t/\hbar)}.
+\]
+
+
+The order of the operators is important since $\hat{H}_0$ and $\hat{H}_I$ do generally not commute.
+The expectation value of
+an arbitrary operator in the interaction picture can now be written as
+
+\[
+\langle \Psi'_S(t)|\hat{O}_S|\Psi_S(t)\rangle = 
+\langle \Psi'_I(t) |\exp{(\imath\hat{H}_0t/\hbar)}\hat{O}_I
+\exp{(-\imath\hat{H}_0t/\hbar)}|\Psi_I(t)\rangle,
+\]
+
+and using the definition
+
+\[
+\hat{O}_I(t)=
+\exp{(\imath\hat{H}_0t/\hbar)}\hat{O}_I\exp{(-\imath\hat{H}_0t/\hbar)},
+\]
+
+we obtain
+
+\[
+\langle \Psi'_S(t)|\hat{O}_S|\Psi_S(t)\rangle = 
+\langle \Psi'_I(t) |\hat{O}_I(t)|\Psi_I(t)\rangle,
+\]
+
+stating that a unitary transformation does not change expectation values!
+
+
+
+If the take the time derivative of the operator in the interaction picture we arrive at the following equation of motion
+
+\[
+\imath \hbar\frac{\partial }{\partial t}\hat{O}_I(t) = \exp{(\imath\hat{H}_0t/\hbar)}\left[\hat{O}_S\hat{H}_0-\hat{H}_0\hat{O}_S\right]\exp{(-\imath\hat{H}_0t/\hbar)}=\left[\hat{O}_I(t),\hat{H}_0\right].
+\]
+
+Here we have used the time-independence of the Schrödinger equation
+together with the observation that any function of an operator commutes with the operator itself. 
+
+
+
+In order to solve the equation of motion equation in the interaction picture, we define a unitary
+time-development operator $\hat{U}(t,t')$. Later we will derive its
+connection with the linked-diagram theorem, which yields a
+linked expression for the actual operator. 
+The action of the operator on the wave function is
+
+\[
+|\Psi_I(t) \rangle = \hat{U}(t,t_0)|\Psi_I(t_0)\rangle,
+\]
+
+with the obvious value $\hat{U}(t_0,t_0)=1$.
+
+
+
+The time-development operator $U$ has the
+properties that
+
+\[
+     \hat{U}^{\dagger}(t,t')\hat{U}(t,t')=\hat{U}(t,t')\hat{U}^{\dagger}(t,t')=1,
+\]
+
+which implies that $U$ is unitary
+
+\[
+     \hat{U}^{\dagger}(t,t')=\hat{U}^{-1}(t,t').
+\]
+
+Further,
+
+\[
+    \hat{U}(t,t')\hat{U}(t't'')=\hat{U}(t,t'')
+\]
+
+and
+
+\[
+    \hat{U}(t,t')\hat{U}(t',t)=1,
+\]
+
+which leads to
+
+\[
+    \hat{U}(t,t')=\hat{U}^{\dagger}(t',t).
+\]
+
+
+
+Using our definition of Schrödinger's equation in the interaction picture, we can then construct the operator $\hat{U}$. We have defined
+
+\[
+|\Psi_I(t)\rangle = \exp{(\imath\hat{H}_0t/\hbar)}|\Psi_S(t)\rangle,
+\]
+
+which can be rewritten as 
+
+\[
+|\Psi_I(t)\rangle = \exp{(\imath\hat{H}_0t/\hbar)}\exp{(-\imath\hat{H}(t-t_0)/\hbar)}|\Psi_S(t_0)\rangle,
+\]
+
+or
+
+\[
+|\Psi_I(t)\rangle = \exp{(\imath\hat{H}_0t/\hbar)}\exp{(-\imath\hat{H}(t-t_0)/\hbar)}\exp{(-\imath\hat{H}_0t_0/\hbar)}|\Psi_I(t_0)\rangle.
+\]
+
+
+
+From the last expression we can define
+
+\[
+\hat{U}(t,t_0)=\exp{(\imath\hat{H}_0t/\hbar)}\exp{(-\imath\hat{H}(t-t_0)/\hbar)}\exp{(-\imath\hat{H}_0t_0/\hbar)}.
+\]
+
+It is then easy to convince oneself that the properties defined above are satisfied by the definition of $\hat{U}$. 
+
+
+We derive the equation of motion for $\hat{U}$ using the above definition.
+This results in
+
+\[
+\imath \hbar\frac{\partial }{\partial t}\hat{U}(t,t_0) = \hat{H}_I(t)\hat{U}(t,t_0),
+\]
+
+which we integrate from $t_0$ to a time $t$ resulting in
+
+\[
+\hat{U}(t,t_0)-\hat{U}(t_0,t_0)=\hat{U}(t,t_0)-1=-\frac{\imath}{\hbar}\int_{t_0}^t dt' \hat{H}_I(t')\hat{U}(t',t_0),
+\]
+
+which can be rewritten as
+
+\[
+\hat{U}(t,t_0)=1-\frac{\imath}{\hbar}\int_{t_0}^t dt' \hat{H}_I(t')\hat{U}(t',t_0).
+\]
+
+
+We can solve this equation iteratively keeping in mind the time-ordering of the operators
+
+\[
+\hat{U}(t,t_0)=1-\frac{\imath}{\hbar}\int_{t_0}^t dt' \hat{H}_I(t')+\left(\frac{-\imath}{\hbar}\right)^2\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'')+\dots
+\]
+
+The third term can be written as 
+
+\[
+\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'')=
+\frac{1}{2}\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'')
+\]
+
+
+\[
++\frac{1}{2}\int_{t_0}^t dt''\int_{t''}^{t} dt' \hat{H}_I(t')\hat{H}_I(t'').
+\]
+
+
+We obtain this expression by changing the integration order in the second term
+via a change of the integration variables $t'$ and $t''$  in 
+
+\[
+\frac{1}{2}\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'').
+\]
+
+We can rewrite the terms which contain the double integral as
+
+\[
+\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'')=
+\]
+
+
+\[
+\frac{1}{2}\int_{t_0}^t dt'\int_{t_0}^{t'} dt''\left[\hat{H}_I(t')\hat{H}_I(t'')\Theta(t'-t'')
++\hat{H}_I(t')\hat{H}_I(t'')\Theta(t''-t')\right],
+\]
+
+with $\Theta(t''-t')$ being the standard Heavyside or step function. The step function allows us to give a specific time-ordering to the above expression.
+
+
+
+With the $\Theta$-function we can rewrite the last expression as 
+
+\[
+\int_{t_0}^t dt'\int_{t_0}^{t'} dt'' \hat{H}_I(t')\hat{H}_I(t'')=
+\frac{1}{2}\int_{t_0}^t dt'\int_{t_0}^{t'} dt''\hat{T}\left[\hat{H}_I(t')\hat{H}_I(t'')\right],
+\]
+
+where $\Hat{T}$ is the so-called time-ordering operator. 
+
+
+
+
+With this definition, we can rewrite the expression for $\hat{U}$ as 
+
+\[
+\hat{U}(t,t_0)=\sum_{n=0}^{\infty}\left(\frac{-\imath}{\hbar}\right)^n\frac{1}{n!}
+\int_{t_0}^t dt_1\dots \int_{t_0}^t dt_N \hat{T}\left[\hat{H}_I(t_1)\dots\hat{H}_I(t_n)\right]=
+\]
+
+
+\[
+\hat{T}\exp{\left[\frac{-\imath}{\hbar}
+\int_{t_0}^t dt' \hat{H}_I(t')\right]}.
+\]
+
+
+
+
+\subsection{Heisenberg  picture as alternative}
+
+
+We wish now to define a unitary transformation in terms of $\hat{H}$ by defining
+
+\[
+|\Psi_H(t)\rangle = \exp{(\imath\hat{H}t/\hbar)}|\Psi_S(t)\rangle,
+\]
+
+which is again a unitary transformation carried out now at the time $t$ on the 
+wave function in the Schrödinger picture. If we combine this equation with 
+Schrödinger's equation we obtain the following equation of motion
+
+\[
+\imath \hbar\frac{\partial }{\partial t}|\Psi_H(t)\rangle = 0,
+\]
+
+meaning that $|\Psi_H(t)\rangle$ is time independent. An operator in this picture is defined as
+
+\[
+\hat{O}_H(t)=
+\exp{(\imath\hat{H}t/\hbar)}\hat{O}_S\exp{(-\imath\hat{H}t/\hbar)}.
+\]
+
+
+
+The time dependence is then in the operator itself, and this yields in turn the
+following equation of motion
+
+\[
+\imath \hbar\frac{\partial }{\partial t}\hat{O}_H(t) = \exp{(\imath\hat{H}t/\hbar)}\left[\hat{O}_H\hat{H}-\hat{H}\hat{O}_H\right]\exp{(-\imath\hat{H}t/\hbar)}=\left[\hat{O}_H(t),\hat{H}\right].
+\]
+
+We note that an operator in the Heisenberg picture can be related to the corresponding
+operator in the interaction picture as 
+
+\[
+\hat{O}_H(t)=
+\exp{(\imath\hat{H}t/\hbar)}\hat{O}_S\exp{(-\imath\hat{H}t/\hbar)}=
+\]
+
+
+\[
+\exp{(\imath\hat{H}_It/\hbar)}\exp{(-\imath\hat{H}_0t/\hbar)}\hat{O}_I\exp{(\imath\hat{H}_0t/\hbar)}\exp{(-\imath\hat{H}_It/\hbar)}.
+\]
+
+With our definition of the time evolution operator we see that
+
+\[
+\hat{O}_H(t)=\hat{U}(0,t)\hat{O}_I\hat{U}(t,0),
+\]
+
+which in turn implies that $\hat{O}_S=\hat{O}_I(0)=\hat{O}_H(0)$, all operators are equal at $t=0$. The wave function in the Heisenberg formalism is 
+related to the other pictures as 
+
+\[
+|\Psi_H\rangle=|\Psi_S(0)\rangle=|\Psi_I(0)\rangle,
+\]
+
+since the wave function in the Heisenberg picture is time independent. 
+We can relate this wave function to that a given time $t$ via the time evolution operator as
+
+\[
+|\Psi_H\rangle=\hat{U}(0,t)|\Psi_I(t)\rangle.
+\]
+
+
+\subsection{Adiabatic switching}
+
+
+We assume that the interaction term is switched on gradually. Our wave function at time $t=-\infty$ and $t=\infty$ is supposed to represent a non-interacting system
+given by the solution to the unperturbed part of our Hamiltonian $\hat{H}_0$.
+We assume the ground state is given by $|\Phi_0\rangle$, which could be a Slater determinant.
+We define our Hamiltonian as
+
+\[
+\hat{H}=\hat{H}_0+\exp{(-\varepsilon t/\hbar)}\hat{H}_I,
+\]
+
+where $\varepsilon$ is a small number. The way we write the Hamiltonian 
+and its interaction term is meant to simulate the switching of the interaction.
+
+
+
+The time evolution of the wave function in the interaction picture is then
+
+\[
+|\Psi_I(t) \rangle = \hat{U}_{\varepsilon}(t,t_0)|\Psi_I(t_0)\rangle,
+\]
+
+with 
+
+\[
+\hat{U}_{\varepsilon}(t,t_0)=\sum_{n=0}^{\infty}\left(\frac{-\imath}{\hbar}\right)^n\frac{1}{n!}
+\int_{t_0}^t dt_1\dots \int_{t_0}^t dt_N
+\]
+
+
+\[
+\times \exp{(-\varepsilon(t_1+\dots+t_n)/\hbar)}\hat{T}\left[\hat{H}_I(t_1)\dots\hat{H}_I(t_n)\right]
+\]
+
+
+
+\subsection{Initial state preparation}
+
+In the limit $t_0\rightarrow -\infty$, the solution ot Schrödinger's equation is
+$|\Phi_0\rangle$, and the eigenenergies are given by 
+
+\[
+\hat{H}_0|\Phi_0\rangle=W_0|\Phi_0\rangle,
+\]
+
+meaning that 
+
+\[
+|\Psi_S(t_0)\rangle = \exp{(-\imath W_0t_0/\hbar)}|\Phi_0\rangle,
+\]
+
+with the corresponding interaction picture wave function given by
+
+\[
+|\Psi_I(t_0)\rangle = \exp{(\imath \hat{H}_0t_0/\hbar)}|\Psi_S(t_0)\rangle=|\Phi_0\rangle.
+\]
+
+
+
+The solution becomes time independent in the limit $t_0\rightarrow -\infty$.
+The same conclusion can be reached by looking at 
+
+\[
+\imath \hbar\frac{\partial }{\partial t}|\Psi_I(t)\rangle =
+\exp{(\varepsilon |t|/\hbar)}\hat{H}_I|\Psi_I(t)\rangle 
+\]
+
+and taking the limit $t\rightarrow -\infty$.
+We can rewrite the equation for the wave function at a time $t=0$ as
+
+\[
+|\Psi_I(0) \rangle = \hat{U}_{\varepsilon}(0,-\infty)|\Phi_0\rangle.
+\]
+
+
+\subsection{Specific realizations and famous gates}
+
+Nuclear magnetic resonance (NMR) quantum computing is one of the several
+proposed approaches for constructing a quantum computer. It uses the
+spin states of nuclei within molecules as qubits. The quantum states
+are probed through the nuclear magnetic resonances, allowing the
+system to be implemented as a variation of nuclear magnetic resonance
+spectroscopy. NMR differs from other implementations of quantum
+computers in that it uses an ensemble of systems, in this case
+molecules, rather than a single pure state.
+
+In order to understand in terms of a given Hamiltonian how the
+different gates arise, we consider now the Hamiltonian of a nuclear
+spin in a magnetic field. Since the spin provides provides a magnetic
+dipole moment, a nucleus with a spin will interact with the magnetic
+field. The Haniltonian of a nucleus with spin interacting with a
+magnetic field $\bm{B}$ is
+
+
+\[
+H = -\bm{\mu}\bm{B},
+\]
+
+with $\bm{\mu}=\gamma\bm{S}$, $\gamma$ being the so-called gyromagnetic ratio and $\bm{S}$ the spin.
+
+
+
+It is common to let the spin interact with a constant magnetic field
+along the $z$-axis. This gives an effecitve Hamiltonian
+
+
+\[
+H_z = -\frac{\hbar\omega_L}{2}\sigma_z,
+\]
+
+
+where $\omega_L$ is the so-called Larmor precession frequency. This
+quantity includes also the constant magnetif field along the
+$z$-axis. For all practical purposes it suffices for us to have an
+expression of the Hamiltonian in terms of the Pauli-Z matrix.
+
+
+Suppose that our initial one qubit state (for example a spin-$1/2$
+nucleus for NMR studies) points along some arbitrary axis. As
+discussed during our second week, a point on the Bloch sphere can be
+represented as at time $t=0$
+
+\[
+\vert \psi(t=0) \rangle = \vert \psi(0) \rangle=\cos{(\frac{\theta}{2})}\vert 0\rangle +\exp{\imath\phi}\sin{(\frac{\theta}{2})}\vert 1\rangle.
+\]
+
+
+
+Since the hamiltonian is time-independent, the state $\vert \psi(0)
+\rangle$, our system will evolve according to the unitary transformation 
+
+\[
+\vert \psi(t) \rangle = U(t)\vert \psi(0) \rangle=\exp{\imath\omega_L t\sigma_z/2}\vert \psi(0) \rangle.
+\]
+
+Inserting the Bloch sphere ansatz we have then
+
+\[
+\vert \psi(t) \rangle=\exp{\imath\omega_L t\sigma_z/2}\cos{(\frac{\theta}{2})}\vert 0\rangle +\exp{\imath\omega_L t\sigma_z/2}\exp{\imath\phi}\sin{(\frac{\theta}{2})}\vert 1\rangle.
+\]
+
+
+The specific hamiltonian we have chosen here serves to exemplify how can represent physical operations in terms of specific gates, here a one-qubit gate more notes to come.
+
+Assume we have a given operator $\bm{A}$ acting on a  vector space $\vert a\rangle$ with eigenvalues $a$ 
+
+\[
+\exp{\bm{A}}\vert a\rangle=\sum_{n=0}^{\infty} \frac{1}{n!}\bm{A}^n\vert a\rangle=\sum_{n=0}^{\infty} \frac{a^n}{n!}\vert a\rangle=\exp{a}\vert a\rangle.
+\]
+
+
+Using this result, we obtain
+
+\[
+\vert \psi(t) \rangle=\exp{\imath\omega_L t/2}\cos{(\frac{\theta}{2})}\vert 0\rangle +\exp{-\imath\omega_L t/2}\exp{\imath\phi}\sin{(\frac{\theta}{2})}\vert 1\rangle.
+\]
+
+% material to be added
+
