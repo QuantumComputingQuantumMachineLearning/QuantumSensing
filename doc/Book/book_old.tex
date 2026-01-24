@@ -1,3 +1,5 @@
+
+
 %%%%%%%%%%%%%%%%%%%% book.tex %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %
 % sample root file for the chapters of your "monograph"
@@ -18,6 +20,7 @@
 \usepackage{courier}
 \usepackage{type1cm}  
 \usepackage{bm}
+
 \usepackage{makeidx}         % allows index generation
 \usepackage{graphicx}        % standard LaTeX graphics tool
                              % when including figure files
@@ -361,91 +364,78 @@ tabsize=2
 %chapter 1
 
 \chapter{Introduction to Quantum Sensing}
-\abstract{This chapter surveys the foundations of quantum sensing and metrology. It introduces how uniquely quantum effects—superposition, entanglement and quantum discreteness—can yield measurement performance beyond classical limits, e.g. achieving Heisenberg-limited sensitivity instead of the standard shot-noise limit. The text defines a quantum sensor broadly, discusses basic limits (standard-quantum-limit vs. Heisenberg limit) and highlights examples like squeezing, spin-squeezing or entangled-photon techniques used in state-of-the-art sensors. Various platforms are overviewed: solid-state spin systems, cold-atom magnetometers and interferometers, optomechanical devices, etc. The chapter also describes applications in biology, geology, and navigation, noting specific use-cases such as nanoscale magnetometry or inertial sensing. Finally it contrasts quantum vs. classical sensors, and emphasizes the importance of managing decoherence and noise (e.g. the trade-off between sensor responsivity and coherence time in sensitivity). The conclusion highlights how theory (metrological limits, decoherence modeling) is balanced with practical sensor examples (NV centers, atomic clocks, optomechanical setups) and surveys future directions like miniaturization, sensor networks and new sensing modalities.}
+\abstract{This chapter surveys the foundations of quantum sensing and metrology. It introduces how uniquely quantum effects – superposition, entanglement and quantum discreteness – can yield measurement performance beyond classical limits, e.g. achieving Heisenberg-limited sensitivity instead of the standard shot-noise limit. The text defines a quantum sensor broadly, discusses basic limits (standard-quantum-limit vs. Heisenberg limit) and highlights examples like spin-squeezing or entangled-photon techniques used in state-of-the-art sensors. Various platforms are overviewed: solid-state spin systems, cold-atom magnetometers and interferometers, optomechanical devices, etc. The chapter also describes applications in biology, geology, and navigation, noting specific use-cases such as nanoscale magnetometry or inertial sensing. Finally it contrasts quantum vs. classical sensors, and emphasizes the importance of managing decoherence and noise (e.g. the trade-off between sensor responsivity and coherence time in sensitivity). The conclusion highlights how theory (metrological limits, decoherence modeling) is balanced with practical sensor examples (NV centers, atomic clocks, optomechanical setups) and surveys future directions like miniaturization, sensor networks and new sensing modalities.}
 %\input{chapter1}
 \bibliographystyle{spphys}
 %\bibliography{chapter1}
 \clearemptydoublepage
 
-% Chapter 2
-\chapter{Quantum Mechanics for Quantum Sensing 1 (closed systems \& projective measurements)}
-\abstract{
-Here we review the basic quantum mechanics needed for sensing. It begins with state descriptions (pure and mixed) and the density-operator formalism, showing how any pure state yields a projector and how measurement probabilities are computed from the density matrix. The concept of projective measurement is presented (projective measurements in the energy basis, Born-rule probabilities, and state collapse). The chapter then introduces common qubit operations via Hermitian and unitary operators (notably the Pauli matrices and simple 2×2 gates) and how they flip or phase-shift basis states. Time evolution is treated next: the Schrödinger equation and its formal unitary solution $U\left(t\right)=\operatorname{e}^{-iHt/ \hbar } $ are derived, and the role of Hermitian (energy) and unitary operators is emphasized. The Heisenberg and interaction pictures are briefly discussed. The chapter concludes with remarks on state preparation and common quantum gates (Hadamard, phase, etc.). Overall, the chapter consolidates the quantum formalism needed to model sensors as quantum systems.
-}
+
+\chapter{Basic Mathematics for Quantum Sensing, perhaps appendix material}
+\abstract{This chapter provides a concise review of the linear-algebraic tools used throughout the book.  It introduces vector and matrix notation (Dirac bra–ket and tensor conventions) and defines operations on state vectors, including inner and outer products and Hermitian conjugation. Essential matrix concepts such as addition, scalar multiplication, Hermitian and unitary operators, are discussed along with how they act on vectors and preserve norms. The chapter develops eigenvalue problems and the spectral theorem, emphasizing how any Hermitian operator can be diagonalized (which underpins density matrices and quantum measurements).  Tensor products and multi-qubit state spaces are introduced to describe composite systems and entangled states.  Throughout, examples and simple exercises (for example Pauli matrices, Bell states) are used to illustrate ideas in the context of two-level quantum systems.  This chapter ensures that students have the mathematical background – vector spaces, matrix decompositions, and the Dirac formalism – needed for later quantum theory and sensing applications. }
 %\input{chapter2}
 \bibliographystyle{spphys}
-%\bibliography{chapter2}
 \clearemptydoublepage
 
-
 % Chapter 3
-\chapter{Quantum Mechanics for Quantum Sensing 2 (open systems \& generalized measurements)}
+\chapter{Quantum Mechanics for Quantum Sensing}
 \abstract{
-Here we develop the quantum dynamics background beyond unitary dynamics and projective measurements, introducing several important concepts (operations, POVMs, effects) and showing how realistic detectors are modeled beyond ideal projectors and how a POVM can be mapped to a projective measurement on an enlarged space (Naimark’s dilation theorem). We then discuss a general classification of measurements (type I vs type II, efficient, complete, sharp, backaction-evading, weak, etc.). We then present some examples of concrete measurement setups: photodetection, homodyne detection, etc. 
+Here we review the basic quantum mechanics needed for sensing. It begins with state descriptions (pure and mixed) and the density-operator formalism, showing how any pure state yields a projector  and how measurement probabilities are computed from the density matrix. Quantum measurement theory is presented (projective measurements in the energy basis, Born rule probabilities, and state collapse). The chapter then introduces common qubit operations via Hermitian and unitary operators (notably the Pauli matrices and simple $2\times 2$ gates) and how they flip or phase-shift basis states. Time evolution is treated next: the Schr\"o dinger equation and its formal unitary solution $U(t)=\exp{−iHt/\hbar}$ are derived, and the role of Hermitian (energy) and unitary operators is emphasized. The Heisenberg picture and interaction picture are also briefly discussed, illustrating alternative viewpoints on dynamics. The section concludes with remarks on state preparation and famous quantum gates (Hadamard, phase, etc). In summary, this chapter consolidates the quantum formalism – state vectors, density matrices, measurements and time-evolution – needed to model sensors as quantum systems. The chapter balances abstract theory with concrete examples (e.g. qubit rotations and gate actions) to prepare readers for understanding real sensor dynamics.
 }
 %\input{chapter3}
 \bibliographystyle{spphys}
-%\bibliography{chapter3}
 \clearemptydoublepage
 
 % Chapter 4
-\chapter{Noise and Decoherence}
-\abstract{This chapter addresses the inevitable interaction of quantum sensors with their environment and the resulting noise processes. It introduces open-system models and the Lindblad master equation for Markovian decoherence, explaining how coupling to baths leads to relaxation and dephasing. The distinction between longitudinal relaxation and transverse dephasing is made explicit, with examples from spin sensors. Typical noise sources (magnetic background fluctuations, Johnson noise, phonons, etc.) are discussed in terms of how they enter the Lindblad operators. The chapter shows how decoherence limits sensor performance by reducing coherence time and thus sensitivity. Methods to characterize noise (e.g. spin-echo sequences) are briefly reviewed. Overall, this chapter equips the reader to model realistic sensors: one learns how to write down master equations for an NV center or atomic sensor, compute decay of contrast, and predict limits on signal-to-noise. In short, This chapter  deepens the theoretical treatment of decoherence in sensing, providing tools to understand and mitigate noise in quantum sensors.}
+\chapter{Quantum Sensing Devices}
+\abstract{This chapter surveys key physical platforms and protocols used as quantum sensors. Section 4.1 frames the importance of specific implementations, and subsequent sections each focus on a class of device. It explains NV centers in diamond – atomic-scale spin defects that enable room-temperature, nanoscale magnetometry – highlighting their high sensitivity and broad application range. It then covers superconducting circuits and qubits, which are highly tunable GHz-frequency devices used for microwave sensing. Next, trapped ions and neutral atoms are discussed as precision sensors: for example, atomic-clock transitions and atom-interferometer gravimeters for time/frequency and inertial sensing. The chapter also reviews two canonical interferometric sensing schemes. Ramsey interferometry is presented as a phase-estimation protocol (applicable to spins/atoms), using free-evolution of superposed states; similarly, Mach–Zehnder interferometry is introduced for optical phase sensing. These sections explain how quantum systems (spins, photons, atoms) are controlled and read out to detect fields or forces, including typical measurement sequences and figures of merit. In summary, this chapter gives concrete examples of quantum sensor hardware and experimental methods, showing how abstract principles are realized in platforms like NV-diamond, superconducting circuits, trapped atoms, and interferometers. }
 %\input{chapter4}
 \bibliographystyle{spphys}
-%\bibliography{chapter4}
 \clearemptydoublepage
 
-% chapter 5
-\chapter{Estimation Theories}
-\abstract{This chapter develops the statistical theory underlying precision measurement. It starts with classical estimation: defining the Fisher information and the Cramér–Rao bound (CRB) as limits on variance in unbiased estimators. It then moves to quantum estimation theory, introducing the Quantum Fisher Information (QFI) and the symmetric logarithmic derivative (SLD). The derivation of the single-parameter Quantum Cramér–Rao bound (QCRB) is given, showing how entangled or squeezed quantum states can (in principle) beat classical limits. The text also covers multi-parameter estimation, deriving the Quantum Fisher Information Matrix and discussing when parameters can be measured jointly or must trade off (compatible vs. incompatible observables). Throughout, illustrative examples tie theory to sensing: for example using $N$-qubit GHZ states in Ramsey magnetometry  demonstrating how the QFI scales as $N^2$ (Heisenberg limit). The chapter also examines how realistic factors reduce performance: it shows how decoherence causes the QFI to decay and restores an asymptotic $1/\sqrt{N}$ scaling under noise. Optional numerical examples (with pseudocode) are provided to compute QFI and CRBs for given sensor models. In summary, this chapter equips the reader with the key results of parameter estimation theory – both classical and quantum – and applies them directly to quantum sensing protocols. }
+
+\chapter{Noise and Decoherence}
+\abstract{This chapter addresses the inevitable interaction of quantum sensors with their environment and the resulting noise processes. It introduces open-system models and the Lindblad master equation for Markovian decoherence, explaining how coupling to baths leads to relaxation and dephasing. The distinction between longitudinal relaxation and transverse dephasing is made explicit, with examples from spin sensors. Typical noise sources (magnetic background fluctuations, Johnson noise, phonons, etc.) are discussed in terms of how they enter the Lindblad operators. The chapter shows how decoherence limits sensor performance by reducing coherence time and thus sensitivity. Methods to characterize noise (e.g. spin-echo sequences) are briefly reviewed. Overall, this chapter equips the reader to model realistic sensors: one learns how to write down master equations for an NV center or atomic sensor, compute decay of contrast, and predict limits on signal-to-noise. In short, This chapter  deepens the theoretical treatment of decoherence in sensing, providing tools to understand and mitigate noise in quantum sensors.}
 %\input{chapter5}
 \bibliographystyle{spphys}
-%\bibliography{chapter5}
 \clearemptydoublepage
 
-% Chapter 6
-\chapter{Quantum Control and Error Mitigation in Sensors}
-\abstract{ This chapter would cover techniques for actively preserving coherence and suppressing noise in quantum sensors, such as dynamical decoupling, composite pulse sequences, and simple error-correcting protocols.  Including these control methods would deepen the experimental treatment of decoherence from Chapter 5 and teach readers how to extend sensor coherence times in practice.}
+% chapter 6
+\chapter{Estimation Theories}
+\abstract{This chapter develops the statistical theory underlying precision measurement. It starts with classical estimation: defining the Fisher information and the Cramér–Rao bound (CRB) as limits on variance in unbiased estimators. It then moves to quantum estimation theory, introducing the Quantum Fisher Information (QFI) and the symmetric logarithmic derivative (SLD). The derivation of the single-parameter Quantum Cramér–Rao bound (QCRB) is given, showing how entangled or squeezed quantum states can (in principle) beat classical limits. The text also covers multi-parameter estimation, deriving the Quantum Fisher Information Matrix and discussing when parameters can be measured jointly or must trade off (compatible vs. incompatible observables). Throughout, illustrative examples tie theory to sensing: for example using $N$-qubit GHZ states in Ramsey magnetometry  demonstrating how the QFI scales as $N^2$ (Heisenberg limit). The chapter also examines how realistic factors reduce performance: it shows how decoherence causes the QFI to decay and restores an asymptotic $1/\sqrt{N}$ scaling under noise. Optional numerical examples (with pseudocode) are provided to compute QFI and CRBs for given sensor models. In summary, this chapter equips the reader with the key results of parameter estimation theory – both classical and quantum – and applies them directly to quantum sensing protocols. }
 %\input{chapter6}
 \bibliographystyle{spphys}
-%\bibliography{chapter6}
 \clearemptydoublepage
 
-
-% Chapter 7
-\chapter{Quantum Sensing Devices: electromagnetic field sensors}
-\abstract{This chapter surveys platforms and protocols that measure electric and magnetic fields from DC to optical frequencies. It covers solid-state defect spins (e.g., NV centers) and alkali vapor cells for magnetometry, SQUIDs and Josephson devices for ultra-sensitive flux detection, and superconducting qubits/resonators and parametric amplifiers for microwave sensing. Rydberg-atom electrometers are presented for RF/THz electric-field metrology, alongside integrated and free-space photonic interferometers for optical phase/intensity sensing (including squeezed-light enhancement). Canonical readout schemes—Ramsey spectroscopy (Zeeman/Stark shifts), Mach–Zehnder interferometry, balanced homodyne/heterodyne, and photon counting—are reviewed. The focus is on how these quantum systems are prepared, controlled, and read out to extract E- and B-field information across frequency bands.}
-%\input{chapter7}
-\bibliographystyle{spphys}
-%\bibliography{chapter7}
-\clearemptydoublepage
-
-
-% Chapter 8
-\chapter{Quantum Sensing Devices: sensing beyond em}
-\abstract{This chapter treats signals beyond electromagnetic fields: inertial and gravitational sensing (acceleration, rotation, gravity gradients) with light-pulse atom interferometers and levitated optomechanics; force, displacement, and torque detection using cavity/levitated mechanical sensors and magnetic force resonant microscopy; time and frequency metrology with trapped-ion and neutral-atom clocks; and thermometry/calorimetry using solid-state defects, qubits, superconducting (TES/KIDs), and nanomechanical platforms. As in the previous chapter strong emphasis is placed on translating general control of these systems to practical readout of signals (non-EM here).}
-%\input{chapter8}
-\bibliographystyle{spphys}
-%\bibliography{chapter8}
-\clearemptydoublepage
-
-
-% chapter 9
+% chapter 7
 \chapter{Machine Learning and Quantum Sensing}
 \abstract{This chapter explores data-driven estimation methods, focusing on Bayesian inference and modern machine-learning approaches. It begins by contrasting the frequentist viewpoint (Fisher information and CRBs) with a Bayesian framework that incorporates prior knowledge into sensing problems. Key Bayesian concepts are introduced: using Bayes’ theorem to update a probability distribution over the unknown parameter(s) as measurement data arrives. The text details how quantum measurement outcomes produce likelihood functions, and how sequential updating yields a posterior distribution whose mean and credible intervals quantify uncertainty. Comparison to frequentist bounds is discussed, emphasizing that Bayesian strategies are especially useful in adaptive sensing or when data are scarce. The chapter includes examples of Bayesian quantum sensing: for instance, estimating magnetic fields with an NV-center qubit or calibrating a trapped-ion sensor using prior models.  Practical aspects (e.g. discretizing the parameter space, computing updates) and metrics like posterior variance and information gain are covered. Throughout, illustrative figures and code snippets demonstrate the updating process.}
+%\input{chapter7}
+\bibliographystyle{spphys}
+\clearemptydoublepage
+
+\chapter{Applications}
+\abstract{This  chapter ties together the concepts by working through concrete sensing applications, often via numerical simulation.}
+%\input{chapter8}
+\bibliographystyle{spphys}
+
+ \bibliographystyle{unsrt}
+
+\chapter{Quantum Control and Error Mitigation in Sensors}
+\abstract{ This chapter would cover techniques for actively preserving coherence and suppressing noise in quantum sensors, such as dynamical decoupling, composite pulse sequences, and simple error-correcting protocols.  Including these control methods would deepen the experimental treatment of decoherence from Chapter 5 and teach readers how to extend sensor coherence times in practice.}
 %\input{chapter9}
 \bibliographystyle{spphys}
-%\bibliography{chapter9}
-\clearemptydoublepage
+
+ \bibliographystyle{unsrt}
 
 \chapter{Quantum Sensor Networks and Distributed Sensing}
 \abstract{This chapter would explore how multiple quantum sensors can be networked or entangled to perform enhanced measurements (e.g. entangled clock networks or magnetometer arrays).  It would review theoretical proposals and early experiments on distributed quantum sensing, addressing how correlations between sensors can improve spatial resolution or differential measurements.  Adding this material builds on the outlook in Chapter 1 and provides a modern perspective on scaling up quantum sensing using many-body resources.}
 %\input{chapter10}
 \bibliographystyle{spphys}
-%\bibliography{chapter10}
-\clearemptydoublepage
 
+\bibliographystyle{unsrt}
+
+\clearemptydoublepage
 \chapter{Conclusion and Outlook, all}
 
 \abstract{
@@ -455,18 +445,7 @@ quantum hardware (superconducting qubits, trapped ions, Rydberg atoms)
 and their applicability to quantum sensing.  We outline open
 challenges bla bla
 }
-%\input{chapter11}
-\bibliographystyle{spphys}
-%\bibliography{chapter11}
-\clearemptydoublepage
 
-\appendix 
-\chapter{Basic Mathematics for Quantum Sensing, perhaps appendix material}
-\abstract{This chapter provides a concise review of the linear-algebraic tools used throughout the book.  It introduces vector and matrix notation (Dirac bra–ket and tensor conventions) and defines operations on state vectors, including inner and outer products and Hermitian conjugation. Essential matrix concepts such as addition, scalar multiplication, Hermitian and unitary operators, are discussed along with how they act on vectors and preserve norms. The chapter develops eigenvalue problems and the spectral theorem, emphasizing how any Hermitian operator can be diagonalized (which underpins density matrices and quantum measurements).  Tensor products and multi-qubit state spaces are introduced to describe composite systems and entangled states.  Throughout, examples and simple exercises (for example Pauli matrices, Bell states) are used to illustrate ideas in the context of two-level quantum systems.  This chapter ensures that students have the mathematical background – vector spaces, matrix decompositions, and the Dirac formalism – needed for later quantum theory and sensing applications. }
-%\input{chapterAppA}
-\bibliographystyle{spphys}
-%\bibliography{chapterAppA}
-\clearemptydoublepage
 
 \backmatter%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\include{glossary}
